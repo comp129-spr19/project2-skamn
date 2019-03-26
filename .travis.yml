@@ -5,3 +5,5 @@ install:
   - "pip install pipenv"
   - "pipenv install"
 script: "cd project2-skamn; python -m pytest"
+notifications:
+  slack: comp129:Jk9NjqjQpG9JlNwRN0mH39YQ
