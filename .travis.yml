@@ -4,4 +4,4 @@ python:
 install:
   - "pip install pipenv"
   - "pipenv install"
-script: "python -m pytest"
+script: "cd project2-skamn; python -m pytest"
