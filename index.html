@@ -7,10 +7,18 @@
   <body>
     <h1>Hydration Station</h1>
 
-    <form>
-      <label for="dailyGoal">New Daily Goal (mL):</label>
+    <div id="currentDailyGoalLabel">Current Daily Goal (mL):</div>
+    <div id="currentDailyGoal">0</div>
+    <br />
+
+    <form onsubmit="setGoal(event)">
+      <label for="dailyGoalUserInput">New Daily Goal (mL):</label>
       <input type="text" id="dailyGoalUserInput" />
-      <input type="button" onclick="setGoal()" value="Set New Daily Goal" />
+      <input
+        type="button"
+        onclick="setGoal(event)"
+        value="Set New Daily Goal"
+      />
     </form>
 
     <script>
