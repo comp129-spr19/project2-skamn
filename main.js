@@ -1,5 +1,8 @@
 // Modules to control application life and create native browser window
+require('electron-reload')(__dirname)
 const {app, BrowserWindow} = require('electron')
+
+console.log("HELO WORLD");
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.

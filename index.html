@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <script src="renderer.js"></script>
+    <script src="./src/conversionCalc.js"></script>
+    <link rel="stylesheet" href="./css/master.css">
+    <title>Hydration Hose</title>
   </head>
-  <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+  <div class="pageOne">
+    <h3>Please enter your desired amount of water intake today: (Oz)</h3>
+    <input type="text" name="placeholder" id="userInput">
+    <br><br>
+    <button type="submit" onclick="getInput()">Hydrate Me!</button>
+    <h4>Please enter the total number of ounces that you've drank so far:</h4>
+    <input type="text" id="incrementAmount">
+    <button type="submit" onclick="amountDrank()">+</button>
+  </div>
 
-    <script>
-      // You can also require other files to run in this process
-      require('./renderer.js')
-    </script>
+  <body>
   </body>
+
 </html>
