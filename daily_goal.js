@@ -1,4 +1,6 @@
 let dailyGoal = 0;
+let hydrationLevel = 0;
+let waterDrank = 0;
 
 function setGoal(e) {
   e.preventDefault();
@@ -16,4 +18,19 @@ function setGoal(e) {
   dailyGoal = dailyGoalUserInputValue;
   // Update label to reflect new daily goal
   document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
+}
+
+function setWaterDrank(e) {
+  waterDrank = document.getElementById("waterDrank").value;
+  if (isNaN(waterDrank)) {
+    alert("Please enter a number");
+    return;
+  }
+  if (waterDrank < 1) {
+    alert("Please enter a number greater than 0");
+    return;
+  }
+  hydrationLevel = parseInt(hydrationLevel) + parseInt(waterDrank);
+  console.log(hydrationLevel);
+  document.getElementById("totalHydrationLevel").innerHTML = hydrationLevel;
 }
