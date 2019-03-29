@@ -15,3 +15,5 @@ function setGoal(e) {
   let dailyGoalDisplay = document.getElementById("currentDailyGoal");
   dailyGoalDisplay.innerHTML = dailyGoal;
 }
+
+module.exports = { dailyGoal, setGoal };
