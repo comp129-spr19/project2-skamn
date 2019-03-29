@@ -1,19 +1,30 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <meta charset="UTF-8" />
+    <title>Hydration Station</title>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <h1>Hydration Station</h1>
+
+    <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
+    <div id="currentDailyGoal">0</div>
+    <br />
+
+    <form onsubmit="setGoal(event)">
+      <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
+      <input type="number" id="dailyGoalUserInput" />
+      <input
+        type="button"
+        onclick="setGoal(event)"
+        value="Set New Daily Goal"
+      />
+    </form>
 
     <script>
       // You can also require other files to run in this process
-      require('./renderer.js')
+      require("./renderer.js");
     </script>
+    <script src="daily_goal.js"></script>
   </body>
 </html>
