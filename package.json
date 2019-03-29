@@ -17,8 +17,16 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
+<<<<<<< HEAD
     "electron": "^4.1.1",
     "electron-reload": "^1.4.0"
   },
   "dependencies": {}
+=======
+    "electron": "^4.1.1"
+  },
+  "dependencies": {
+    "electron-reload": "^1.4.0"
+  }
+>>>>>>> 08f808074615dc70361371c6ab10ff9e7549ca69
 }
