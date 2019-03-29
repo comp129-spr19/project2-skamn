@@ -21,7 +21,9 @@ function setGoal(e) {
 }
 
 function setWaterDrank(e) {
+  // retrieving value from user input
   waterDrank = document.getElementById("waterDrank").value;
+  // error checking on user input
   if (isNaN(waterDrank)) {
     alert("Please enter a number!");
     return;
@@ -30,8 +32,10 @@ function setWaterDrank(e) {
     alert("Please enter a number greater than 0!");
     return;
   }
+  // adding the previous hydrationLevel with new user input
   hydrationLevel = parseInt(hydrationLevel) + parseInt(waterDrank);
   console.log(hydrationLevel);
+  // making change to application
   document.getElementById("totalHydrationLevel").innerHTML = hydrationLevel;
   if (hydrationLevel >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
