@@ -1,5 +1,5 @@
 let dailyGoal = 0;
-let totalHydrationLevel = 0;
+let totalWaterDrankToday = 0;
 let waterDrankRecently = 0;
 
 function setGoal(e) {
@@ -32,11 +32,11 @@ function setWaterDrankRecently(e) {
     alert("Please enter a number greater than 0!");
     return;
   }
-  // adding the previous totalHydrationLevel with new user input
-  totalHydrationLevel = parseInt(totalHydrationLevel) + parseInt(waterDrankRecently);
+  // adding the previous totalWaterDrankToday with new user input
+  totalWaterDrankToday = parseInt(totalWaterDrankToday) + parseInt(waterDrankRecently);
   // making change to application
-  document.getElementById("totalHydrationLevel").innerHTML = totalHydrationLevel;
-  if (totalHydrationLevel >= dailyGoal) {
+  document.getElementById("totalWaterDrankToday").innerHTML = totalWaterDrankToday;
+  if (totalWaterDrankToday >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
 }
