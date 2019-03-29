@@ -23,14 +23,17 @@ function setGoal(e) {
 function setWaterDrank(e) {
   waterDrank = document.getElementById("waterDrank").value;
   if (isNaN(waterDrank)) {
-    alert("Please enter a number");
+    alert("Please enter a number!");
     return;
   }
   if (waterDrank < 1) {
-    alert("Please enter a number greater than 0");
+    alert("Please enter a number greater than 0!");
     return;
   }
   hydrationLevel = parseInt(hydrationLevel) + parseInt(waterDrank);
   console.log(hydrationLevel);
   document.getElementById("totalHydrationLevel").innerHTML = hydrationLevel;
+  if (hydrationLevel >= dailyGoal) {
+    alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
+  }
 }
