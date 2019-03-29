@@ -2,6 +2,7 @@
 <html>
 
   <head>
+<<<<<<< HEAD
     <meta charset="UTF-8">
     <script src="renderer.js"></script>
     <script src="./src/conversionCalc.js"></script>
@@ -19,6 +20,33 @@
   </div>
 
   <body>
+=======
+    <meta charset="UTF-8" />
+    <title>Hydration Station</title>
+  </head>
+  <body>
+    <h1>Hydration Station</h1>
+
+    <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
+    <div id="currentDailyGoal">0</div>
+    <br />
+
+    <form onsubmit="setGoal(event)">
+      <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
+      <input type="number" id="dailyGoalUserInput" />
+      <input
+        type="button"
+        onclick="setGoal(event)"
+        value="Set New Daily Goal"
+      />
+    </form>
+
+    <script>
+      // You can also require other files to run in this process
+      require("./renderer.js");
+    </script>
+    <script src="daily_goal.js"></script>
+>>>>>>> 858c07064db88f49fb4522e6ea91e71e0a8de328
   </body>
 
 </html>
