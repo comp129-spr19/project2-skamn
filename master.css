@@ -7,24 +7,21 @@
     filter: sepia(1);
 }
 
-.App {
+.getUserInput {
     text-align: center;
 }
 
 #progress-bar {
-    margin-top: 100px;
-    display: inline-flex;
-    width: 50%;
-    height: 30px;
-    position: relative;
+    width: 100%;
     background-color: #ddd;
-    text-align: center;
 }
 
 #my-bar {
-    background-color: darkblue;
-    height: 30px;
-    position: absolute;
     text-align: center;
-
+    width: 10%;
+    height: 30px;
+    background-color: #4CAF50;
+    text-align: center;
+    line-height: 30px;
+    color: white;
 }

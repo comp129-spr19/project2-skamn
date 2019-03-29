@@ -1,42 +1,48 @@
 <!DOCTYPE html>
-<html>
+<html style="background-color: aqua">
 
   <head>
     <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/master.css">
     <title>Hydration Hose</title>
   </head>
 
   <body>
-<<<<<<< HEAD
-    <h1>Hydration Station </h1>
-=======
-    <h1>Hydration Hose</h1>
-    <h2>Current Hydration Level</h2>
-    <div id="totalHydrationLevel">0</div>
-    <h2>How much water did you drink?</h2>
-    <input type="number" id="waterDrank" />
->>>>>>> 08f808074615dc70361371c6ab10ff9e7549ca69
+    <div class="App">
+      <h1>Hydration Hose</h1>
+      <h2>Current Hydration Level</h2>
+      <div id="totalWaterDrankToday">0</div>
+      <h2>How much water did you drink?</h2>
+      <form onsubmit="setWaterDrankRecently(event) ">
+        <input type="number" id="waterDrankRecently" />
 
-    <select>
-      <option value="ounces">Ounces (oz)</option>
-      <option value="ml">ml</option>
-    </select>
+        <select>
+          <option value="ounces">Ounces (oz)</option>
+          <option value="ml">ml</option>
+        </select>
+        <input type="button" onclick="progressBarAndUserInput()" value="Submit" />
+      </form>
 
-    <input type="button" onclick="setWaterDrank(event)" value="Submit" />
+      <br />
+      <br />
+      <br />
+      <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
+      <div id="currentDailyGoal">0</div>
+      <br />
 
-    <br />
-    <br />
-    <br />
-    <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
-    <div id="currentDailyGoal">0</div>
-    <br />
+      <form onsubmit="setGoal(event)">
+        <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
+        <input type="number" id="dailyGoalUserInput" />
+        <input type="button" onclick="setGoal(event)" value="Set New Daily Goal" />
+      </form>
 
-    <form onsubmit="setGoal(event)">
-      <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
-      <input type="number" id="dailyGoalUserInput" />
-      <input type="button" onclick="setGoal(event)" value="Set New Daily Goal" />
-    </form>
 
+      <div id="progress-bar">
+        <div id="my-bar"></div>
+      </div>
+      <br>
+
+    </div>
     <script>
       // You can also require other files to run in this process
       require("./renderer.js");
