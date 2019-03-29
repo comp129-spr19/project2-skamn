@@ -2,16 +2,18 @@ let dailyGoal = 0;
 
 function setGoal(e) {
   e.preventDefault();
-  let dailyGoalUserInput = document.getElementById("dailyGoalUserInput");
-  dailyGoal = dailyGoalUserInput.value;
-  if (dailyGoal == "") dailyGoal = 1;
-  else if (isNaN(dailyGoal)) {
+  let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput")
+    .value;
+  if (dailyGoalUserInputValue == null) {
+    dailyGoal = 1;
+  } else if (isNaN(dailyGoalUserInputValue)) {
     alert("Please enter a number");
     return;
-  } else if (dailyGoal < 1) {
-    alert("Plese enter a positive number");
+  } else if (dailyGoalUserInputValue < 1) {
+    alert("Please enter a positive number");
     return;
   }
-  let dailyGoalDisplay = document.getElementById("currentDailyGoal");
-  dailyGoalDisplay.innerHTML = dailyGoal;
+  dailyGoal = dailyGoalUserInputValue;
+  // Update label to reflect new daily goal
+  document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
 }
