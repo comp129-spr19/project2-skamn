@@ -21,6 +21,7 @@ function setGoal(e) {
 }
 
 function setWaterDrankRecently(e) {
+  e.preventDefault();
   // retrieving value from user input
   waterDrankRecently = document.getElementById("waterDrankRecently").value;
   // error checking on user input
@@ -33,9 +34,12 @@ function setWaterDrankRecently(e) {
     return;
   }
   // adding the previous totalWaterDrankToday with new user input
-  totalWaterDrankToday = parseInt(totalWaterDrankToday) + parseInt(waterDrankRecently);
+  totalWaterDrankToday =
+    parseInt(totalWaterDrankToday) + parseInt(waterDrankRecently);
   // making change to application
-  document.getElementById("totalWaterDrankToday").innerHTML = totalWaterDrankToday;
+  document.getElementById(
+    "totalWaterDrankToday"
+  ).innerHTML = totalWaterDrankToday;
   if (totalWaterDrankToday >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
