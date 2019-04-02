@@ -1,9 +1,8 @@
-language: python
-python:
-  - "3.6"
+language: node_js
+node_js:
+  - "8"
 install:
-  - "pip install pipenv"
-  - "pipenv install"
-script: "cd project2-skamn; python -m pytest"
+  - "npm install"
+script: "jest"
 notifications:
   slack: comp129:Jk9NjqjQpG9JlNwRN0mH39YQ
