@@ -5,10 +5,17 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/master.css">
     <title>Hydration Hose</title>
+    <script src="graphic.js"></script>
+
   </head>
 
-  <body>
+  <body onload="">
+
+    <div><button onclick="window.location.href='./calendar.html'">View Calendar!</button></div>
+
     <div class="App">
+
+
       <h1>Hydration Hose</h1>
       <h2>Current Hydration Level</h2>
       <div id="totalWaterDrankToday">0</div>
@@ -23,9 +30,7 @@
         <input type="button" onclick="progressBarAndUserInput()" value="Submit" />
       </form>
 
-      <br />
-      <br />
-      <br />
+      <br /><br /><br />
       <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
       <div id="currentDailyGoal">0</div>
       <br />
@@ -36,6 +41,8 @@
         <input type="button" onclick="setGoal(event)" value="Set New Daily Goal" />
       </form>
 
+      <div id="graphic-container">
+      </div>
 
       <div id="progress-bar">
         <div id="my-bar"></div>

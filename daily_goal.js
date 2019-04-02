@@ -51,10 +51,12 @@ function progressBar() {
   var elem = document.getElementById("my-bar");   
   var id = setInterval(displayBar, 100);
   let p = (totalWaterDrankToday / dailyGoal) * 100;
-  width = p;
+  let width = p;
+  
   function displayBar() {
-    if (width > dailyGoal) {
-      width=100;
+    if (totalWaterDrankToday > dailyGoal) {
+      width = 100;
+      console.log("NEW WIDTH: " + width);
       elem.style.width = width + "%";
       clearInterval(id);
     } else {
