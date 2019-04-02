@@ -3,7 +3,9 @@ let totalWaterDrankToday = 0;
 let waterDrankRecently = 0;
 
 function setGoal(e) {
-  e.preventDefault();
+  if (e) {
+    e.preventDefault();
+  }
   let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput")
     .value;
   if (dailyGoalUserInputValue == null) {
@@ -44,3 +46,13 @@ function setWaterDrankRecently(e) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
 }
+
+function getDailyGoal() {
+  return dailyGoal;
+}
+
+module.exports = {
+  getDailyGoal,
+  setGoal,
+  setWaterDrankRecently
+};

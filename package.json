@@ -18,7 +18,7 @@
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "^4.1.1",
-    "prettier": "1.16.4"
+    "jest": "^24.5.0"
   },
   "dependencies": {
     "electron-reload": "^1.4.0"
