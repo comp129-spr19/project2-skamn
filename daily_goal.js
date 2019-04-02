@@ -23,6 +23,7 @@ function setGoal(e) {
 }
 
 function setWaterDrankRecently(e) {
+  e.preventDefault();
   // retrieving value from user input
   waterDrankRecently = document.getElementById("waterDrankRecently").value;
   // error checking on user input
