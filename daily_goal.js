@@ -43,7 +43,16 @@ function setWaterDrankRecently(e) {
     "totalWaterDrankToday"
   ).innerHTML = totalWaterDrankToday;
   if (totalWaterDrankToday >= dailyGoal) {
-    alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
+    let goalReachedNotification = new Notification(
+      "Daily Water Consumption Goal Reached!",
+      {
+        body:
+          "Congrats! You aimed to drink " +
+          dailyGoal +
+          " oz of water and you reached today's goal! Keep it up!"
+      }
+    );
+    goalReachedNotification.show();
   }
 }
 
