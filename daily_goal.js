@@ -26,18 +26,37 @@ function progressBarAndUserInput() {
   
 }
 
+
+// WRAP SETINTERVAL THROUGH ALL OF WATER DRANK RECENTLY, IF WATER DRANK > 0, SET TIMER AND IMAGE TO MEDIUM ROSE
 function setWaterDrankRecently() {
   // retrieving value from user input
   waterDrankRecently = document.getElementById("waterDrankRecently").value;
-  // error checking on user input
-  if (isNaN(waterDrankRecently)) {
-    alert("Please enter a number!");
-    return;
-  }
-  if (waterDrankRecently < 1) {
-    alert("Please enter a number greater than 0!");
-    return;
-  }
+  // if(isNaN(waterDrankRecently) || waterDrankRecently < 1) {
+  //   alert('please enter a valid number');
+
+  // }
+
+  let timeOf = 25;
+  let showImage = document.createElement('img');
+  showImage.id = "middlerose";
+  showImage.src="MediumRose.jpg"
+  document.body.appendChild(showImage);
+  id = setInterval(() => {
+    console.log("Time remaining: " + timeOf);
+    if(timeOf > 0) {
+      timeOf = timeOf-1;
+    }
+    else {
+      element = document.getElementById('middlerose');
+      element.parentNode.removeChild(element);
+      let showImage = document.createElement('img');
+      showImage.id="deadrose";
+      showImage.src="DeadRose.jpg"
+      document.body.appendChild(showImage);
+      clearInterval(id);
+    }
+  }, 1000);
+
   // adding the previous totalWaterDrankToday with new user input
   totalWaterDrankToday = parseInt(totalWaterDrankToday) + parseInt(waterDrankRecently);
   // making change to application
@@ -45,8 +64,6 @@ function setWaterDrankRecently() {
   if (totalWaterDrankToday >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
-  
-
 }
 
 function progressBar() {
@@ -67,31 +84,29 @@ function progressBar() {
   }
 }
 
+// function init() {
+//   waterDrankRecently = document.getElementById('waterDrankRecently').value;
 
-function init() {
-  let timeOf = 2;
-  let showImage = document.createElement('img');
-  showImage.id = "deadRose";
-  showImage.src="MediumRose.jpg", showImage.style.width="100px", showImage.style.height="250px", showImage.style.margin="auto", showImage.style.display="flex";
-  document.body.appendChild(showImage);
-  id = setInterval(() => {
-    console.log("Time remaining: " + timeOf);
-    if(timeOf > 0) {
-      timeOf = timeOf-1;
-    }
-    else {
-      element = document.getElementById('deadRose');
-      element.parentNode.removeChild(element);
-      clearInterval(id);
-      let showImage = document.createElement('img');
-      showImage.src="DeadRose.jpg", showImage.style.width="100px", showImage.style.height="250px", showImage.style.margin="auto", showImage.style.display="flex"; 
-      document.body.appendChild(showImage);
-    }
-  }, 1000);
-}
 
-function remove() {
-  var removeImg = document.getElementById('deadRose');
-  removeImg.parentNode.removeChild(removeImg);
-  
-}
+//   let timeOf = 25;
+//   let showImage = document.createElement('img');
+//   showImage.id = "middlerose";
+//   showImage.src="MediumRose.jpg"
+//   document.body.appendChild(showImage);
+//   id = setInterval(() => {
+//     if(waterDrankRecently)
+//     console.log("Time remaining: " + timeOf);
+//     if(timeOf > 0) {
+//       timeOf = timeOf-1;
+//     }
+//     else {
+//       element = document.getElementById('middlerose');
+//       element.parentNode.removeChild(element);
+//       let showImage = document.createElement('img');
+//       showImage.id="deadrose";
+//       showImage.src="DeadRose.jpg"
+//       document.body.appendChild(showImage);
+//       clearInterval(id);
+//     }
+//   }, 1000);
+// };

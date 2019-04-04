@@ -9,9 +9,28 @@
 
 .App {
     text-align: center;
+    font-size: 25px;
+    color: white;
+    font-family: Arial
+}
+
+#submitBtn,
+#goalBtn:hover {
+    cursor: pointer;
+}
+
+#submitBtn,
+#goalBtn {
+    border: #41d3f4;
+    border-radius: 25px;
+    color: white;
+    background-color: #42f4c5;
+    width: 35;
+    height: 35px;
 }
 
 #progress-bar {
+    border-radius: 25px;
     margin-top: 25px;
     display: inline-flex;
     width: 50%;
@@ -22,35 +41,34 @@
 }
 
 #my-bar {
+    border-radius: 25px;
     background-color: darkblue;
     height: 30px;
     position: absolute;
     text-align: center;
-
 }
 
 #graphic-container {
     display: flex;
     margin: auto;
     margin-top: 10px;
+
 }
 
 #middlerose {
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
     display: flex;
-    position: relative;
     margin: auto;
     margin-top: 20px;
 }
 
 #deadrose {
-    width: 100px;
-    height: 100px;
+    width: 250px;
+    height: 250px;
     margin: auto;
     margin-top: 20px;
     display: flex;
-    position: relative;
 }
 
 #formID {
