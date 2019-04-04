@@ -1,4 +1,5 @@
 let dailyGoal = 0;
+let dailyGoalMet = false;
 let totalWaterDrankToday = 0;
 let waterDrankRecently = 0;
 
@@ -23,7 +24,9 @@ function setGoal(e) {
 }
 
 function setWaterDrankRecently(e) {
-  e.preventDefault();
+  if (e) {
+    e.preventDefault();
+  }
   // retrieving value from user input
   waterDrankRecently = document.getElementById("waterDrankRecently").value;
   // error checking on user input
@@ -43,17 +46,27 @@ function setWaterDrankRecently(e) {
     "totalWaterDrankToday"
   ).innerHTML = totalWaterDrankToday;
   if (totalWaterDrankToday >= dailyGoal) {
-    let goalReachedNotification = new Notification(
-      "Daily Water Consumption Goal Reached!",
-      {
-        body:
-          "Congrats! You aimed to drink " +
-          dailyGoal +
-          " oz of water and you reached today's goal! Keep it up!"
-      }
-    );
-    goalReachedNotification.show();
+    dailyGoalMet = true;
+    try {
+      let goalReachedNotification = new Notification(
+        "Daily Water Consumption Goal Reached!",
+        {
+          body:
+            "Congrats! You aimed to drink " +
+            dailyGoal +
+            " oz of water and you reached today's goal! Keep it up!"
+        }
+      );
+      goalReachedNotification.show();
+    } catch (err) {
+      console.log("Daily water goal met but notification not shown");
+      console.log(err.message);
+    }
   }
+}
+
+function getDailyGoalMet() {
+  return dailyGoalMet;
 }
 
 function getDailyGoal() {
@@ -62,6 +75,7 @@ function getDailyGoal() {
 
 module.exports = {
   getDailyGoal,
+  getDailyGoalMet,
   setGoal,
   setWaterDrankRecently
 };
