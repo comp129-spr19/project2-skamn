@@ -45,7 +45,7 @@ function setWaterDrankRecently(e) {
   document.getElementById(
     "totalWaterDrankToday"
   ).innerHTML = totalWaterDrankToday;
-  if (totalWaterDrankToday >= dailyGoal && dailyGoalMet == false) {
+  if (!dailyGoalMet && totalWaterDrankToday >= dailyGoal) {
     dailyGoalMet = true;
     try {
       let goalReachedNotification = new Notification(
