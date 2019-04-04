@@ -5,57 +5,41 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/master.css">
     <title>Hydration Hose</title>
-    <script src="graphic.js"></script>
-
+    <script src="daily_goal.js"></script>
+    <script src="./renderer.js"></script>
+    <img src="" alt="">
   </head>
 
-  <body onload="">
+  <body onload="init();">
 
     <div><button onclick="window.location.href='./calendar.html'">View Calendar!</button></div>
 
     <div class="App">
 
-
       <h1>Hydration Hose</h1>
       <h2>Current Hydration Level</h2>
       <div id="totalWaterDrankToday">0</div>
       <h2>How much water did you drink?</h2>
-      <form onsubmit="setWaterDrankRecently(event) ">
+      <form id="formID" onsubmit="setWaterDrankRecently(event) ">
         <input type="number" id="waterDrankRecently" />
-
         <select>
           <option value="ounces">Ounces (oz)</option>
           <option value="ml">ml</option>
         </select>
         <input type="button" onclick="progressBarAndUserInput()" value="Submit" />
       </form>
-
-      <br /><br /><br />
       <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
       <div id="currentDailyGoal">0</div>
-      <br />
-
-      <form onsubmit="setGoal(event)">
+      <form id="formID" onsubmit="setGoal(event)">
         <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
         <input type="number" id="dailyGoalUserInput" />
         <input type="button" onclick="setGoal(event)" value="Set New Daily Goal" />
       </form>
-
-      <div id="graphic-container">
-      </div>
-
       <div id="progress-bar">
         <div id="my-bar"></div>
       </div>
-      <br>
 
     </div>
-    <script>
-      // You can also require other files to run in this process
-      require("./renderer.js");
-
-    </script>
-    <script src="daily_goal.js"></script>
   </body>
 
 </html>

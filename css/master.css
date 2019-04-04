@@ -12,7 +12,7 @@
 }
 
 #progress-bar {
-    margin-top: 100px;
+    margin-top: 25px;
     display: inline-flex;
     width: 50%;
     height: 30px;
@@ -30,11 +30,29 @@
 }
 
 #graphic-container {
+    display: flex;
     margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    border: 1px solid;
-    width: 50px;
-    height: 50px;
-    background-color: white;
+    margin-top: 10px;
+}
+
+#middlerose {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    position: relative;
+    margin: auto;
+    margin-top: 20px;
+}
+
+#deadrose {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    margin-top: 20px;
+    display: flex;
+    position: relative;
+}
+
+#formID {
+    margin-bottom: 30px;
 }

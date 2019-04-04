@@ -45,6 +45,8 @@ function setWaterDrankRecently() {
   if (totalWaterDrankToday >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
+  
+
 }
 
 function progressBar() {
@@ -56,7 +58,6 @@ function progressBar() {
   function displayBar() {
     if (totalWaterDrankToday > dailyGoal) {
       width = 100;
-      console.log("NEW WIDTH: " + width);
       elem.style.width = width + "%";
       clearInterval(id);
     } else {
@@ -64,4 +65,33 @@ function progressBar() {
       clearInterval(id);
     }
   }
+}
+
+
+function init() {
+  let timeOf = 2;
+  let showImage = document.createElement('img');
+  showImage.id = "deadRose";
+  showImage.src="MediumRose.jpg", showImage.style.width="100px", showImage.style.height="250px", showImage.style.margin="auto", showImage.style.display="flex";
+  document.body.appendChild(showImage);
+  id = setInterval(() => {
+    console.log("Time remaining: " + timeOf);
+    if(timeOf > 0) {
+      timeOf = timeOf-1;
+    }
+    else {
+      element = document.getElementById('deadRose');
+      element.parentNode.removeChild(element);
+      clearInterval(id);
+      let showImage = document.createElement('img');
+      showImage.src="DeadRose.jpg", showImage.style.width="100px", showImage.style.height="250px", showImage.style.margin="auto", showImage.style.display="flex"; 
+      document.body.appendChild(showImage);
+    }
+  }, 1000);
+}
+
+function remove() {
+  var removeImg = document.getElementById('deadRose');
+  removeImg.parentNode.removeChild(removeImg);
+  
 }
