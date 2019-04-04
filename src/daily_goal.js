@@ -4,8 +4,7 @@ let waterDrankRecently = 0;
 
 function setGoal(e) {
   e.preventDefault();
-  let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput")
-    .value;
+  let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput").value;
   if (dailyGoalUserInputValue == null) {
     dailyGoal = 1;
   } else if (isNaN(dailyGoalUserInputValue)) {

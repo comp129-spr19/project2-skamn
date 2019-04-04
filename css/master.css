@@ -11,12 +11,13 @@
     text-align: center;
     font-size: 25px;
     color: white;
-    font-family: Arial
+    font-family: Arial;
 }
 
-#submitBtn,
+#submitBtn:hover,
 #goalBtn:hover {
     cursor: pointer;
+    opacity: .6;
 }
 
 #submitBtn,
@@ -27,6 +28,49 @@
     background-color: #42f4c5;
     width: 35;
     height: 35px;
+    font-size: 16px;
+}
+
+#waterGif {
+    height: 150px;
+    width: 200px;
+    margin: auto;
+    display: flex;
+    border-radius: 20px;
+}
+
+#msgs {
+    font-size: 30px;
+    margin: auto;
+    margin-top: 15px;
+}
+
+#options {
+    border-radius: 35px;
+    font-weight: bold;
+}
+
+#options:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+#waterDrankRecently,
+#dailyGoalUserInput {
+    border-radius: 15px;
+}
+
+#totalWaterDrankToday {
+    font-size: 20px;
+    margin: auto;
+}
+
+#getRecent,
+#getGoal {
+    width: 150px;
+    height: 25px;
+    border-radius: 10px;
+    margin-right: 10px;
 }
 
 #progress-bar {
