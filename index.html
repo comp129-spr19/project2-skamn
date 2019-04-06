@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html style="background-color: #1a5866">
+<html>
 
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/master.css">
     <title>Hydration Hose</title>
     <script src="./src/daily_goal.js"></script>
-    <img id="waterGif" src="water.gif" alt="water gif">
+    <img id="waterGif" src="./images/water.gif" alt="water gif">
     <script src="./renderer.js"></script>
     <img src="" alt="">
   </head>
@@ -18,7 +18,8 @@
       <h2>Current Hydration Level</h2>
       <div id="totalWaterDrankToday">0</div>
       <h2>How much water did you drink?</h2>
-      <form id="formID" onsubmit="setWaterDrankRecently() ">
+
+      <form id="formID" onsubmit="getUserInput() ">
         <input placeholder="Enter text here..." type="number" id="waterDrankRecently" />
         <select id="options">
           <option value="ounces">Ounces (oz)</option>

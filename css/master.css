@@ -10,7 +10,7 @@
 .App {
     text-align: center;
     font-size: 25px;
-    color: white;
+    color: black;
     font-family: Arial;
 }
 
@@ -61,7 +61,8 @@
 }
 
 #totalWaterDrankToday {
-    font-size: 20px;
+    font-weight: bold;
+    font-size: 25px;
     margin: auto;
 }
 
@@ -86,7 +87,7 @@
 
 #my-bar {
     border-radius: 25px;
-    background-color: darkblue;
+    background-color: #42f44b;
     height: 30px;
     position: absolute;
     text-align: center;
