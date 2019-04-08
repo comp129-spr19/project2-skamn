@@ -45,10 +45,19 @@ function setWaterDrankRecently(e) {
   if (totalWaterDrankToday >= dailyGoal) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
+  getWaterStillNeeded();
 }
 
 function getDailyGoal() {
   return dailyGoal;
+}
+
+function getWaterStillNeeded(){
+    let waterStillNeeded = dailyGoal-totalWaterDrankToday;
+    if(waterStillNeeded < 0){
+        waterStillNeeded = 0;
+    }
+    document.getElementById("waterNeeded").innerHTML = waterStillNeeded;
 }
 
 module.exports = {
