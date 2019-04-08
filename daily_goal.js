@@ -46,6 +46,7 @@ function setWaterDrankRecently(e) {
     alert("YOU HAVE REACHED YOUR GOAL FOR THE DAY!");
   }
   getWaterStillNeeded();
+  getPercentageGoal();
 }
 
 function getDailyGoal() {
@@ -53,11 +54,22 @@ function getDailyGoal() {
 }
 
 function getWaterStillNeeded(){
+    // subtract appropriate values to calculate 
+    // water that still needs to be consumed
     let waterStillNeeded = dailyGoal-totalWaterDrankToday;
     if(waterStillNeeded < 0){
         waterStillNeeded = 0;
     }
     document.getElementById("waterNeeded").innerHTML = waterStillNeeded;
+}
+
+function getPercentageGoal(){
+    // divide appropriate values to calculate
+    // percentatge of water consumed
+    let percentage = (totalWaterDrankToday/dailyGoal) * 100;
+    // adding percentage sign to the value calculated
+    percentage = percentage + "%";
+    document.getElementById("percentageWaterConsumed").innerHTML = percentage;
 }
 
 module.exports = {
