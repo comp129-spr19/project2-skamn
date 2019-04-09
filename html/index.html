@@ -9,10 +9,10 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/master.css">
-
+    <link rel="stylesheet" href="../css/master.css" />
   </head>
   <body>
+    <!-- NAVBAR -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
       <button
@@ -42,58 +42,64 @@
         </ul>
       </div>
     </nav>
-    <h2>Current Hydration Level</h2>
-    <div id="totalWaterDrankToday">0</div>
-    <h2>How much water did you drink?</h2>
-    <form onsubmit="setWaterDrankRecently(event)">
-      <input type="number" id="waterDrankRecently" />
+    <!-- END NAVBAR -->
 
-      <select>
-        <option value="ounces">Ounces (oz)</option>
-        <option value="ml">ml</option>
-      </select>
-      <input
-        id = "testBtn"
-        type="button"
-        onclick="progressBarAndUserInput()"
-        value="Submit"
-      />
-    </form>
+    <div id="app-content">
+      <h2>Current Hydration Level</h2>
+      <div id="totalWaterDrankToday"></div>
+      <h2>How much water did you drink?</h2>
+      <form onsubmit="setWaterDrankRecently(event)">
+        <input type="number" id="waterDrankRecently" />
 
-    <br />
-    <br />
-    <br />
-    <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
+        <select>
+          <option value="ounces">Ounces (oz)</option>
+          <option value="ml">ml</option>
+        </select>
+        <input
+          id="water-drank-submit-btn"
+          onclick="setWaterDrankRecently(event)"
+          type="button"
+          value="Submit"
+        />
+      </form>
 
-    <div id="currentDailyGoal">0</div>
-    <br />
+      <br />
+      <br />
+      <br />
+      <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
+      <div id="currentDailyGoal"></div>
+      <br />
 
-    <form onsubmit="setGoal(event)">
-      <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
-      <input type="number" id="dailyGoalUserInput" />
-      <input
-        type="button"
-        onclick="setGoal(event)"
-        value="Set New Daily Goal"
-      />
-    </form>
+      <form onsubmit="setGoal(event)">
+        <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
+        <input type="number" id="dailyGoalUserInput" />
+        <input
+          type="button"
+          onclick="setGoal(event)"
+          value="Set New Daily Goal"
+        />
+      </form>
 
-    <br />
-    <h2 id="waterNeededLabel">Water Still Needed:</h2>
-    <div id="waterNeeded">0</div>
-    <div id="progress-bar">
+      <br />
+      <h2 id="waterNeededLabel">Water Still Needed:</h2>
+      <div id="waterNeeded">0</div>
+      <div id="progress-bar">
         <div id="my-bar"></div>
-    </div>
+      </div>
 
-    <br />
-    <h2 id="percentageWaterConsumedLabel">Percentage of Goal Completed:</h2>
-    <div id="percentageWaterConsumed">0%</div>
+      <br />
+      <h2 id="percentageWaterConsumedLabel">Percentage of Goal Completed:</h2>
+      <div id="percentageWaterConsumed">0%</div>
+
+      <img id="plant-graphic" src="../images/AliveRose.jpg" />
+    </div>
 
     <script>
       // You can also require other files to run in this process
-      require("./renderer.js");
+      require("../renderer.js");
     </script>
-    <script src="daily_goal.js"></script>
+    <script src="../js/storage.js"></script>
+    <script src="../js/daily_goal.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
