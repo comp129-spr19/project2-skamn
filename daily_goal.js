@@ -129,7 +129,7 @@ window.onload = function init() {
   let element2 = document.createElement('img');
   element2.id="deadrose";
 
-    let hasBeenClicked = document.getElementById('submitBtn');
+    let hasBeenClicked = document.getElementById('testBtn');
     var id;
     
     var doWork = function() {
