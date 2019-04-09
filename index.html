@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hydration Station - Home</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    
+  </head>
 
   <head>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="css/master.css">
     <title>Hydration Hose</title>
-    <script src="./src/daily_goal.js"></script>
-    <img id="waterGif" src="./images/water.gif" alt="water gif">
-    <script src="./renderer.js"></script>
     <img src="" alt="">
   </head>
 
@@ -25,7 +33,7 @@
           <option value="ounces">Ounces (oz)</option>
           <option value="ml">ml</option>
         </select>
-        <input id="submitBtn" type="button" onclick="progressBarAndUserInput()" value="Submit" />
+        {# <input id="submitBtn" type="button" onclick="progressBarAndUserInput()" value="Submit" /> #}
       </form>
       <div id="currentDailyGoalLabel">Current Daily Goal (oz):</div>
       <div id="currentDailyGoal">0</div>
@@ -34,9 +42,104 @@
         <input placeholder="Enter text here..." type="number" id="dailyGoalUserInput" />
         <input id="goalBtn" type="button" onclick="setGoal(event)" value="Set Goal" />
       </form>
-      <div id="progress-bar">
-        <div id="my-bar"></div>
-      </div>
   </body>
 
+  <body>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="calendar.html">Calendar</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="badges.html">Badges</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <h2>Current Hydration Level</h2>
+    <div id="totalWaterDrankToday">0</div>
+    <h2>How much water did you drink?</h2>
+    <form onsubmit="setWaterDrankRecently(event)">
+      <input type="number" id="waterDrankRecently" />
+
+      <select>
+        <option value="ounces">Ounces (oz)</option>
+        <option value="ml">ml</option>
+      </select>
+      <input
+        type="button"
+        onclick="setWaterDrankRecently(event)"
+        value="Submit"
+      />
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
+    <input id="submitBtn" type="button" onclick="progressBarAndUserInput()" value="Submit" />
+
+    <div id="currentDailyGoal">0</div>
+    <br />
+
+    <form onsubmit="setGoal(event)">
+      <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
+      <input type="number" id="dailyGoalUserInput" />
+      <input
+        type="button"
+        onclick="setGoal(event)"
+        value="Set New Daily Goal"
+      />
+    </form>
+
+    <br />
+    <h2 id="waterNeededLabel">Water Still Needed:</h2>
+    <div id="waterNeeded">0</div>
+    <div id="progress-bar">
+        <div id="my-bar"></div>
+    </div>
+
+    <br />
+    <h2 id="percentageWaterConsumedLabel">Percentage of Goal Completed:</h2>
+    <div id="percentageWaterConsumed">0%</div>
+
+    <script>
+      // You can also require other files to run in this process
+      require("./renderer.js");
+    </script>
+    <script src="daily_goal.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

@@ -1,9 +1,9 @@
-language: python
-python:
-  - "3.6"
+language: node_js
+node_js:
+- '8'
 install:
-  - "pip install pipenv"
-  - "pipenv install"
-script: "cd project2-skamn; python -m pytest"
+- npm install
+script: jest
 notifications:
-  slack: comp129:Jk9NjqjQpG9JlNwRN0mH39YQ
+  slack:
+    secure: Ozw6M74ZwBWz/H0lJUb2N0Vs2cxfBAX3vTOaTfKKBpztRUxR+7IC8z505QlrqtDpKSYijZF2PyZd1hljGNpR29gzyrgi+avfEPFxzK+oi/CIj87mH2sjfP51By1IJgretMVCQd01UflS+ThPqY755+qICBkaEdhTnrH6ryQvkFnmqVCyDwpA9n+MOKL0R45FvK4bYBARhd4QuEZvEfTZSqRcIv+S3gU1UunBYggW9GtaktVEYx8rmDRXdykFhjrdUfoSs2bl5O1IAiKHUdUDSZM3VfwNzGCSrbm2dGiAiOSCb/VQwQpmMHAePOB7ApHvOlAo5Jt1gtievMG0tqyotgjM3EISngLneZA+JGp2chRBTKtGuOG/kVs1DJ2HzkdlWOVjNn/GEcBJpZzsoMr/A2UWCD2Cwsnt+vyH7whjcBtxexPjSHP3mlA4+b/Dl6PALRkj/gvvCRULfCrnUwNW4HUZuBOVdt5QAaZusxC9YCguDocp2pgbhuTtYs+1OilRSP3v6iYcUDF25F5LVWyXCY71VCunY9TJEz5TRUzfnrxe9h59jOZ05dwPkL9yvtpWyEw2MIRoFmUhie4ElwWWh/QqJevywSmDib3cbnh8PgD6+Yi3DYczwnjFBTa0JnjOAcUJ4XWMLTvUTa6yYDM+IkZubuOdB5oOWKPfxiK5aU8=
