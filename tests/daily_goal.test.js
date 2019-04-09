@@ -14,7 +14,7 @@ test("setDailyGoal should change currentDailyGoal in DOM to 5", () => {
   setDailyGoal(5);
 
   // Check if getDailyGoal gets value from DOM
-  expect(getDailyGoal()).toBe("5");
+  expect(getDailyGoal()).toBe(5);
 
   // Check if DOM shows 5
   const dailyGoalElem = document.getElementById("currentDailyGoal");
