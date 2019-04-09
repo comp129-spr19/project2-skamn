@@ -42,6 +42,7 @@ test("dailyGoalMet should equal true when user surpasses dailyGoal", () => {
     "</form>" +
     '<div id="currentDailyGoal">3</div>' +
     '<div id="waterNeeded">0</div>' +
+    '<div id="percentageWaterConsumed">0%</div>' +
     '<script src="../daily_goal.js"></script>';
 
   // Simulate user reaching daily goal
