@@ -13,7 +13,7 @@ function saveData() {
 }
 
 function getDailyGoal() {
-  return document.getElementById("currentDailyGoal").innerHTML;
+  return parseInt(document.getElementById("currentDailyGoal").innerHTML);
 }
 
 function setDailyGoal(newGoal) {
