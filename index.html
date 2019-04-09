@@ -9,9 +9,9 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    
-  </head>
+    <link rel="stylesheet" href="css/master.css">
 
+  </head>
   <body>
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
@@ -53,8 +53,9 @@
         <option value="ml">ml</option>
       </select>
       <input
+        id = "testBtn"
         type="button"
-        onclick="setWaterDrankRecently(event)"
+        onclick="progressBarAndUserInput()"
         value="Submit"
       />
     </form>
@@ -63,6 +64,7 @@
     <br />
     <br />
     <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
+
     <div id="currentDailyGoal">0</div>
     <br />
 
@@ -79,6 +81,9 @@
     <br />
     <h2 id="waterNeededLabel">Water Still Needed:</h2>
     <div id="waterNeeded">0</div>
+    <div id="progress-bar">
+        <div id="my-bar"></div>
+    </div>
 
     <br />
     <h2 id="percentageWaterConsumedLabel">Percentage of Goal Completed:</h2>

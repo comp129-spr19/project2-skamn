@@ -1,5 +1,6 @@
 require("electron-reload")(__dirname);
 // Modules to control application life and create native browser window
+require('electron-reload')(__dirname);
 const { app, BrowserWindow } = require("electron");
 
 // Keep a global reference of the window object, if you don't, the window will
