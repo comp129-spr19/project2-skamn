@@ -28,7 +28,7 @@ function setWaterDrankRecently() {
   document.getElementById("totalWaterDrankToday").innerHTML = totalWaterDrankToday;
   if (totalWaterDrankToday >= dailyGoal) {
     alert("You've reached your goal for the day!\nKeep drinking!!");
-  }j
+  }
 }
 
 function progressBar() {
@@ -53,8 +53,8 @@ window.onload = function init() {
   let TIME_LIMIT = 5;
   let timeOf = TIME_LIMIT;
   let element1 = document.createElement('img');
-  element1.id = "middlerose";
-  element1.src="./images/MediumRose.jpg";
+  element1.id = "aliverose";
+  element1.src="./images/AliveRose.jpg";
   document.body.appendChild(element1);
 
   let element2 = document.createElement('img');
@@ -64,24 +64,21 @@ window.onload = function init() {
     var id;
     
     var doWork = function() {
-      let roseElement = document.getElementById('middlerose');
-      let deadRoseElement = document.getElementById('deadrose');
+      let roseElement = document.getElementById('aliverose');
 
       hasBeenClicked.onclick=function() {
-        let roseElement = document.getElementById('middlerose');
         let deadRoseElement = document.getElementById('deadrose');
         timeOf=TIME_LIMIT;
         progressBarAndUserInput();
 
         deadRoseElement.parentNode.removeChild(deadRoseElement);
-        let tst =  document.createElement('img');
-        tst.id="middlerose";
-        tst.src="./images/MediumRose.jpg";
-        document.body.appendChild(tst);s
+        let addRose =  document.createElement('img');
+        addRose.id="aliverose";
+        addRose.src="./images/AliveRose.jpg";
+        document.body.appendChild(addRose);
         id = setInterval(doWork, 1000);
         }
         
-
       console.log("Time remaining: " + timeOf);
       
       if(timeOf > 0) {
