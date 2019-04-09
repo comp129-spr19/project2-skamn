@@ -3,10 +3,40 @@ let dailyGoalMet = false;
 let totalWaterDrankToday = 0;
 let waterDrankRecently = 0;
 
+getDataFromFile(function(data) {
+  dailyGoal = data.dailyGoal;
+  dailyGoalMet = data.dailyGoalMet;
+  totalWaterDrankToday = data.totalWaterDrankToday;
+  waterDrankRecently = data.waterDrankRecently;
+
+  initializeData();
+});
+
+function initializeData() {
+  // Update labels to reflect data
+
+  document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
+
+  document.getElementById(
+    "totalWaterDrankToday"
+  ).innerHTML = totalWaterDrankToday;
+}
+
+function saveData() {
+  // Save to file
+  setDataToFile({
+    dailyGoal,
+    dailyGoalMet,
+    totalWaterDrankToday,
+    waterDrankRecently
+  });
+}
+
 function setGoal(e) {
   if (e) {
     e.preventDefault();
   }
+
   let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput")
     .value;
   if (dailyGoalUserInputValue == null) {
@@ -19,6 +49,10 @@ function setGoal(e) {
     return;
   }
   dailyGoal = dailyGoalUserInputValue;
+
+  // Save to file
+  saveData();
+
   // Update label to reflect new daily goal
   document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
 }
@@ -63,6 +97,9 @@ function setWaterDrankRecently(e) {
       console.log(err.message);
     }
   }
+
+  // Save to file
+  saveData();
 }
 
 function getDailyGoalMet() {

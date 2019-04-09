@@ -42,7 +42,7 @@
       </div>
     </nav>
     <h2>Current Hydration Level</h2>
-    <div id="totalWaterDrankToday">0</div>
+    <div id="totalWaterDrankToday"></div>
     <h2>How much water did you drink?</h2>
     <form onsubmit="setWaterDrankRecently(event)">
       <input type="number" id="waterDrankRecently" />
@@ -62,7 +62,7 @@
     <br />
     <br />
     <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
-    <div id="currentDailyGoal">0</div>
+    <div id="currentDailyGoal"></div>
     <br />
 
     <form onsubmit="setGoal(event)">
@@ -79,8 +79,8 @@
       // You can also require other files to run in this process
       require("./renderer.js");
     </script>
-    <script src="daily_goal.js"></script>
     <script src="storage.js"></script>
+    <script src="daily_goal.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
