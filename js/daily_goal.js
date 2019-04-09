@@ -1,35 +1,41 @@
-let dailyGoal = 0;
 let dailyGoalMet = false;
-let totalWaterDrankToday = 0;
-let waterDrankRecently = 0;
-
-getDataFromFile(function(data) {
-  dailyGoal = data.dailyGoal;
-  dailyGoalMet = data.dailyGoalMet;
-  totalWaterDrankToday = data.totalWaterDrankToday;
-  waterDrankRecently = data.waterDrankRecently;
-
-  initializeData();
-});
-
-function initializeData() {
-  // Update labels to reflect data
-
-  document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
-
-  document.getElementById(
-    "totalWaterDrankToday"
-  ).innerHTML = totalWaterDrankToday;
-}
+const HYDRATION_TIMER_MAX = 5;
+let hydrationTimer = HYDRATION_TIMER_MAX;
 
 function saveData() {
   // Save to file
   setDataToFile({
-    dailyGoal,
+    dailyGoal: getDailyGoal(),
     dailyGoalMet,
-    totalWaterDrankToday,
-    waterDrankRecently
+    totalWaterDrankToday: getTotalWaterDrankToday(),
+    hydrationTimer
   });
+}
+
+function getDailyGoal() {
+  return document.getElementById("currentDailyGoal").innerHTML;
+}
+
+function setDailyGoal(newGoal) {
+  document.getElementById("currentDailyGoal").innerHTML = newGoal;
+}
+
+function validateUserNumberInput(userInput) {
+  let result = {
+    valid: false,
+    msg: ""
+  };
+
+  if (!userInput || isNaN(userInput)) {
+    result.msg = "Please enter a number";
+  } else if (userInput < 1) {
+    result.msg = "Please enter a number greater than 0";
+  } else {
+    result.valid = true;
+    result.msg = "Success";
+  }
+
+  return result;
 }
 
 function setGoal(e) {
@@ -37,173 +43,180 @@ function setGoal(e) {
     e.preventDefault();
   }
 
-  let dailyGoalUserInputValue = document.getElementById("dailyGoalUserInput")
-    .value;
-  if (dailyGoalUserInputValue == null) {
-    dailyGoal = 1;
-  } else if (isNaN(dailyGoalUserInputValue)) {
-    alert("Please enter a number");
-    return;
-  } else if (dailyGoalUserInputValue < 1) {
-    alert("Please enter a positive number");
+  // Get user input
+  const dailyGoalInputElem = document.getElementById("dailyGoalUserInput");
+  const dailyGoalInputValue = dailyGoalInputElem.value;
+
+  // Validate user input
+  const inputValidationResults = validateUserNumberInput(dailyGoalInputValue);
+  if (!inputValidationResults.valid) {
+    alert(inputValidationResults.msg);
     return;
   }
-  dailyGoal = dailyGoalUserInputValue;
+
+  // Update DOM
+  setDailyGoal(dailyGoalInputValue);
+  updateDependentComponents();
 
   // Save to file
   saveData();
-
-  // Update label to reflect new daily goal
-  document.getElementById("currentDailyGoal").innerHTML = dailyGoal;
 }
 
-function setWaterDrankRecently(e) {
-  if (e) {
-    e.preventDefault();
-  }
-  // retrieving value from user input
-  waterDrankRecently = document.getElementById("waterDrankRecently").value;
-  // error checking on user input
-  if (isNaN(waterDrankRecently)) {
-    alert("Please enter a number!");
-    return;
-  }
-  if (waterDrankRecently < 1) {
-    alert("Please enter a number greater than 0!");
-    return;
-  }
-  // adding the previous totalWaterDrankToday with new user input
-  totalWaterDrankToday =
-    parseInt(totalWaterDrankToday) + parseInt(waterDrankRecently);
-  // making change to application
-  document.getElementById(
-    "totalWaterDrankToday"
-  ).innerHTML = totalWaterDrankToday;
-  if (!dailyGoalMet && totalWaterDrankToday >= dailyGoal) {
-    dailyGoalMet = true;
-    try {
-      let goalReachedNotification = new Notification(
-        "Daily Water Consumption Goal Reached!",
-        {
-          body:
-            "Congrats! You aimed to drink " +
-            dailyGoal +
-            " oz of water and you reached today's goal! Keep it up!"
-        }
-      );
-      goalReachedNotification.show();
-    } catch (err) {
-      console.log("Daily water goal met but notification not shown");
-      console.log(err.message);
-    }
-  }
-  getWaterStillNeeded();
-  getPercentageGoal();
+function getTotalWaterDrankToday() {
+  return parseInt(document.getElementById("totalWaterDrankToday").innerHTML);
+}
 
-  saveData();
+function setTotalWaterDrankToday(totalWater) {
+  document.getElementById("totalWaterDrankToday").innerHTML = totalWater;
 }
 
 function getDailyGoalMet() {
   return dailyGoalMet;
 }
 
-function getDailyGoal() {
-  return dailyGoal;
+function setDailyGoalMet(goalMet) {
+  dailyGoalMet = goalMet;
 }
 
-function getWaterStillNeeded() {
-  // subtract appropriate values to calculate
-  // water that still needs to be consumed
-  let waterStillNeeded = dailyGoal - totalWaterDrankToday;
-  if (waterStillNeeded < 0) {
-    waterStillNeeded = 0;
+function checkGoal() {
+  return !getDailyGoalMet() && getTotalWaterDrankToday() >= getDailyGoal();
+}
+
+function displayGoalNotification() {
+  try {
+    let goalReachedNotification = new Notification(
+      "Daily Water Consumption Goal Reached!",
+      {
+        body:
+          "Congrats! You aimed to drink " +
+          getDailyGoal() +
+          " oz of water and you reached today's goal! Keep it up!"
+      }
+    );
+    goalReachedNotification.show();
+    console.log("Goal reached!");
+  } catch (err) {
+    console.log("Daily water goal met but notification not shown");
+    console.log(err.message);
   }
-  document.getElementById("waterNeeded").innerHTML = waterStillNeeded;
 }
 
-function getPercentageGoal() {
+function setWaterDrankRecently(e) {
+  if (e) {
+    e.preventDefault();
+  }
+
+  // retrieving value from user input
+  const userInputElem = document.getElementById("waterDrankRecently");
+  const waterDrankRecently = parseInt(userInputElem.value);
+
+  // error checking on user input
+  const inputValidationResults = validateUserNumberInput(waterDrankRecently);
+  if (!inputValidationResults.valid) {
+    alert(inputValidationResults.msg);
+    return;
+  }
+
+  // Update DOM
+  const newTotalWaterDrank = getTotalWaterDrankToday() + waterDrankRecently;
+  setTotalWaterDrankToday(newTotalWaterDrank);
+  updateDependentComponents();
+
+  // Update Hydration Timer
+  hydrationTimer = HYDRATION_TIMER_MAX;
+
+  // Check if daily goal was met
+  if (checkGoal()) {
+    console.log("here");
+    setDailyGoalMet(true);
+    displayGoalNotification();
+  }
+
+  // Save data to storage
+  saveData();
+}
+
+function updateWaterStillNeeded() {
+  // subtract appropriate values to calculate needed water
+  // water that still needs to be consumed
+  const waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
+  document.getElementById("waterNeeded").innerHTML = waterNeeded;
+}
+
+function updatePercentageGoal() {
+  const totalWaterDrankToday = getTotalWaterDrankToday();
+  const dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
   // percentatge of water consumed
-  let percentage = (totalWaterDrankToday / dailyGoal) * 100;
+  let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
   // adding percentage sign to the value calculated
-  percentage = percentage + "%";
+  percentage = percentage.toFixed(1) + "%";
   document.getElementById("percentageWaterConsumed").innerHTML = percentage;
 }
 
-function progressBarAndUserInput() {
-  setWaterDrankRecently();
-  progressBar();
-}
+function updateProgressBar() {
+  const dailyGoal = getDailyGoal();
+  const totalWaterDrankToday = getTotalWaterDrankToday();
 
-function progressBar() {
   var elem = document.getElementById("my-bar");
-  var id = setInterval(displayBar, 100);
-  let p = (totalWaterDrankToday / dailyGoal) * 100;
-  let width = p;
+  const width = Math.min((totalWaterDrankToday / dailyGoal) * 100, 100) + "%";
 
-  function displayBar() {
-    if (totalWaterDrankToday > dailyGoal) {
-      width = 100;
-      elem.style.width = width + "%";
-      clearInterval(id);
-    } else {
-      elem.style.width = width + "%";
-      clearInterval(id);
-    }
-  }
+  // Update progress bar in DOM after delay
+  setTimeout(function() {
+    elem.style.width = width;
+  }, 100);
 }
 
-window.onload = function init() {
-  let TIME_LIMIT = 5;
-  let timeOf = TIME_LIMIT;
-  let element1 = document.createElement("img");
-  element1.id = "aliverose";
-  element1.src = "../images/AliveRose.jpg";
-  document.body.appendChild(element1);
+function updateDependentComponents() {
+  updateWaterStillNeeded();
+  updatePercentageGoal();
+  updateProgressBar();
+}
 
-  let element2 = document.createElement("img");
-  element2.id = "deadrose";
+function updateGraphic() {
+  const plantGraphic = document.getElementById("plant-graphic");
 
-  let hasBeenClicked = document.getElementById("testBtn");
-  var id;
+  if (hydrationTimer === -99) {
+    plantGraphic.src = "../images/DeadRose.jpg";
+    return;
+  }
 
-  var doWork = function() {
-    let roseElement = document.getElementById("aliverose");
+  hydrationTimer--;
 
-    hasBeenClicked.onclick = function() {
-      let deadRoseElement = document.getElementById("deadrose");
-      timeOf = TIME_LIMIT;
-      progressBarAndUserInput();
+  if (hydrationTimer <= 0) {
+    hydrationTimer = -99;
+    plantGraphic.src = "../images/DeadRose.jpg";
+    alert(
+      "Uh oh, you're getting dehydrated. You should drink some more water!"
+    );
+  } else {
+    plantGraphic.src = "../images/AliveRose.jpg";
+  }
 
-      deadRoseElement.parentNode.removeChild(deadRoseElement);
-      let addRose = document.createElement("img");
-      addRose.id = "aliverose";
-      addRose.src = "../images/AliveRose.jpg";
-      document.body.appendChild(addRose);
-      id = setInterval(doWork, 1000);
-    };
+  saveData();
+  console.log("Hydration Timer: ", hydrationTimer);
+}
 
-    console.log("Time remaining: " + timeOf);
+window.onload = function() {
+  // Load data from storage and initialize app data with the storage data
+  getDataFromFile(function(data) {
+    setDailyGoal(data.dailyGoal || 0);
+    dailyGoalMet = data.dailyGoalMet || false;
+    setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
 
-    if (timeOf > 0) {
-      timeOf = timeOf - 1;
-    } else {
-      roseElement.parentNode.removeChild(roseElement);
-      testDead = document.createElement("img");
-      testDead.id = "deadrose";
-      testDead.src = "../images/DeadRose.jpg";
-      document.body.appendChild(testDead);
-      alert(
-        "Uh oh, you're getting dehydrated. You should probably drink some more water!"
-      );
-      clearInterval(id);
-    }
-  };
-  id = setInterval(doWork, 1000);
+    updateDependentComponents();
+    updateGraphic();
+  });
+
+  setInterval(updateGraphic, 1000);
 };
 
 module.exports = {
   getDailyGoal,
+  setDailyGoal,
+  validateUserNumberInput,
+  checkGoal,
   getDailyGoalMet,
   setGoal,
   setWaterDrankRecently
