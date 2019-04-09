@@ -158,7 +158,7 @@ window.onload = function init() {
   let timeOf = TIME_LIMIT;
   let element1 = document.createElement("img");
   element1.id = "aliverose";
-  element1.src = "./images/AliveRose.jpg";
+  element1.src = "../images/AliveRose.jpg";
   document.body.appendChild(element1);
 
   let element2 = document.createElement("img");
@@ -178,7 +178,7 @@ window.onload = function init() {
       deadRoseElement.parentNode.removeChild(deadRoseElement);
       let addRose = document.createElement("img");
       addRose.id = "aliverose";
-      addRose.src = "./images/AliveRose.jpg";
+      addRose.src = "../images/AliveRose.jpg";
       document.body.appendChild(addRose);
       id = setInterval(doWork, 1000);
     };
@@ -191,7 +191,7 @@ window.onload = function init() {
       roseElement.parentNode.removeChild(roseElement);
       testDead = document.createElement("img");
       testDead.id = "deadrose";
-      testDead.src = "./images/DeadRose.jpg";
+      testDead.src = "../images/DeadRose.jpg";
       document.body.appendChild(testDead);
       alert(
         "Uh oh, you're getting dehydrated. You should probably drink some more water!"

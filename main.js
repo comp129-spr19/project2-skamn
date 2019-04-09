@@ -1,6 +1,6 @@
 require("electron-reload")(__dirname);
 // Modules to control application life and create native browser window
-require('electron-reload')(__dirname);
+require("electron-reload")(__dirname);
 const { app, BrowserWindow } = require("electron");
 
 // Keep a global reference of the window object, if you don't, the window will
@@ -20,7 +20,7 @@ function createWindow() {
   });
 
   // and load the index.html of the app.
-  mainWindow.loadFile("index.html");
+  mainWindow.loadFile("html/index.html");
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
