@@ -5,7 +5,7 @@ const {
   getDailyGoalMet,
   validateUserNumberInput,
   updateWaterStillNeeded
-} = require("../js/daily_goal");
+} = require("../js/homepage");
 
 test("setDailyGoal should change currentDailyGoal in DOM to 5", () => {
   // Setup document body for testing
