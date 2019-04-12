@@ -219,5 +219,6 @@ module.exports = {
   checkGoal,
   getDailyGoalMet,
   setGoal,
-  setWaterDrankRecently
+  setWaterDrankRecently,
+  updateWaterStillNeeded
 };
