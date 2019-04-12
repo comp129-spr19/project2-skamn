@@ -130,3 +130,9 @@
 #app-content {
   padding: 2rem;
 }
+
+
+#hydration-graphic {
+  display: -webkit-inline-box;
+  margin-left: 100px;
+}
