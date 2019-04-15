@@ -8,6 +8,16 @@ function saveData() {
   });
 }
 
+function resetData() {
+  setDataToFile({
+    dailyGoal: 0,
+    dailyGoalMet: false,
+    totalWaterDrankToday: 0,
+    hydrationTimer
+  });
+}
+
 module.exports = {
-  saveData
+  saveData,
+  resetData
 };
