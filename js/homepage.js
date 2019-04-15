@@ -2,16 +2,6 @@ let dailyGoalMet = false;
 const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 
-function saveData() {
-  // Save to file
-  setDataToFile({
-    dailyGoal: getDailyGoal(),
-    dailyGoalMet,
-    totalWaterDrankToday: getTotalWaterDrankToday(),
-    hydrationTimer
-  });
-}
-
 function getDailyGoal() {
   return parseInt(document.getElementById("currentDailyGoal").innerHTML);
 }
@@ -213,7 +203,7 @@ function updateGraphic() {
   console.log("Hydration Timer: ", hydrationTimer);
 }
 
-window.onload = function() {
+function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
     setDailyGoal(data.dailyGoal || 0);
@@ -226,7 +216,7 @@ window.onload = function() {
   });
 
   setInterval(updateGraphic, 1000);
-};
+}
 
 module.exports = {
   getDailyGoal,
@@ -235,5 +225,6 @@ module.exports = {
   checkGoal,
   getDailyGoalMet,
   setGoal,
-  setWaterDrankRecently
+  setWaterDrankRecently,
+  updateWaterStillNeeded
 };
