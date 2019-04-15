@@ -3,7 +3,8 @@ const {
   setDailyGoal,
   setWaterDrankRecently,
   getDailyGoalMet,
-  validateUserNumberInput
+  validateUserNumberInput,
+  updateWaterStillNeeded
 } = require("../js/daily_goal");
 
 test("setDailyGoal should change currentDailyGoal in DOM to 5", () => {
@@ -20,6 +21,36 @@ test("setDailyGoal should change currentDailyGoal in DOM to 5", () => {
   const dailyGoalElem = document.getElementById("currentDailyGoal");
   const currDailyGoalVal = dailyGoalElem.innerHTML;
   expect(currDailyGoalVal).toBe("5");
+});
+
+test("testing updateWaterStillNeeded", () => {
+  document.body.innerHTML =
+    '<div id="waterNeeded">0</div>' +
+    '<div id="currentDailyGoal">0</div>' +
+    '<div id="totalWaterDrankToday">0</div>';
+
+  updateWaterStillNeeded();
+  expect(document.getElementById("waterNeeded").innerHTML).toBe("0");
+});
+
+test("testing updateWaterStillNeeded2", () => {
+  document.body.innerHTML =
+    '<div id="waterNeeded">0</div>' +
+    '<div id="currentDailyGoal">10</div>' +
+    '<div id="totalWaterDrankToday">4</div>';
+
+  updateWaterStillNeeded();
+  expect(document.getElementById("waterNeeded").innerHTML).toBe("6");
+});
+
+test("testing updateWaterStillNeeded Math.max function", () => {
+  document.body.innerHTML =
+    '<div id="waterNeeded">0</div>' +
+    '<div id="currentDailyGoal">4</div>' +
+    '<div id="totalWaterDrankToday">10</div>';
+
+  updateWaterStillNeeded();
+  expect(document.getElementById("waterNeeded").innerHTML).toBe("0");
 });
 
 /* Have to rethink the unit tests because of the data persistance */
