@@ -107,18 +107,18 @@ function setWaterDrankRecently(e) {
   }
 
   // retrieving value from user input
-  const userInputElem = document.getElementById("waterDrankRecently");
-  const waterDrankRecently = parseInt(userInputElem.value);
+  let userInputElem = document.getElementById("waterDrankRecently");
+  let waterDrankRecently = parseInt(userInputElem.value);
 
   // error checking on user input
-  const inputValidationResults = validateUserNumberInput(waterDrankRecently);
+  let inputValidationResults = validateUserNumberInput(waterDrankRecently);
   if (!inputValidationResults.valid) {
     alert(inputValidationResults.msg);
     return;
   }
 
   // Update DOM
-  const newTotalWaterDrank = getTotalWaterDrankToday() + waterDrankRecently;
+  let newTotalWaterDrank = getTotalWaterDrankToday() + waterDrankRecently;
   setTotalWaterDrankToday(newTotalWaterDrank);
   updateDependentComponents();
 
@@ -139,13 +139,13 @@ function setWaterDrankRecently(e) {
 function updateWaterStillNeeded() {
   // subtract appropriate values to calculate needed water
   // water that still needs to be consumed
-  const waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
+  let waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
   document.getElementById("waterNeeded").innerHTML = waterNeeded;
 }
 
 function updatePercentageGoal() {
-  const totalWaterDrankToday = getTotalWaterDrankToday();
-  const dailyGoal = getDailyGoal();
+  let totalWaterDrankToday = getTotalWaterDrankToday();
+  let dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
   // percentatge of water consumed
   let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
@@ -155,10 +155,10 @@ function updatePercentageGoal() {
 }
 
 function updateProgressBar() {
-  const dailyGoal = getDailyGoal();
-  const totalWaterDrankToday = getTotalWaterDrankToday();
+  let dailyGoal = getDailyGoal();
+  let totalWaterDrankToday = getTotalWaterDrankToday();
 
-  var elem = document.getElementById("my-bar");
+  const elem = document.getElementById("my-bar");
   const width = Math.min((totalWaterDrankToday / dailyGoal) * 100, 100) + "%";
 
   // Update progress bar in DOM after delay

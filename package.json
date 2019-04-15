@@ -7,7 +7,10 @@
     "start": "electron .",
     "test": "jest"
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/electron/electron-quick-start.git"
+  },
   "keywords": [
     "Electron",
     "quick",
@@ -24,5 +27,12 @@
   "dependencies": {
     "electron-json-storage": "^4.1.6",
     "electron-reload": "^1.4.0"
+  },
+  "bugs": {
+    "url": "https://github.com/electron/electron-quick-start/issues"
+  },
+  "homepage": "https://github.com/electron/electron-quick-start#readme",
+  "directories": {
+    "test": "tests"
   }
 }
