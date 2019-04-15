@@ -47,7 +47,7 @@
     <div id="app-content">
       <h2>Current Hydration Level</h2>
 
-      <!-- Creating dropdown menu so users can switch units -->
+      <!-- Creating dropdown menu so users can switch units
 
       <div style="float:right;" class="dropdown">
         <button
@@ -65,7 +65,26 @@
           <a class="dropdown-item" href="#">ML</a>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
-      </div>
+      </div> -->
+      <div id="currentUnits">fl-oz</div>
+
+      <button
+        class="btn btn-primary"
+        id="flOzButton"
+        type="button"
+        onclick="convertHTMLUnits('fl-oz')"
+      >
+        Convert to Fluid Ounces
+      </button>
+
+      <button
+        class="btn btn-primary"
+        id="mlButton"
+        type="button"
+        onclick="convertHTMLUnits('ml')"
+      >
+        Convert to Milliliters
+      </button>
 
       <div id="totalWaterDrankToday"></div>
       <h2>How much water did you drink?</h2>
