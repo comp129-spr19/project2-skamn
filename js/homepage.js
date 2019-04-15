@@ -2,16 +2,6 @@ let dailyGoalMet = false;
 const HYDRATION_TIMER_MAX = 5;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 
-function saveData() {
-  // Save to file
-  setDataToFile({
-    dailyGoal: getDailyGoal(),
-    dailyGoalMet,
-    totalWaterDrankToday: getTotalWaterDrankToday(),
-    hydrationTimer
-  });
-}
-
 function getDailyGoal() {
   return parseInt(document.getElementById("currentDailyGoal").innerHTML);
 }
