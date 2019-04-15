@@ -46,6 +46,27 @@
 
     <div id="app-content">
       <h2>Current Hydration Level</h2>
+
+      <!-- Creating dropdown menu so users can switch units -->
+
+      <div style="float:right;" class="dropdown">
+        <button
+          class="btn btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownMenuButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Dropdown button
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Ounces</a>
+          <a class="dropdown-item" href="#">ML</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
+
       <div id="totalWaterDrankToday"></div>
       <h2>How much water did you drink?</h2>
       <form onsubmit="setWaterDrankRecently(event)">
