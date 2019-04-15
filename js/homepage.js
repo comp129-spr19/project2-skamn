@@ -197,7 +197,7 @@ function updateGraphic() {
   console.log("Hydration Timer: ", hydrationTimer);
 }
 
-window.onload = function() {
+function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
     setDailyGoal(data.dailyGoal || 0);
@@ -210,7 +210,7 @@ window.onload = function() {
   });
 
   setInterval(updateGraphic, 1000);
-};
+}
 
 module.exports = {
   getDailyGoal,
