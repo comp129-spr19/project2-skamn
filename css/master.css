@@ -135,4 +135,9 @@
 #hydration-graphic {
   display: -webkit-inline-box;
   margin-left: 100px;
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
 }

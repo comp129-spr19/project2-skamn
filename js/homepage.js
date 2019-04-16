@@ -172,11 +172,9 @@ function updateDependentComponents() {
 }
 
 function updateGraphic() {
-  const plantGraphic = document.getElementById("plant-graphic");
   const hydrationGraphic = document.getElementById("hydration-graphic");
 
   if (hydrationTimer === -99) {
-    plantGraphic.src = "../images/DeadRose.jpg";
     hydrationGraphic.src = "../images/Dehydrated.png";
     return;
   }
@@ -185,17 +183,15 @@ function updateGraphic() {
 
   if (hydrationTimer <= 0) {
     hydrationTimer = -99;
-    plantGraphic.src = "../images/DeadRose.jpg";
-    // alert(
-    //   "Uh oh, you're getting dehydrated. You should drink some more water!"
-    // );
+    alert(
+      "Uh oh, you're getting dehydrated. You should drink some more water!"
+    );
   }
   else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
     hydrationGraphic.src = "../images/Low.png";
 
   }
   else {
-    plantGraphic.src = "../images/AliveRose.jpg";
     hydrationGraphic.src = "../images/High.png";
   }
 
