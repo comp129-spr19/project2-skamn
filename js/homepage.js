@@ -1,19 +1,10 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 5;
+const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
-
-function saveData() {
-  // Save to file
-  setDataToFile({
-    dailyGoal: getDailyGoal(),
-    dailyGoalMet,
-    totalWaterDrankToday: getTotalWaterDrankToday(),
-    hydrationTimer
-  });
-}
+let currentDate = new Date();
 
 function getDailyGoal() {
-  return parseInt(document.getElementById("currentDailyGoal").innerHTML);
+  return parseFloat(document.getElementById("currentDailyGoal").innerHTML);
 }
 
 function setDailyGoal(newGoal) {
@@ -63,7 +54,7 @@ function setGoal(e) {
 }
 
 function getTotalWaterDrankToday() {
-  return parseInt(document.getElementById("totalWaterDrankToday").innerHTML);
+  return parseFloat(document.getElementById("totalWaterDrankToday").innerHTML);
 }
 
 function setTotalWaterDrankToday(totalWater) {
@@ -107,19 +98,29 @@ function setWaterDrankRecently(e) {
   }
 
   // retrieving value from user input
-  const userInputElem = document.getElementById("waterDrankRecently");
-  const waterDrankRecently = parseInt(userInputElem.value);
+  let userInputElem = document.getElementById("waterDrankRecently");
+  let waterDrankRecently = parseInt(userInputElem.value);
+  const waterDrankUnits = document.getElementById("water-drank-units").value;
 
   // error checking on user input
-  const inputValidationResults = validateUserNumberInput(waterDrankRecently);
+  let inputValidationResults = validateUserNumberInput(waterDrankRecently);
   if (!inputValidationResults.valid) {
     alert(inputValidationResults.msg);
     return;
   }
 
+  // Convert input value to match display units
+  const displayUnits = getCurrentDisplayUnits();
+  const convertedValue =
+    displayUnits === waterDrankUnits
+      ? waterDrankRecently
+      : convert(waterDrankRecently)
+          .from(waterDrankUnits)
+          .to(displayUnits);
+
   // Update DOM
-  const newTotalWaterDrank = getTotalWaterDrankToday() + waterDrankRecently;
-  setTotalWaterDrankToday(newTotalWaterDrank);
+  let newTotalWaterDrank = getTotalWaterDrankToday() + convertedValue;
+  setTotalWaterDrankToday(newTotalWaterDrank.toFixed(1));
   updateDependentComponents();
 
   // Update Hydration Timer
@@ -139,13 +140,13 @@ function setWaterDrankRecently(e) {
 function updateWaterStillNeeded() {
   // subtract appropriate values to calculate needed water
   // water that still needs to be consumed
-  const waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
+  let waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
   document.getElementById("waterNeeded").innerHTML = waterNeeded;
 }
 
 function updatePercentageGoal() {
-  const totalWaterDrankToday = getTotalWaterDrankToday();
-  const dailyGoal = getDailyGoal();
+  let totalWaterDrankToday = getTotalWaterDrankToday();
+  let dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
   // percentatge of water consumed
   let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
@@ -155,10 +156,10 @@ function updatePercentageGoal() {
 }
 
 function updateProgressBar() {
-  const dailyGoal = getDailyGoal();
-  const totalWaterDrankToday = getTotalWaterDrankToday();
+  let dailyGoal = getDailyGoal();
+  let totalWaterDrankToday = getTotalWaterDrankToday();
 
-  var elem = document.getElementById("my-bar");
+  const elem = document.getElementById("my-bar");
   const width = Math.min((totalWaterDrankToday / dailyGoal) * 100, 100) + "%";
 
   // Update progress bar in DOM after delay
@@ -174,10 +175,10 @@ function updateDependentComponents() {
 }
 
 function updateGraphic() {
-  const plantGraphic = document.getElementById("plant-graphic");
+  const hydrationGraphic = document.getElementById("hydration-graphic");
 
   if (hydrationTimer === -99) {
-    plantGraphic.src = "../images/DeadRose.jpg";
+    hydrationGraphic.src = "../images/HydrationDehydrated.png";
     return;
   }
 
@@ -185,32 +186,48 @@ function updateGraphic() {
 
   if (hydrationTimer <= 0) {
     hydrationTimer = -99;
-    plantGraphic.src = "../images/DeadRose.jpg";
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
     );
+  } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
+    hydrationGraphic.src = "../images/HydrationLow.png";
   } else {
-    plantGraphic.src = "../images/AliveRose.jpg";
+    hydrationGraphic.src = "../images/HydrationFull.png";
   }
 
   saveData();
   console.log("Hydration Timer: ", hydrationTimer);
 }
 
-window.onload = function() {
+function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
-    setDailyGoal(data.dailyGoal || 0);
-    dailyGoalMet = data.dailyGoalMet || false;
-    setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
-    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+    try {
+      let savedDate = new Date(data.todayDate);
+      if (savedDate.getDate() != currentDate.getDate()) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      } else {
+        dailyGoalMet = data.dailyGoalMet || false;
+        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+      }
+    } catch (e) {
+      // In situation where date isn't saved in file (e.g. user's first time loading app)
+      if (e instanceof TypeError) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      }
+    } finally {
+      setDailyGoal(data.dailyGoal || 0);
+      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+    }
 
     updateDependentComponents();
     updateGraphic();
   });
 
   setInterval(updateGraphic, 1000);
-};
+}
 
 module.exports = {
   getDailyGoal,
@@ -219,5 +236,6 @@ module.exports = {
   checkGoal,
   getDailyGoalMet,
   setGoal,
-  setWaterDrankRecently
+  setWaterDrankRecently,
+  updateWaterStillNeeded
 };

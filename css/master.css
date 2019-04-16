@@ -60,10 +60,14 @@
   border-radius: 15px;
 }
 
-#totalWaterDrankToday {
-  font-weight: bold;
-  font-size: 25px;
-  margin: auto;
+.counter-value-text {
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+.units-text {
+  font-size: 1.5rem;
+  font-weight: 100;
 }
 
 #getRecent,
@@ -129,4 +133,27 @@
 
 #app-content {
   padding: 2rem;
+}
+
+#hydration-graphic {
+  display: -webkit-inline-box;
+  margin-left: 100px;
+  width: 250px;
+  height: 250px;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+}
+
+#unit-select-area {
+}
+
+#unit-select-label {
+  font-size: 0.75rem;
+  color: white;
+  padding-right: 0;
+}
+
+.container {
+  margin-bottom: 2rem;
 }
