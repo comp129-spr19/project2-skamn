@@ -4,6 +4,16 @@ function saveData() {
     dailyGoal: getDailyGoal(),
     dailyGoalMet,
     totalWaterDrankToday: getTotalWaterDrankToday(),
+    hydrationTimer,
+    todayDate: currentDate
+  });
+}
+
+function resetWaterDrankToday() {
+  setDataToFile({
+    dailyGoal: getDailyGoal(),
+    dailyGoalMet: false,
+    totalWaterDrankToday: 0,
     hydrationTimer
   });
 }
