@@ -157,18 +157,10 @@ function updateProgressBar() {
   }, 100);
 }
 
-// displays water cup 
-function displayCup() {
-  const totalWaterDrankToday = getTotalWaterDrankToday();
-  const dailyGoal = getDailyGoal();
-
-}
-
 function updateDependentComponents() {
   updateWaterStillNeeded();
   updatePercentageGoal();
   updateProgressBar();
-  displayCup();
 }
 
 function updateGraphic() {
