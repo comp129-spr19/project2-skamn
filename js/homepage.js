@@ -1,5 +1,5 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 5;
+const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
 
@@ -165,10 +165,10 @@ function updateDependentComponents() {
 }
 
 function updateGraphic() {
-  const plantGraphic = document.getElementById("plant-graphic");
+  const hydrationGraphic = document.getElementById("hydration-graphic");
 
   if (hydrationTimer === -99) {
-    plantGraphic.src = "../images/DeadRose.jpg";
+    hydrationGraphic.src = "../images/HydrationDehydrated.png";
     return;
   }
 
@@ -176,12 +176,16 @@ function updateGraphic() {
 
   if (hydrationTimer <= 0) {
     hydrationTimer = -99;
-    plantGraphic.src = "../images/DeadRose.jpg";
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
     );
-  } else {
-    plantGraphic.src = "../images/AliveRose.jpg";
+  }
+  else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
+    hydrationGraphic.src = "../images/HydrationLow.png";
+
+  }
+  else {
+    hydrationGraphic.src = "../images/HydrationFull.png";
   }
 
   saveData();
