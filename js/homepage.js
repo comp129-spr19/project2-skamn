@@ -190,17 +190,26 @@ function updateGraphic() {
 
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
-
   getDataFromFile(function(data) {
-    if (data.todayDate != currentDate) {
-      dailyGoalMet = false;
-      setTotalWaterDrankToday(0);
-    } else {
-      dailyGoalMet = data.dailyGoalMet || false;
-      setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    try {
+      let savedDate = new Date(data.todayDate);
+      if (savedDate.getDate() != currentDate.getDate()) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      } else {
+        dailyGoalMet = data.dailyGoalMet || false;
+        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+      }
+    } catch (e) {
+      // In situation where date isn't saved in file (e.g. user's first time loading app)
+      if (e instanceof TypeError) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      }
+    } finally {
+      setDailyGoal(data.dailyGoal || 0);
+      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
     }
-    setDailyGoal(data.dailyGoal || 0);
-    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
 
     updateDependentComponents();
     updateGraphic();
