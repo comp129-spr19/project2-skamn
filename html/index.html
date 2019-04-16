@@ -63,14 +63,36 @@
           aria-haspopup="true"
           aria-expanded="false"
         >
-          Dropdown button
+          Units
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Ounces</a>
-          <a class="dropdown-item" href="#">ML</a>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <li class="dropdown-item" onclick="convertHTMLUnits('fl-oz')">
+            Fluid Ounces
+          </li>
+          <li class="dropdown-item" onclick="convertHTMLUnits('ml')">
+            Milliliters
+          </li>
         </div>
       </div>
+      <div id="currentUnits">fl-oz</div>
+
+      <!-- <button
+        class="btn btn-primary"
+        id="flOzButton"
+        type="button"
+        onclick="convertHTMLUnits('fl-oz')"
+      >
+        Convert to Fluid Ounces
+      </button>
+
+      <button
+        class="btn btn-primary"
+        id="mlButton"
+        type="button"
+        onclick="convertHTMLUnits('ml')"
+      >
+        Convert to Milliliters
+      </button> -->
 
       <div id="totalWaterDrankToday"></div>
       <h2>How much water did you drink?</h2>
@@ -78,8 +100,8 @@
         <input type="number" id="waterDrankRecently" />
 
         <select>
-          <option value="ounces">Ounces (oz)</option>
-          <option value="ml">ml</option>
+          <option value="fl-oz">Fluid Ounces (fl-oz)</option>
+          <option value="ml">Milliliters (ml)</option>
         </select>
         <input
           id="water-drank-submit-btn"
@@ -92,7 +114,7 @@
       <br />
       <br />
       <br />
-      <h2 id="currentDailyGoalLabel">Current Daily Goal (oz):</h2>
+      <h2 id="currentDailyGoalLabel">Current Daily Goal</h2>
       <div id="currentDailyGoal"></div>
       <br />
 
@@ -125,6 +147,7 @@
     </script>
     <script src="../js/storage.js"></script>
     <script src="../js/modify_data.js"></script>
+    <script src="../js/units.js"></script>
     <script src="../js/homepage.js"></script>
     <script>
       window.onload = initHomepage();
