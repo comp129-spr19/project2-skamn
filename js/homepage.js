@@ -158,6 +158,28 @@ function updateProgressBar() {
   }, 100);
 }
 
+function resetDataForNewDate(data) {
+  try {
+    let savedDate = new Date(data.todayDate);
+    if (savedDate.getDate() != currentDate.getDate()) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    } else {
+      dailyGoalMet = data.dailyGoalMet || false;
+      setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    }
+  } catch (e) {
+    // In situation where date isn't saved in file (e.g. user's first time loading app)
+    if (e instanceof TypeError) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    }
+  } finally {
+    setDailyGoal(data.dailyGoal || 0);
+    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+  }
+}
+
 function updateDependentComponents() {
   updateWaterStillNeeded();
   updatePercentageGoal();
@@ -179,12 +201,9 @@ function updateGraphic() {
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
     );
-  }
-  else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
+  } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
     hydrationGraphic.src = "../images/HydrationLow.png";
-
-  }
-  else {
+  } else {
     hydrationGraphic.src = "../images/HydrationFull.png";
   }
 
@@ -195,26 +214,7 @@ function updateGraphic() {
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
-    try {
-      let savedDate = new Date(data.todayDate);
-      if (savedDate.getDate() != currentDate.getDate()) {
-        dailyGoalMet = false;
-        setTotalWaterDrankToday(0);
-      } else {
-        dailyGoalMet = data.dailyGoalMet || false;
-        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
-      }
-    } catch (e) {
-      // In situation where date isn't saved in file (e.g. user's first time loading app)
-      if (e instanceof TypeError) {
-        dailyGoalMet = false;
-        setTotalWaterDrankToday(0);
-      }
-    } finally {
-      setDailyGoal(data.dailyGoal || 0);
-      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
-    }
-
+    resetDataForNewDate(data);
     updateDependentComponents();
     updateGraphic();
   });
