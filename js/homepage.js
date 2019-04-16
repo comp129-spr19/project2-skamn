@@ -1,6 +1,7 @@
 let dailyGoalMet = false;
 const HYDRATION_TIMER_MAX = 5;
 let hydrationTimer = HYDRATION_TIMER_MAX;
+let currentDate = new Date();
 
 function getDailyGoal() {
   return parseInt(document.getElementById("currentDailyGoal").innerHTML);
@@ -189,10 +190,16 @@ function updateGraphic() {
 
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
+
   getDataFromFile(function(data) {
+    if (data.todayDate != currentDate) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    } else {
+      dailyGoalMet = data.dailyGoalMet || false;
+      setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    }
     setDailyGoal(data.dailyGoal || 0);
-    dailyGoalMet = data.dailyGoalMet || false;
-    setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
     hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
 
     updateDependentComponents();

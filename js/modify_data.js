@@ -4,7 +4,8 @@ function saveData() {
     dailyGoal: getDailyGoal(),
     dailyGoalMet,
     totalWaterDrankToday: getTotalWaterDrankToday(),
-    hydrationTimer
+    hydrationTimer,
+    todayDate: currentDate
   });
 }
 
