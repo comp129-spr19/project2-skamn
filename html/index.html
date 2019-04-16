@@ -46,99 +46,97 @@
           </li>
         </ul>
       </div>
+
+      <div id="unit-select-area">
+        <div class="row">
+          <label
+            id="unit-select-label"
+            class="col-auto col-form-label"
+            for="unit-display-select"
+          >
+            Display Units
+          </label>
+          <div class="col-auto">
+            <select
+              onchange="unitChange(event)"
+              class="form-control form-control-sm"
+              id="unit-select"
+            >
+              <option value="fl-oz">Fluid Ounces (fl-oz)</option>
+              <option value="ml">Milliliters (ml)</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </nav>
     <!-- END NAVBAR -->
 
     <div id="app-content">
-      <h2>Current Hydration Level</h2>
+      <!-- WATER COUNTER -->
+      <div class="container" id="water-counter-area">
+        <h3>Current Hydration Level</h3>
+        <p>
+          <span class="counter-value-text" id="totalWaterDrankToday"></span>
+          <span class="units-text">fl-oz</span>
+        </p>
 
-      <!-- Creating dropdown menu so users can switch units -->
+        <h5>How much water did you drink?</h5>
+        <form onsubmit="setWaterDrankRecently(event)">
+          <input type="number" id="waterDrankRecently" />
+          <select>
+            <option value="fl-oz">Fluid Ounces (fl-oz)</option>
+            <option value="ml">Milliliters (ml)</option>
+          </select>
+          <input
+            id="water-drank-submit-btn"
+            onclick="setWaterDrankRecently(event)"
+            type="button"
+            value="Submit"
+          />
+        </form>
+      </div>
+      <!-- END WATER COUNTER -->
 
-      <div class="dropdown">
-        <button
-          class="btn btn-secondary dropdown-toggle"
-          type="button"
-          id="dropdownMenuButton"
-          data-toggle="dropdown"
-          aria-haspopup="true"
-          aria-expanded="false"
-        >
-          Units
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <li class="dropdown-item" onclick="convertHTMLUnits('fl-oz')">
-            Fluid Ounces
-          </li>
-          <li class="dropdown-item" onclick="convertHTMLUnits('ml')">
-            Milliliters
-          </li>
+      <!-- DAILY GOAL CONTROLLER -->
+      <div class="container" id="daily-goal-area">
+        <h2 id="currentDailyGoalLabel">Current Daily Goal</h2>
+        <p>
+          <span class="counter-value-text" id="currentDailyGoal"></span>
+          <span class="units-text">fl-oz</span>
+        </p>
+
+        <h5>Set a new daily goal</h5>
+        <form onsubmit="setGoal(event)">
+          <input type="number" id="dailyGoalUserInput" />
+          <input
+            type="button"
+            onclick="setGoal(event)"
+            value="Set New Daily Goal"
+          />
+        </form>
+      </div>
+      <!-- END DAILY GOAL CONTROLLER -->
+
+      <!-- WATER NEEDED -->
+      <div class="container" id="water-needed-area">
+        <h2 id="waterNeededLabel">Water Still Needed</h2>
+        <p>
+          <span class="counter-value-text" id="waterNeeded"></span>
+          <span class="units-text">fl-oz</span>
+        </p>
+      </div>
+      <!-- END WATER NEEDED -->
+
+      <!-- GOAL TRACKER -->
+      <div class="container" id="goal-tracker-area">
+        <h2 id="percentageWaterConsumedLabel">Goal Tracker</h2>
+        <div class="counter-value-text" id="percentageWaterConsumed">0%</div>
+        <div id="progress-bar">
+          <div id="my-bar"></div>
         </div>
+        <img id="hydration-graphic" />
       </div>
-      <div id="currentUnits">fl-oz</div>
-
-      <!-- <button
-        class="btn btn-primary"
-        id="flOzButton"
-        type="button"
-        onclick="convertHTMLUnits('fl-oz')"
-      >
-        Convert to Fluid Ounces
-      </button>
-
-      <button
-        class="btn btn-primary"
-        id="mlButton"
-        type="button"
-        onclick="convertHTMLUnits('ml')"
-      >
-        Convert to Milliliters
-      </button> -->
-
-      <div id="totalWaterDrankToday"></div>
-      <h2>How much water did you drink?</h2>
-      <form onsubmit="setWaterDrankRecently(event)">
-        <input type="number" id="waterDrankRecently" />
-
-        <select>
-          <option value="fl-oz">Fluid Ounces (fl-oz)</option>
-          <option value="ml">Milliliters (ml)</option>
-        </select>
-        <input
-          id="water-drank-submit-btn"
-          onclick="setWaterDrankRecently(event)"
-          type="button"
-          value="Submit"
-        />
-      </form>
-
-      <br />
-      <br />
-      <br />
-      <h2 id="currentDailyGoalLabel">Current Daily Goal</h2>
-      <div id="currentDailyGoal"></div>
-      <br />
-
-      <form onsubmit="setGoal(event)">
-        <label for="dailyGoalUserInput">New Daily Goal (oz):</label>
-        <input type="number" id="dailyGoalUserInput" />
-        <input
-          type="button"
-          onclick="setGoal(event)"
-          value="Set New Daily Goal"
-        />
-      </form>
-
-      <br />
-      <h2 id="waterNeededLabel">Water Still Needed:</h2>
-      <div id="waterNeeded">0</div>
-      <div id="progress-bar">
-        <div id="my-bar"></div>
-      </div>
-
-      <br />
-      <h2 id="percentageWaterConsumedLabel">Percentage of Goal Completed:</h2>
-      <div id="percentageWaterConsumed">0%</div>
-      <img id="hydration-graphic" />
+      <!-- END GOAL TRACKER -->
     </div>
 
     <script>
@@ -150,7 +148,10 @@
     <script src="../js/units.js"></script>
     <script src="../js/homepage.js"></script>
     <script>
-      window.onload = initHomepage();
+      window.onload = function() {
+        initHomepage();
+        initUnits();
+      };
     </script>
     <script>
       window.$ = window.jQuery = require("jquery");

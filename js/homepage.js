@@ -3,7 +3,7 @@ const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 
 function getDailyGoal() {
-  return parseInt(document.getElementById("currentDailyGoal").innerHTML);
+  return parseFloat(document.getElementById("currentDailyGoal").innerHTML);
 }
 
 function setDailyGoal(newGoal) {
@@ -53,7 +53,7 @@ function setGoal(e) {
 }
 
 function getTotalWaterDrankToday() {
-  return parseInt(document.getElementById("totalWaterDrankToday").innerHTML);
+  return parseFloat(document.getElementById("totalWaterDrankToday").innerHTML);
 }
 
 function setTotalWaterDrankToday(totalWater) {
@@ -178,12 +178,9 @@ function updateGraphic() {
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
     );
-  }
-  else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
+  } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
     hydrationGraphic.src = "../images/HydrationLow.png";
-
-  }
-  else {
+  } else {
     hydrationGraphic.src = "../images/HydrationFull.png";
   }
 

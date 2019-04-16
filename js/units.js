@@ -1,7 +1,8 @@
 const convert = require("convert-units");
+let currentDisplayUnits = "fl-oz";
 
 function convertHTMLUnits(toUnits) {
-  const fromUnits = getUnits();
+  const fromUnits = currentDisplayUnits;
   const convertedDailyGoalVal = convert(getDailyGoal())
     .from(fromUnits)
     .to(toUnits);
@@ -9,16 +10,41 @@ function convertHTMLUnits(toUnits) {
     .from(fromUnits)
     .to(toUnits);
 
-  setDailyGoal(convertedDailyGoalVal);
-  setTotalWaterDrankToday(convertedTotalWaterDrankToday);
-  setUnits(toUnits);
+  setDailyGoal(convertedDailyGoalVal.toFixed(1));
+  setTotalWaterDrankToday(convertedTotalWaterDrankToday.toFixed(1));
+  updateDisplayUnits(toUnits);
   updateDependentComponents();
+
+  currentDisplayUnits = toUnits;
 }
 
-function getUnits() {
-  return document.getElementById("currentUnits").innerHTML;
+function updateDisplayUnits(newUnits) {
+  const unitsElems = document.getElementsByClassName("units-text");
+  for (unitElem of unitsElems) {
+    unitElem.innerHTML = newUnits;
+  }
 }
 
-function setUnits(units) {
-  document.getElementById("currentUnits").innerHTML = units;
+function unitChange(e) {
+  convertHTMLUnits(e.target.value);
+  saveUnits();
+  saveData();
+}
+
+function initUnits() {
+  getDataFromFile(function(data) {
+    currentDisplayUnits = data.units || "fl-oz";
+
+    document.getElementById("unit-select").value = currentDisplayUnits;
+    convertHTMLUnits(currentDisplayUnits);
+  }, "hydrationstationunits");
+}
+
+function saveUnits() {
+  setDataToFile(
+    {
+      units: currentDisplayUnits
+    },
+    "hydrationstationunits"
+  );
 }
