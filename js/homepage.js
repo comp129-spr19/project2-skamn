@@ -1,16 +1,6 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 5;
+const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
-
-function saveData() {
-  // Save to file
-  setDataToFile({
-    dailyGoal: getDailyGoal(),
-    dailyGoalMet,
-    totalWaterDrankToday: getTotalWaterDrankToday(),
-    hydrationTimer
-  });
-}
 
 function getDailyGoal() {
   return parseInt(document.getElementById("currentDailyGoal").innerHTML);
@@ -174,10 +164,10 @@ function updateDependentComponents() {
 }
 
 function updateGraphic() {
-  const plantGraphic = document.getElementById("plant-graphic");
+  const hydrationGraphic = document.getElementById("hydration-graphic");
 
   if (hydrationTimer === -99) {
-    plantGraphic.src = "../images/DeadRose.jpg";
+    hydrationGraphic.src = "../images/HydrationDehydrated.png";
     return;
   }
 
@@ -185,19 +175,23 @@ function updateGraphic() {
 
   if (hydrationTimer <= 0) {
     hydrationTimer = -99;
-    plantGraphic.src = "../images/DeadRose.jpg";
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
     );
-  } else {
-    plantGraphic.src = "../images/AliveRose.jpg";
+  }
+  else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
+    hydrationGraphic.src = "../images/HydrationLow.png";
+
+  }
+  else {
+    hydrationGraphic.src = "../images/HydrationFull.png";
   }
 
   saveData();
   console.log("Hydration Timer: ", hydrationTimer);
 }
 
-window.onload = function() {
+function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
     setDailyGoal(data.dailyGoal || 0);
@@ -210,7 +204,7 @@ window.onload = function() {
   });
 
   setInterval(updateGraphic, 1000);
-};
+}
 
 module.exports = {
   getDailyGoal,
