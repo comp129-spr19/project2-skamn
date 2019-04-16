@@ -175,7 +175,7 @@ function updateGraphic() {
   const hydrationGraphic = document.getElementById("hydration-graphic");
 
   if (hydrationTimer === -99) {
-    hydrationGraphic.src = "../images/Dehydrated.png";
+    hydrationGraphic.src = "../images/HydrationDehydrated.png";
     return;
   }
 
@@ -188,11 +188,11 @@ function updateGraphic() {
     );
   }
   else if (hydrationTimer <= HYDRATION_TIMER_MAX/2) {
-    hydrationGraphic.src = "../images/Low.png";
+    hydrationGraphic.src = "../images/HydrationLow.png";
 
   }
   else {
-    hydrationGraphic.src = "../images/High.png";
+    hydrationGraphic.src = "../images/HydrationFull.png";
   }
 
   saveData();
