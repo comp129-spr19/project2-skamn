@@ -48,3 +48,7 @@ function saveUnits() {
     "hydrationstationunits"
   );
 }
+
+function getCurrentDisplayUnits() {
+  return currentDisplayUnits;
+}

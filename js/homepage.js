@@ -100,6 +100,7 @@ function setWaterDrankRecently(e) {
   // retrieving value from user input
   let userInputElem = document.getElementById("waterDrankRecently");
   let waterDrankRecently = parseInt(userInputElem.value);
+  const waterDrankUnits = document.getElementById("water-drank-units").value;
 
   // error checking on user input
   let inputValidationResults = validateUserNumberInput(waterDrankRecently);
@@ -108,9 +109,18 @@ function setWaterDrankRecently(e) {
     return;
   }
 
+  // Convert input value to match display units
+  const displayUnits = getCurrentDisplayUnits();
+  const convertedValue =
+    displayUnits === waterDrankUnits
+      ? waterDrankRecently
+      : convert(waterDrankRecently)
+          .from(waterDrankUnits)
+          .to(displayUnits);
+
   // Update DOM
-  let newTotalWaterDrank = getTotalWaterDrankToday() + waterDrankRecently;
-  setTotalWaterDrankToday(newTotalWaterDrank);
+  let newTotalWaterDrank = getTotalWaterDrankToday() + convertedValue;
+  setTotalWaterDrankToday(newTotalWaterDrank.toFixed(1));
   updateDependentComponents();
 
   // Update Hydration Timer
