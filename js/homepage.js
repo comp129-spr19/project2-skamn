@@ -217,6 +217,7 @@ function initHomepage() {
     resetDataForNewDate(data);
     updateDependentComponents();
     updateGraphic();
+    saveData();
   });
 
   setInterval(updateGraphic, 1000);
