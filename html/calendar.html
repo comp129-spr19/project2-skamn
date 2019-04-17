@@ -43,6 +43,28 @@
           </li>
         </ul>
       </div>
+
+      <div id="unit-select-area">
+        <div class="row">
+          <label
+            id="unit-select-label"
+            class="col-auto col-form-label"
+            for="unit-display-select"
+          >
+            Display Units
+          </label>
+          <div class="col-auto">
+            <select
+              onchange="unitChange(event)"
+              class="form-control form-control-sm"
+              id="unit-select"
+            >
+              <option value="fl-oz">Fluid Ounces (fl-oz)</option>
+              <option value="ml">Milliliters (ml)</option>
+            </select>
+          </div>
+        </div>
+      </div>
     </nav>
     <h2>Calendar</h2>
 
@@ -51,6 +73,7 @@
       require("../renderer.js");
     </script>
     <script src="../js/storage.js"></script>
+    <script src="../js/units.js"></script>
     <script>
       window.$ = window.jQuery = require("jquery");
       require("bootstrap");
