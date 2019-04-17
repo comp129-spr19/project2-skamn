@@ -11,6 +11,10 @@
       rel="stylesheet"
       href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
     <link rel="stylesheet" href="../css/master.css" />
     <link rel="stylesheet" href="../css/calendar.css" />
   </head>
@@ -69,9 +73,15 @@
     </nav>
 
     <div id="app-content">
-      <h1 class="display-3">April</h1>
-
       <div class="container">
+        <div id="month-toolbar">
+          <h1 id="month-display" class="display-3">
+            April 2019
+          </h1>
+          <div class="spacer"></div>
+          <i class="fas fa-angle-left month-nav"></i>
+          <i class="fas fa-angle-right month-nav"></i>
+        </div>
         <div class="row">
           <div class="col">
             Sunday
