@@ -160,7 +160,7 @@ function updateProgressBar() {
 
 function resetDataForNewDate(data) {
   try {
-    let savedDate = new Date(data.todayDate);
+    let savedDate = new Date(data.lastUpdatedDate);
     if (savedDate.getDate() != currentDate.getDate()) {
       dailyGoalMet = false;
       setTotalWaterDrankToday(0);
