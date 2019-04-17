@@ -1,0 +1,7 @@
+.row:not(:last-child) {
+  border-bottom: 1px solid blue;
+}
+
+.col:not(:last-child) {
+  border-right: 1px solid blue;
+}
