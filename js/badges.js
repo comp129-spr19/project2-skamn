@@ -1,23 +1,22 @@
 function saveBadgeAchievements(name, date) {
-  let badgeData = null;
-
   try {
-    badgeData = getDataFromFile(function(data) {
+    let badgeData = getDataFromFile(function(data) {
       return data;
     }, "badgeachievements");
+    console.log(badgeData);
     badgeData.name = date;
+    setDataToFile(badgeData, "badgeachievements");
   } catch (e) {
-    if (e instanceof ReferenceError) {
-        setDataToFile({
-            "badge1": 0,
-            "badge2": 0
-
-          }, "badgeachievements");
-      badgeData = getDataFromFile(function(data) {
-        return data;
-      }, "badgeachievements");
-      badgeData.name = date;
+    // Write new data file since none exists
+    if (typeof (e, TypeError)) {
+      console.log(e);
+      console.log("Creating new file");
+      let badgeData = {
+        badge1: 0,
+        badge2: 0
+      };
+      badgeData[name] = date;
+      setDataToFile(badgeData, "badgeachievements");
     }
   }
-  setDataToFile(badgeData, "badgeAchievements");
 }
