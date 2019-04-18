@@ -168,6 +168,28 @@ function updateProgressBar() {
   }, 100);
 }
 
+function resetDataForNewDate(data) {
+  try {
+    let savedDate = new Date(data.lastUpdatedDate);
+    if (savedDate.getDate() != currentDate.getDate()) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    } else {
+      dailyGoalMet = data.dailyGoalMet || false;
+      setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    }
+  } catch (e) {
+    // In situation where date isn't saved in file (e.g. user's first time loading app)
+    if (e instanceof TypeError) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    }
+  } finally {
+    setDailyGoal(data.dailyGoal || 0);
+    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+  }
+}
+
 function updateDependentComponents() {
   updateWaterStillNeeded();
   updatePercentageGoal();
@@ -202,28 +224,10 @@ function updateGraphic() {
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
-    try {
-      let savedDate = new Date(data.todayDate);
-      if (savedDate.getDate() != currentDate.getDate()) {
-        dailyGoalMet = false;
-        setTotalWaterDrankToday(0);
-      } else {
-        dailyGoalMet = data.dailyGoalMet || false;
-        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
-      }
-    } catch (e) {
-      // In situation where date isn't saved in file (e.g. user's first time loading app)
-      if (e instanceof TypeError) {
-        dailyGoalMet = false;
-        setTotalWaterDrankToday(0);
-      }
-    } finally {
-      setDailyGoal(data.dailyGoal || 0);
-      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
-    }
-
+    resetDataForNewDate(data);
     updateDependentComponents();
     updateGraphic();
+    saveData();
   });
 
   setInterval(updateGraphic, 1000);
