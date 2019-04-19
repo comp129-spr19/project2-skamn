@@ -145,8 +145,7 @@
   display: flex;
 }
 
-#unit-select-area {
-}
+#unit-select-area {}
 
 #unit-select-label {
   font-size: 0.75rem;
@@ -157,3 +156,9 @@
 .container {
   margin-bottom: 2rem;
 }
+
+/* #myCanvas {
+  width: "1000";
+  height: "1000";
+  margin-left: 600px;
+} */

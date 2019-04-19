@@ -194,6 +194,7 @@ function updateDependentComponents() {
   updateWaterStillNeeded();
   updatePercentageGoal();
   updateProgressBar();
+  createLine();
 }
 
 function updateGraphic() {
@@ -232,6 +233,33 @@ function initHomepage() {
 
   setInterval(updateGraphic, 1000);
 }
+
+
+function createLine() {
+  let c = document.getElementById("myCanvas");
+  let ctx = c.getContext("2d");
+  let count = 0;
+  let isInc = true;
+
+  setInterval(() => {
+    ctx.clearRect(0, 0, 1000, 1000);
+    ctx.beginPath();
+    ctx.moveTo(0 + count, 0);
+    ctx.lineTo(500, 500);
+    ctx.lineWidth = 3;
+    ctx.closePath();
+    ctx.stroke();
+    console.log(count);
+
+    if (count == 10000) {
+      isInc = false;
+    }
+    else if (count == -10000) {
+      isInc = true;
+    }
+    count = isInc ? count + 20 : count - 20;
+  }, 5);
+}   
 
 module.exports = {
   getDailyGoal,
