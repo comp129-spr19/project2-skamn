@@ -237,29 +237,34 @@ function initHomepage() {
 
 
 function createLine() {
-  let c = document.getElementById("myCanvas");
-  let ctx = c.getContext("2d");
   let count = 0;
   let isInc = true;
-
-  setInterval(() => {
+    const odometer = setInterval(() => {
+      let c = document.getElementById("myCanvas");
+      let ctx = c.getContext("2d");
+    
     ctx.clearRect(0, 0, 1000, 1000);
     ctx.beginPath();
     ctx.moveTo(0 + count, 0);
     ctx.lineTo(500, 500);
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 6;
     ctx.closePath();
     ctx.stroke();
     console.log(count);
+    console.log("TEST" + getDailyGoal());
 
-    if (count == 10000) {
+
+    if (count >= Math.abs(getDailyGoal()) + 2000) {
       isInc = false;
     }
-    else if (count == -10000) {
+
+    else if (count <= -(Math.abs(getDailyGoal())) - 2000) {
+      ctx=null;
       isInc = true;
     }
-    count = isInc ? count + 20 : count - 20;
-  }, 5);
+
+    count = isInc ? count + 50 : count - 50;
+  }, 50);
 }   
 
 module.exports = {
