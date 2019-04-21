@@ -2,8 +2,9 @@ function saveBadgeAchievements(name, date) {
   getDataFromFile(function(data) {
     if (data == null) {
       const badgeData = {
-        badge1: 0,
-        badge2: 0
+        meetDailyGoalOnce: 0,
+        meetDailyGoalSeven: 0,
+        meetDailyGoalThirty: 0
       };
       badgeData[name] = date;
       setDataToFile(badgeData, "badgeachievements");
@@ -17,4 +18,18 @@ function saveBadgeAchievements(name, date) {
 
 function printBadgeAchievements() {
   getDataFromFile(function(data) {}, "badgeachievements");
+  
+}
+
+function checkIfBadgeAchieved(badgeName) {
+  let badgeAchieved = false;
+  getDataFromFile(function(data) {
+    if (data != null) {
+      // Badge not achieved
+      if (data[badgeName] == 0) {badgeAchieved = false};
+      // Badge achieved
+      badgeAchieved = true;
+    }
+  }, "badgeachievements");
+  return badgeAchieved;
 }
