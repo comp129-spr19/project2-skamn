@@ -44,6 +44,9 @@
           <li class="nav-item">
             <a class="nav-link" href="badges.html">Badges</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="initializeBadgeAchievements()">RS</a>
+          </li>
         </ul>
       </div>
 
@@ -71,7 +74,7 @@
     </nav>
     <!-- END NAVBAR -->
 
-    <button onclick="saveBadgeAchievements('badge1', '4/1/19')">Badge</button>
+    <button onclick="printBadgeAchievements()">Print</button>
 
     <div id="app-content">
       <!-- WATER COUNTER -->
@@ -150,6 +153,7 @@
     <script src="../js/units.js"></script>
     <script src="../js/homepage.js"></script>
     <script src="../js/badges.js"></script>
+    <script src="../js/badge_achievements/meet_daily_goal.js"></script>
     <script>
       window.onload = function() {
         initHomepage();
