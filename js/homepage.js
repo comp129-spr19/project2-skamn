@@ -141,6 +141,7 @@ function updateWaterStillNeeded() {
   // subtract appropriate values to calculate needed water
   // water that still needs to be consumed
   let waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
+  waterNeeded = Math.round(waterNeeded * 100) / 100;
   document.getElementById("waterNeeded").innerHTML = waterNeeded;
 }
 
