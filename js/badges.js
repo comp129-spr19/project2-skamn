@@ -2,25 +2,30 @@ function saveBadgeAchievements(name, date) {
   getDataFromFile(function(data) {
     if (data == null) {
       const badgeData = {
-        meetDailyGoalOnce: 0,
-        meetDailyGoalSeven: 0,
-        meetDailyGoalThirty: 0
+        meetDailyGoalOnce: {badgeName: "Meet Daily Goal - 1 Day", badgeDate: 0},
+        meetDailyGoalSeven: {badgeName: "Meet Daily Goal - 7 Days in a Row", badgeDate: 0},
+        meetDailyGoalThirty: {badgeName: "Meet Daily Goal - 30 Days in a Row", badgeDate: 0},
+        drink64ozOneDay: {badgeName: "Drink 64oz in One Day", badgeDate: 0},
+        doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0}
       };
-      badgeData[name] = date;
+      badgeData[name]["badgeDate"] = date;
       setDataToFile(badgeData, "badgeachievements");
     } else {
       let newData = data;
-      newData[name] = date;
+      newData[name]["badgeDate"] = date;
       setDataToFile(newData, "badgeachievements");
     }
   }, "badgeachievements");
 }
 
+// Needs to be deleted. Just for current testing purposes
 function initializeBadgeAchievementsForTesting() {
   const badgeData = {
-    meetDailyGoalOnce: 0,
-    meetDailyGoalSeven: 0,
-    meetDailyGoalThirty: 0
+    meetDailyGoalOnce: {badgeName: "Meet Daily Goal - 1 Day", badgeDate: 0},
+    meetDailyGoalSeven: {badgeName: "Meet Daily Goal - 7 Days in a Row", badgeDate: 0},
+    meetDailyGoalThirty: {badgeName: "Meet Daily Goal - 30 Days in a Row", badgeDate: 0},
+    drink64ozOneDay: {badgeName: "Drink 64oz in One Day", badgeDate: 0},
+    doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0}
   };
   setDataToFile(badgeData, "badgeachievements");
 }
@@ -41,6 +46,23 @@ function checkIfBadgeAchieved(badgeName, callback) {
       if (data[badgeName] == 0) {
         callback();
       }
+    }
+  }, "badgeachievements");
+}
+
+function displayBadgeNotifications(badgeName) {
+  getDataFromFile(function(data) {
+    let displayBadgeName = data[badgeName]["badgeName"];
+    try {
+      let badgeReachedNotification = new Notification(
+        "Badge Achieved!", {
+          body:
+          "Congrats! You achieved badge '" + displayBadgeName + "' today!"
+        });
+        badgeReachedNotification.show();
+        console.log("Badge '" + displayBadgeName + "' Achieved");
+    } catch (err) {
+      console.log("Badge achieved but notification not shown");
     }
   }, "badgeachievements");
 }
