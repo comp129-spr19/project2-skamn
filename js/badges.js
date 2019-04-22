@@ -34,17 +34,13 @@ function initializeDailyGoalStreaksForTesting() {
   setDataToFile(initialBadgeLogic, "badgeDailyGoalStreak");
 }
 
-function checkIfBadgeAchieved(badgeName) {
-  let badgeAchieved = false;
+function checkIfBadgeAchieved(badgeName, callback) {
   getDataFromFile(function(data) {
     if (data != null) {
       // Badge not achieved
       if (data[badgeName] == 0) {
-        badgeAchieved = false;
+        callback();
       }
-      // Badge achieved
-      badgeAchieved = true;
     }
   }, "badgeachievements");
-  return badgeAchieved;
 }
