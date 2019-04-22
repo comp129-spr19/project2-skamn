@@ -145,11 +145,15 @@ function setWaterDrankRecently(e) {
   }
 
   // Check if any badges achieved
-  drink64ozBadge();
-  doubleGoalBadge();
-
+  checkBadgesAchieved();
+  
   // Save data to storage
   saveData();
+}
+
+function checkBadgesAchieved() {
+  drink64ozBadge();
+  doubleGoalBadge();
 }
 
 function updateWaterStillNeeded() {
