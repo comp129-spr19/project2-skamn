@@ -25,10 +25,13 @@ function initializeBadgeAchievementsForTesting() {
   setDataToFile(badgeData, "badgeachievements");
 }
 
-function printBadgeAchievements() {
-  getDataFromFile(function(data) {
-    console.log(data);
-  }, "badgeachievements");
+function initializeDailyGoalStreaksForTesting() {
+  let todayDate = new Date();
+  let initialBadgeLogic = {
+    mostRecentDate: todayDate.toLocaleDateString(),
+    streak: 0
+  };
+  setDataToFile(initialBadgeLogic, "badgeDailyGoalStreak");
 }
 
 function checkIfBadgeAchieved(badgeName) {

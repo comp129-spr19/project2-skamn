@@ -45,7 +45,11 @@
             <a class="nav-link" href="badges.html">Badges</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" onclick="initializeBadgeAchievementsForTesting()">RST</a>
+            <a
+              class="nav-link"
+              onclick="initializeBadgeAchievementsForTesting()"
+              >RST</a
+            >
           </li>
         </ul>
       </div>
@@ -74,7 +78,16 @@
     </nav>
     <!-- END NAVBAR -->
 
-    <button onclick="printBadgeAchievements()">Print</button>
+    <button onclick="printFile('badgeachievements')">
+      Print badge Achievements
+    </button>
+    <button onclick="printFile('badgeDailyGoalStreak')">
+      Print daily goal streak badge logic
+    </button>
+    <button onclick="initializeDailyGoalStreaksForTesting()">
+      Reset Daily Goal Streak
+    </button>
+    <button onclick="incrementCurrentDateTest()">Increment Date</button>
 
     <div id="app-content">
       <!-- WATER COUNTER -->

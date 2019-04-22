@@ -3,6 +3,14 @@ const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
 
+function incrementCurrentDateTest() {
+  console.log("Before", currentDate);
+  currentDate.setDate(currentDate.getDate() + 1);
+  console.log("After", currentDate);
+  initHomepage();
+  console.log("Date after reset", currentDate);
+}
+
 function getDailyGoal() {
   return parseFloat(document.getElementById("currentDailyGoal").innerHTML);
 }
@@ -132,6 +140,7 @@ function setWaterDrankRecently(e) {
     setDailyGoalMet(true);
     displayGoalNotification();
     meetDailyGoalOnceBadge();
+    meetDailyGoalSevenBadge();
   }
 
   // Save data to storage
@@ -149,7 +158,7 @@ function updatePercentageGoal() {
   let totalWaterDrankToday = getTotalWaterDrankToday();
   let dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
-  // percentatge of water consumed
+  // percentage of water consumed
   let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
   // adding percentage sign to the value calculated
   percentage = percentage.toFixed(1) + "%";
