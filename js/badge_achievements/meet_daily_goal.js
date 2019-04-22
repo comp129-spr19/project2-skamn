@@ -12,21 +12,13 @@ function meetDailyGoalOnceBadge() {
 
 function meetDailyGoalSevenBadge() {
   let badgeName = "meetDailyGoalSeven";
-  if (!checkIfBadgeAchieved(badgeName)) {
-    if (dailyGoalMetYesterday()) {
-      getDataFromFile(function(data) {
-        console.log(data);
-        if (data[streak] == 7) {
-          saveBadgeAchievementDate(badgeName);
-        }
-      });
-    }
-  }
+  checkIfBadgeAchieved(badgeName, function() {
+    dailyGoalMetYesterday(badgeName);
+  });
 }
 
-function dailyGoalMetYesterday() {
+function dailyGoalMetYesterday(badgeName) {
   let filename = "badgeDailyGoalStreak";
-  let dailyGoalMetYesterday = false;
   getDataFromFile(function(data) {
     console.log(data);
     if (data == undefined || data === {}) {
@@ -37,17 +29,18 @@ function dailyGoalMetYesterday() {
       };
       setDataToFile(initialBadgeLogic, filename);
     } else {
-      let dateToCompare = currentDate;
+      let dateToCompare = new Date(currentDate.getTime());
       dateToCompare.setDate(dateToCompare.getDate() - 1);
       if (data["mostRecentDate"] === dateToCompare.toLocaleDateString()) {
         data["streak"] += 1;
-        dailyGoalMetYesterday = true;
+        if (data["streak"] == 7) {
+          saveBadgeAchievementDate(badgeName);
+        }
       } else {
         data["streak"] = 0;
       }
+      data["mostRecentDate"] = currentDate.toLocaleDateString();
       setDataToFile(data, filename);
     }
   }, filename);
-  console.log(dailyGoalMetYesterday);
-  return dailyGoalMetYesterday;
 }
