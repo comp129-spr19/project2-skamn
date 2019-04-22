@@ -25,9 +25,7 @@ function inputConsumptionThreeinDay() {
 
 function inputConsumptionOneDay(badgeName, streakNeeded) {
   let filename = "badgeDailyInputConsumption";
-  //let current = new Date();
   getDataFromFile(function(data) {
-    console.log(data);
     if (data == undefined || data === {}) {
       let todayDate = new Date();
       let initialConsumptionLogic = {
