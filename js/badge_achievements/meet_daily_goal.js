@@ -6,9 +6,9 @@ function saveBadgeAchievementDate(badgeName) {
 
 function meetDailyGoalOnceBadge() {
   let badgeName = "meetDailyGoalOnce";
-  if (!checkIfBadgeAchieved(badgeName)) {
+  checkIfBadgeAchieved(badgeName, function() {
     saveBadgeAchievementDate(badgeName);
-  }
+  });
 }
 
 function meetDailyGoalSevenBadge() {

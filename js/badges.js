@@ -43,7 +43,7 @@ function checkIfBadgeAchieved(badgeName, callback) {
   getDataFromFile(function(data) {
     if (data != null) {
       // Badge not achieved
-      if (data[badgeName] == 0) {
+      if (data[badgeName]["badgeDate"] == 0) {
         callback();
       }
     }

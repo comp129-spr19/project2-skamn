@@ -146,7 +146,7 @@ function setWaterDrankRecently(e) {
 
   // Check if any badges achieved
   checkBadgesAchieved();
-  
+
   // Save data to storage
   saveData();
 }
