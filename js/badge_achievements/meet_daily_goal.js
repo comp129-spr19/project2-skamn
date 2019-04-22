@@ -1,6 +1,7 @@
 function saveBadgeAchievementDate(badgeName) {
   let date = new Date();
   saveBadgeAchievements(badgeName, date.toLocaleDateString());
+  displayBadgeNotifications(badgeName);
 }
 
 function meetDailyGoalOnceBadge() {

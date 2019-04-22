@@ -3,7 +3,15 @@ function drink64ozBadge() {
     if (!checkIfBadgeAchieved(badgeName)) {
         if (getTotalWaterDrankToday() >= 64) {
             saveBadgeAchievementDate(badgeName);
-            displayBadgeNotifications(badgeName);
+        }
+    }
+}
+
+function doubleGoalBadge() {
+    let badgeName = "doubleGoal";
+    if (!checkIfBadgeAchieved(badgeName)) {
+        if (getTotalWaterDrankToday() >= (getDailyGoal()*2)) {
+            saveBadgeAchievementDate(badgeName);
         }
     }
 }
