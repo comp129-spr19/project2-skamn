@@ -33,11 +33,8 @@ function initPage() {
 }
 
 function showCalendar(month, year) {
-  console.log("HELLO");
   let i = 0;
   let j = 0;
-  let button;
-  let cellText;
   let week = [
     "Sunday",
     "Monday",
@@ -50,19 +47,17 @@ function showCalendar(month, year) {
   let body = document.getElementsByTagName("body")[0];
   let tbl = document.createElement("table");
   let tblBody = document.createElement("tbody");
+  let cellText;
   let breakTag = document.createElement("BR");
+  body.appendChild(breakTag);
+
   for (i = 0; i < 6; i++) {
     let row = document.createElement("tr");
-    // button = document.createElement("button");
     for (j = 0; j < 7; j++) {
       let cell = document.createElement("td");
-      if (i == 0) {
-        cellText = document.createTextNode("HELLO");
-      }
-      //   cellText = document.createTextNode("cell in row " + i + ", column " + j);
-      cell.appendChild(cellText);
+      cellText = document.createTextNode("HELLO");
+      cell.append(cellText);
       row.appendChild(cell);
-      //   row.append(button);
     }
     tblBody.appendChild(row);
   }
