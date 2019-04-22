@@ -6,7 +6,8 @@ function saveBadgeAchievements(name, date) {
         meetDailyGoalSeven: {badgeName: "Meet Daily Goal - 7 Days in a Row", badgeDate: 0},
         meetDailyGoalThirty: {badgeName: "Meet Daily Goal - 30 Days in a Row", badgeDate: 0},
         drink64ozOneDay: {badgeName: "Drink 64oz in One Day", badgeDate: 0},
-        doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0}
+        doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0},
+        inputConsumpThreeXOneDay: {badgeName: "Input Water Consumption into App 3 Times in One Day", badgeDate: 0}
       };
       badgeData[name]["badgeDate"] = date;
       setDataToFile(badgeData, "badgeachievements");
@@ -25,11 +26,13 @@ function initializeBadgeAchievementsForTesting() {
     meetDailyGoalSeven: {badgeName: "Meet Daily Goal - 7 Days in a Row", badgeDate: 0},
     meetDailyGoalThirty: {badgeName: "Meet Daily Goal - 30 Days in a Row", badgeDate: 0},
     drink64ozOneDay: {badgeName: "Drink 64oz in One Day", badgeDate: 0},
-    doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0}
+    doubleGoal: {badgeName: "Doubled Daily Goal", badgeDate: 0},
+    inputConsumpThreeXOneDay: {badgeName: "Input Water Consumption into App 3 Times in One Day", badgeDate: 0}
   };
   setDataToFile(badgeData, "badgeachievements");
 }
 
+// XXX: Testing function. Needs to be deleted
 function initializeDailyGoalStreaksForTesting() {
   let todayDate = new Date();
   let initialBadgeLogic = {

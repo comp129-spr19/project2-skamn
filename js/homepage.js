@@ -3,6 +3,7 @@ const HYDRATION_TIMER_MAX = 6;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
 
+
 function incrementCurrentDateTest() {
   console.log("Before", currentDate);
   currentDate.setDate(currentDate.getDate() + 1);
@@ -154,6 +155,7 @@ function setWaterDrankRecently(e) {
 function checkBadgesAchieved() {
   drink64ozBadge();
   doubleGoalBadge();
+  inputConsumptionThreeinDay();
 }
 
 function updateWaterStillNeeded() {
