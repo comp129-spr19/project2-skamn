@@ -141,6 +141,7 @@ function setWaterDrankRecently(e) {
     displayGoalNotification();
     meetDailyGoalOnceBadge();
     meetDailyGoalSevenBadge();
+    meetDailyGoalThirtyBadge();
   }
 
   // Save data to storage
