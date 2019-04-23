@@ -1,0 +1,27 @@
+.row:not(:last-child) {
+  border-bottom: 1px solid blue;
+}
+
+.col:not(:last-child) {
+  border-right: 1px solid blue;
+}
+
+#month-display {
+  display: inline;
+  flex: 3;
+}
+
+#month-toolbar {
+  display: flex;
+}
+
+.month-nav {
+  font-size: 2.5rem;
+  cursor: pointer;
+  vertical-align: baseline;
+  padding-top: 2rem;
+}
+
+.month-nav:not(:last-child) {
+  margin-right: 2.5rem;
+}
