@@ -1,7 +1,16 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 6;
+const HYDRATION_TIMER_MAX = 100;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
+let hydratedToday = true;
+
+function incrementCurrentDateTest() {
+  console.log("Before", currentDate);
+  currentDate.setDate(currentDate.getDate() + 1);
+  console.log("After", currentDate);
+  initHomepage();
+  console.log("Date after reset", currentDate);
+}
 
 function getDailyGoal() {
   return parseFloat(document.getElementById("currentDailyGoal").innerHTML);
@@ -131,10 +140,22 @@ function setWaterDrankRecently(e) {
     console.log("here");
     setDailyGoalMet(true);
     displayGoalNotification();
+    meetDailyGoalOnceBadge();
+    meetDailyGoalSevenBadge();
+    meetDailyGoalThirtyBadge();
   }
+
+  // Check if any badges achieved
+  checkBadgesAchieved();
 
   // Save data to storage
   saveData();
+}
+
+function checkBadgesAchieved() {
+  drink64ozBadge();
+  doubleGoalBadge();
+  inputConsumptionThreeinDay();
 }
 
 function updateWaterStillNeeded() {
@@ -149,7 +170,7 @@ function updatePercentageGoal() {
   let totalWaterDrankToday = getTotalWaterDrankToday();
   let dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
-  // percentatge of water consumed
+  // percentage of water consumed
   let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
   // adding percentage sign to the value calculated
   percentage = percentage.toFixed(1) + "%";
@@ -208,6 +229,7 @@ function updateGraphic() {
   hydrationTimer--;
 
   if (hydrationTimer <= 0) {
+    hydratedToday = false;
     hydrationTimer = -99;
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
@@ -219,12 +241,35 @@ function updateGraphic() {
   }
 
   saveData();
-  console.log("Hydration Timer: ", hydrationTimer);
+  // console.log("Hydration Timer: ", hydrationTimer);
 }
 
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
+    try {
+      let savedDate = new Date(data.todayDate);
+      if (savedDate.getDate() != currentDate.getDate()) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+        hydratedOneDay();
+        hydratedSevenDay();
+        hydratedThirtyDay();
+      } else {
+        dailyGoalMet = data.dailyGoalMet || false;
+        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+      }
+    } catch (e) {
+      // In situation where date isn't saved in file (e.g. user's first time loading app)
+      if (e instanceof TypeError) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      }
+    } finally {
+      setDailyGoal(data.dailyGoal || 0);
+      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+    }
+
     resetDataForNewDate(data);
     updateDependentComponents();
     updateGraphic();

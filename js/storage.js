@@ -15,6 +15,12 @@ function getDataFromFile(callback, name = "hydrationstation") {
   });
 }
 
+function printFile(filename) {
+  getDataFromFile(function(data) {
+    console.log(data);
+  }, filename);
+}
+
 module.exports = {
   setDataToFile,
   getDataFromFile
