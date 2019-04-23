@@ -162,6 +162,7 @@ function updateWaterStillNeeded() {
   // subtract appropriate values to calculate needed water
   // water that still needs to be consumed
   let waterNeeded = Math.max(getDailyGoal() - getTotalWaterDrankToday(), 0);
+  waterNeeded = Math.round(waterNeeded * 100) / 100;
   document.getElementById("waterNeeded").innerHTML = waterNeeded;
 }
 
@@ -187,6 +188,28 @@ function updateProgressBar() {
   setTimeout(function() {
     elem.style.width = width;
   }, 100);
+}
+
+function resetDataForNewDate(data) {
+  try {
+    let savedDate = new Date(data.lastUpdatedDate);
+    if (savedDate.getDate() != currentDate.getDate()) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    } else {
+      dailyGoalMet = data.dailyGoalMet || false;
+      setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+    }
+  } catch (e) {
+    // In situation where date isn't saved in file (e.g. user's first time loading app)
+    if (e instanceof TypeError) {
+      dailyGoalMet = false;
+      setTotalWaterDrankToday(0);
+    }
+  } finally {
+    setDailyGoal(data.dailyGoal || 0);
+    hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+  }
 }
 
 function updateDependentComponents() {
@@ -247,8 +270,10 @@ function initHomepage() {
       hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
     }
 
+    resetDataForNewDate(data);
     updateDependentComponents();
     updateGraphic();
+    saveData();
   });
 
   setInterval(updateGraphic, 1000);
