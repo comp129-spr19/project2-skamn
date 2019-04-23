@@ -75,6 +75,14 @@ function initializeDailyGoalStreaksForTesting() {
   setDataToFile(initialBadgeLogic, "badgeDailyGoalStreak");
 }
 
+function initializeHydrationStreaksForTesting() {
+  let initialBadgeLogic = {
+    mostRecentDate: todayDate.toLocaleDateString(),
+    hydrated: false
+  };
+  setDataToFile(initialBadgeLogic, "badgeHydrationStreak");
+}
+
 function checkIfBadgeAchieved(badgeName, callback) {
   getDataFromFile(function(data) {
     if (data != null) {
