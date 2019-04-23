@@ -38,7 +38,6 @@ function meetDailyGoalThirtyBadge() {
 function dailyGoalMetYesterday(badgeName, streakNeeded) {
   let filename = "badgeDailyGoalStreak";
   getDataFromFile(function(data) {
-    console.log(data);
     if (data == undefined || data === {}) {
       let todayDate = new Date();
       let initialBadgeLogic = {

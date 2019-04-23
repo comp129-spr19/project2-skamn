@@ -5,9 +5,25 @@ function hydratedOneDay() {
   });
 }
 
+function hydratedSevenDay() {
+  let oneBadgeDay = "stayHydratedOneDay";
+  let badgeName = "stayHydratedSevenDay";
+  let filename = "badgeachievements";
+  getDataFromFile(function(data) {
+    if (data != null) {
+      if (data[oneBadgeDay]["badgeDate"] != 0) {
+        checkIfBadgeAchieved(badgeName, function() {
+          checkHydrationStreak(badgeName, 7);
+        });
+      }
+    }
+  }, filename);
+}
+
 function checkHydrationStreak(badgeName, streakNeeded) {
   let filename = "badgeHydrationStreak";
   getDataFromFile(function(data) {
+    console.log(data);
     if (data == null) {
       let todayDate = new Date();
       let initialBadgeLogic = {

@@ -1,5 +1,5 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 12;
+const HYDRATION_TIMER_MAX = 100;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
 let hydratedToday = true;
@@ -218,7 +218,7 @@ function updateGraphic() {
   }
 
   saveData();
-  console.log("Hydration Timer: ", hydrationTimer);
+  // console.log("Hydration Timer: ", hydrationTimer);
 }
 
 function initHomepage() {
@@ -230,6 +230,7 @@ function initHomepage() {
         dailyGoalMet = false;
         setTotalWaterDrankToday(0);
         hydratedOneDay();
+        hydratedSevenDay();
       } else {
         dailyGoalMet = data.dailyGoalMet || false;
         setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
