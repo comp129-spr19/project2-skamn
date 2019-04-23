@@ -26,7 +26,7 @@ function meetDailyGoalThirtyBadge() {
     if (data != null) {
       // If 7 day streak badge hasn't been met, dailyGoalMetYesterday()
       // should only be called once. Otherwise, streak data will be overwritten
-      if (data[sevenBadgeDay] != 0) {
+      if (data[sevenBadgeDay]["badgeDate"] != 0) {
         checkIfBadgeAchieved(badgeName, function() {
           dailyGoalMetYesterday(badgeName, 30);
         });
