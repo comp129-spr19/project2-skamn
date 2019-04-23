@@ -13,26 +13,38 @@ let months = [
   "November",
   "December"
 ];
+let daysInMonthArr = [];
+let todayDate;
+let currentMonthIndex;
+let currentMonth;
+let currentYear;
+let currentDayOfWeek;
 
 window.onload = initPage;
 
 function initPage() {
   todayDateFull = new Date();
-  let todayDate = todayDateFull.getDate();
-  let currentMonthIndex = todayDateFull.getMonth();
-  let currentMonth = months[currentMonthIndex];
-  let currentYear = todayDateFull.getFullYear();
-  console.log(months[currentMonthIndex]);
-  console.log(todayDate);
-  console.log(currentYear);
+  todayDate = todayDateFull.getDate();
+  currentMonthIndex = todayDateFull.getMonth();
+  currentMonth = months[currentMonthIndex];
+  currentYear = todayDateFull.getFullYear();
+  currentDayOfWeek = todayDateFull.getDay();
+  //   console.log(months[currentMonthIndex]);
+  //   console.log("TD: " + todayDate);
+  //   console.log(currentYear);
+  //   console.log(currentDayOfWeek);
   let todayDateSimple =
     months[currentMonthIndex] + " " + todayDate + ", " + currentYear;
 
   document.getElementById("todayDate").innerHTML = todayDateSimple;
-  showCalendar(currentMonth, currentYear);
+  showCalendar(currentMonth, todayDate, currentYear);
 }
 
-function showCalendar(month, year) {
+function showCalendar(currentMonth, currentDate, currentYear) {
+  //   console.log(currentMonth);
+  //   console.log(currentDate);
+  //   console.log(currentYear);
+
   let i = 0;
   let j = 0;
   let week = [
@@ -60,8 +72,8 @@ function showCalendar(month, year) {
         cell.append(cellText);
       } else {
         cell.append("APPLE");
+        getInformation();
       }
-
       row.appendChild(cell);
     }
     tblBody.appendChild(row);
@@ -71,10 +83,13 @@ function showCalendar(month, year) {
   tbl.setAttribute("border", "4");
 }
 
-function daysInMonth(iMonth, iYear) {
-  return 32 - new Date(iYear, iMonth, 32).getDate();
+function getInformation() {
+  for (let i = 0; i < months.length; i++) {
+    daysInMonthArr[i] = getDaysInMonth(i + 1, currentYear);
+  }
+  console.log(daysInMonthArr);
 }
 
-module.exports = {
-  daysInMonth
+let getDaysInMonth = function(month, year) {
+  return new Date(year, month, 0).getDate();
 };
