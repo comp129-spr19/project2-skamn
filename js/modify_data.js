@@ -5,16 +5,7 @@ function saveData() {
     dailyGoalMet,
     totalWaterDrankToday: getTotalWaterDrankToday(),
     hydrationTimer,
-    todayDate: currentDate
-  });
-}
-
-function resetWaterDrankToday() {
-  setDataToFile({
-    dailyGoal: getDailyGoal(),
-    dailyGoalMet: false,
-    totalWaterDrankToday: 0,
-    hydrationTimer
+    lastUpdatedDate: currentDate
   });
 }
 
@@ -25,6 +16,14 @@ function resetData() {
     totalWaterDrankToday: 0,
     hydrationTimer
   });
+}
+
+function resetBadgeAchievements() {
+  const badgeData = {
+    badge1: 0,
+    badge2: 0
+  };
+  setDataToFile(badgeData, "badgeachievements");
 }
 
 module.exports = {
