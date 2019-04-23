@@ -1,8 +1,8 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 6;
+const HYDRATION_TIMER_MAX = 12;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
-
+let hydratedToday = true;
 
 function incrementCurrentDateTest() {
   console.log("Before", currentDate);
@@ -206,6 +206,7 @@ function updateGraphic() {
   hydrationTimer--;
 
   if (hydrationTimer <= 0) {
+    hydratedToday = false;
     hydrationTimer = -99;
     alert(
       "Uh oh, you're getting dehydrated. You should drink some more water!"
@@ -228,6 +229,7 @@ function initHomepage() {
       if (savedDate.getDate() != currentDate.getDate()) {
         dailyGoalMet = false;
         setTotalWaterDrankToday(0);
+        hydratedOneDay();
       } else {
         dailyGoalMet = data.dailyGoalMet || false;
         setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
