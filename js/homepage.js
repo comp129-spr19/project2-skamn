@@ -30,6 +30,7 @@ function validateUserNumberInput(userInput) {
 }
 
 function setGoal(e) {
+  location.reload();
   if (e) {
     e.preventDefault();
   }
@@ -231,41 +232,54 @@ function initHomepage() {
     updateGraphic();
     saveData();
   });
-
   setInterval(updateGraphic, 1000);
 }
 
 
 function createLine() {
   let count = 0;
-  let isInc = true;
+  let paused = true;
     const odometer = setInterval(() => {
-      let c = document.getElementById("myCanvas");
-      let ctx = c.getContext("2d");
-    
-    ctx.clearRect(0, 0, 1000, 1000);
+    let c = document.getElementById("myCanvas");
+    let ctx = c.getContext("2d");
+
+    ctx.clearRect(0, 0, 1000 , 1000);
     ctx.beginPath();
     ctx.moveTo(0 + count, 0);
-    ctx.lineTo(500, 500);
+    ctx.lineTo(500, 300);
     ctx.lineWidth = 6;
+    ctx.strokeStyle = "#FF0000";
     ctx.closePath();
     ctx.stroke();
-    console.log(count);
-    console.log("TEST" + getDailyGoal());
-
+    console.log("Count: " + count);
 
     if (count >= Math.abs(getDailyGoal()) + 2000) {
-      isInc = false;
+      paused = false;
+    }
+
+    else if (count == (-(Math.abs(getDailyGoal())) - 2000)/2) {
+      alert("Please update your water consumption!");
+      paused = false;
     }
 
     else if (count <= -(Math.abs(getDailyGoal())) - 2000) {
-      ctx=null;
-      isInc = true;
+      clearInterval(odometer);
+      paused = true;
     }
+      // if (count < 500) {
+      //   alert("TEST");
+      // }
+      // clearInterval(odometer);
+    
 
-    count = isInc ? count + 50 : count - 50;
-  }, 50);
-}   
+    // else if (count == (Math.abs(getDailyGoal())) + 500) {
+    //   alert("You're getting dehydrated again...");
+    // }
+
+    count = paused ? count + 20 : count - 1;
+    // console.log("TIMER: " + hydrationTimer);
+  }, 3);
+}
 
 module.exports = {
   getDailyGoal,
