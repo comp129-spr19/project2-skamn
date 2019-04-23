@@ -20,6 +20,21 @@ function hydratedSevenDay() {
   }, filename);
 }
 
+function hydratedThirtyDay() {
+  let sevenBadgeDay = "stayHydratedSevenDay";
+  let badgeName = "stayHydratedThirtyDay";
+  let filename = "badgeachievements";
+  getDataFromFile(function(data) {
+    if (data != null) {
+      if (data[sevenBadgeDay]["badgeDate"] != 0) {
+        checkIfBadgeAchieved(badgeName, function() {
+          checkHydrationStreak(badgeName, 30);
+        });
+      }
+    }
+  }, filename);
+}
+
 function checkHydrationStreak(badgeName, streakNeeded) {
   let filename = "badgeHydrationStreak";
   getDataFromFile(function(data) {

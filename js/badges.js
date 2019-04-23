@@ -2,10 +2,7 @@ function saveBadgeAchievements(name, date) {
   getDataFromFile(function(data) {
     if (data == null) {
       const badgeData = {
-        meetDailyGoalOnce: {
-          badgeName: "Meet Daily Goal - 1 Day",
-          badgeDate: 0
-        },
+        meetDailyGoalOnce: { badgeName: "Meet Daily Goal - 1 Day", badgeDate: 0 },
         meetDailyGoalSeven: {
           badgeName: "Meet Daily Goal - 7 Days in a Row",
           badgeDate: 0
@@ -16,6 +13,18 @@ function saveBadgeAchievements(name, date) {
         },
         drink64ozOneDay: { badgeName: "Drink 64oz in One Day", badgeDate: 0 },
         doubleGoal: { badgeName: "Doubled Daily Goal", badgeDate: 0 },
+        stayHydratedOneDay: {
+          badgeName: "Stay hydrated for an entire day",
+          badgeDate: 0
+        },
+        stayHydratedSevenDay: {
+          badgeName: "Stay hydrated for 7 days in a row",
+          badgeDate: 0
+        },
+        stayHydratedThirtyDay: {
+          badgeName: "Stay hydrated for 30 days in a row",
+          badgeDate: 0
+        },
         inputConsumpThreeXOneDay: {
           badgeName: "Input Water Consumption into App 3 Times in One Day",
           badgeDate: 0

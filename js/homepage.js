@@ -231,6 +231,7 @@ function initHomepage() {
         setTotalWaterDrankToday(0);
         hydratedOneDay();
         hydratedSevenDay();
+        hydratedThirtyDay();
       } else {
         dailyGoalMet = data.dailyGoalMet || false;
         setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
