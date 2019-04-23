@@ -47,16 +47,21 @@ function showCalendar(month, year) {
   let body = document.getElementsByTagName("body")[0];
   let tbl = document.createElement("table");
   let tblBody = document.createElement("tbody");
-  let cellText;
+  let cellText, cell;
   let breakTag = document.createElement("BR");
   body.appendChild(breakTag);
 
   for (i = 0; i < 6; i++) {
     let row = document.createElement("tr");
-    for (j = 0; j < 7; j++) {
-      let cell = document.createElement("td");
-      cellText = document.createTextNode("HELLO");
-      cell.append(cellText);
+    for (j = 0; j < week.length; j++) {
+      cell = document.createElement("td");
+      if (i == 0) {
+        cellText = document.createTextNode(week[j]);
+        cell.append(cellText);
+      } else {
+        cell.append("APPLE");
+      }
+
       row.appendChild(cell);
     }
     tblBody.appendChild(row);
