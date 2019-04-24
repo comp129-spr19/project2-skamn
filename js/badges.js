@@ -2,7 +2,10 @@ function saveBadgeAchievements(name, date) {
   getDataFromFile(function(data) {
     if (data == null) {
       const badgeData = {
-        meetDailyGoalOnce: { badgeName: "Meet Daily Goal - 1 Day", badgeDate: 0 },
+        meetDailyGoalOnce: {
+          badgeName: "Meet Daily Goal - 1 Day",
+          badgeDate: 0
+        },
         meetDailyGoalSeven: {
           badgeName: "Meet Daily Goal - 7 Days in a Row",
           badgeDate: 0
@@ -112,7 +115,10 @@ function displayBadgeNotifications(badgeName) {
         body: "Congrats! You achieved badge '" + displayBadgeName + "' today!"
       });
       badgeReachedNotification.show();
+      console.log("APPLE");
       console.log("Badge '" + displayBadgeName + "' Achieved");
+      // over here we can add a function that creates a button on
+      // the badges.html page
     } catch (err) {
       console.log("Badge achieved but notification not shown");
     }

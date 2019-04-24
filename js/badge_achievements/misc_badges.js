@@ -3,6 +3,7 @@ function drink64ozBadge() {
   checkIfBadgeAchieved(badgeName, function() {
     if (getTotalWaterDrankToday() >= 64) {
       saveBadgeAchievementDate(badgeName);
+      console.log("You drank 64 oz!");
     }
   });
 }
