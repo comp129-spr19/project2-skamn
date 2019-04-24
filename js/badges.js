@@ -114,11 +114,11 @@ function displayBadgeNotifications(badgeName) {
       let badgeReachedNotification = new Notification("Badge Achieved!", {
         body: "Congrats! You achieved badge '" + displayBadgeName + "' today!"
       });
-      badgeReachedNotification.show();
+      //   badgeReachedNotification.show();
       console.log("APPLE");
       console.log("Badge '" + displayBadgeName + "' Achieved");
       // over here we can add a function that creates a button on
-      // the badges.html page
+      // the badges.html page which then adds an event to the calendar
     } catch (err) {
       console.log("Badge achieved but notification not shown");
     }
