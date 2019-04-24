@@ -46,42 +46,79 @@
 
     <!-- Creating badge images to display below -->
     <div class="font">
-      <img class="badge-img" src="../badge-images/goal-1day.png" /> Meet Daily
-      Goal - 1 Day
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/goal-7days.png" /> Meet Daily
-      Goal - 7 Days in a Row
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/goal-30days.png" /> Meet Daily
-      Goal - 30 Days in a Row
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/double-goal.png" /> Doubled
-      Daily Goal
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/hydrate-1day.png" /> Stay
-      Hydrated for 1 Day
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/hydrate-7days.png" /> Stay
-      Hydrated 7 Days in a Row
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/hydrate-30days.png" /> Stay
-      Hydrated 30 Days in a Row
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/64oz.png" /> Drink 64oz in One
-      Day
-    </div>
-    <div class="font">
-      <img class="badge-img" src="../badge-images/input-1day.png" /> Input Water
-      Consumption into App 3 Times in One Day
+      <table>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/goal-1day.png" />
+          </td>
+          <td>Meet Daily Goal - 1 Day</td>
+          <td><span class="achievedFont" id="meetDailyGoalOnce"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/goal-7days.png" />
+          </td>
+          <td>Meet Daily Goal - 7 Days in a Row</td>
+          <td><span class="achievedFont" id="meetDailyGoalSeven"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/goal-30days.png" />
+          </td>
+          <td>Meet Daily Goal - 30 Days in a Row</td>
+          <td><span class="achievedFont" id="meetDailyGoalThirty"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/double-goal.png" />
+          </td>
+          <td>Doubled Daily Goal</td>
+          <td><span class="achievedFont" id="doubleGoal"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/hydrate-1day.png" />
+          </td>
+          <td>Stay Hydrated for 1 Day</td>
+          <td><span class="achievedFont" id="stayHydratedOneDay"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/hydrate-7days.png" />
+          </td>
+          <td>Stay Hydrated 7 Days in a Row</td>
+          <td><span class="achievedFont" id="stayHydratedSevenDay"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/hydrate-30days.png" />
+          </td>
+          <td>Stay Hydrated 30 Days in a Row</td>
+          <td><span class="achievedFont" id="stayHydratedThirtyDay"></span></td>
+        </tr>
+        <tr>
+          <td><img class="badge-img" src="../badge-images/64oz.png" /></td>
+          <td>Drink 64oz in One Day</td>
+          <td><span class="achievedFont" id="drink64ozOneDay"></span></td>
+        </tr>
+        <tr>
+          <td>
+            <img class="badge-img" src="../badge-images/input-1day.png" />
+          </td>
+          <td>Input Consumption 3 Times in One Day</td>
+          <td><span class="achievedFont" id="inputConsumpThreeXOneDay"></span></td>
+        </tr>
+      </table>
     </div>
 
+    <script src="../js/storage.js"></script>
+    <script src="../js/homepage.js"></script>
+    <script src="../js/badges.js"></script>
+    <script>
+      window.onload = function() {
+        returnBadgeDate();
+      };
+    </script>
     <script>
       window.$ = window.jQuery = require("jquery");
       require("bootstrap");
