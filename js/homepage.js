@@ -1,3 +1,5 @@
+const { getPreviousDate } = require("../js/utilities");
+
 let dailyGoalMet = false;
 const HYDRATION_TIMER_MAX = 100;
 let hydrationTimer = HYDRATION_TIMER_MAX;
@@ -190,10 +192,41 @@ function updateProgressBar() {
   }, 100);
 }
 
+function newDay(data) {
+  const prevDate = getPreviousDate(currentDate);
+
+  // Save values
+  getDataFromFile(function(data) {
+    let dataToSave = {};
+    const newData = {
+      date: prevDate,
+      dailyGoal: getDailyGoal(),
+      totalWaterDrank: getTotalWaterDrankToday()
+    };
+
+    if (data.dailyData) {
+      // Append newData to data.dailyData
+      dataToSave = data;
+      dataToSave.dailyData.push(newData);
+    } else {
+      // New data
+      dataToSave = {
+        dailyData: [newData]
+      };
+    }
+    setDataToFile(dataToSave, "wateranalytics");
+  }, "wateranalytics");
+
+  // Reset values
+  dailyGoalMet = false;
+  setTotalWaterDrankToday(0);
+}
+
 function resetDataForNewDate(data) {
   try {
     let savedDate = new Date(data.lastUpdatedDate);
     if (savedDate.getDate() != currentDate.getDate()) {
+      // New Day
       dailyGoalMet = false;
       setTotalWaterDrankToday(0);
     } else {
