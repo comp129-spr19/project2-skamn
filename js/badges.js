@@ -114,7 +114,7 @@ function displayBadgeNotifications(badgeName) {
       let badgeReachedNotification = new Notification("Badge Achieved!", {
         body: "Congrats! You achieved badge '" + displayBadgeName + "' today!"
       });
-      //   badgeReachedNotification.show();
+      badgeReachedNotification.show();
       console.log("APPLE");
       console.log("Badge '" + displayBadgeName + "' Achieved");
       // over here we can add a function that creates a button on
@@ -125,12 +125,13 @@ function displayBadgeNotifications(badgeName) {
   }, "badgeachievements");
 }
 
-function returnBadgeDate() {  
+function returnBadgeDate() {
   getDataFromFile(function(data) {
     if (data != null) {
       for (let id in data) {
         if (data[id]["badgeDate"] != 0) {
-          document.getElementById(id).innerHTML = "Achieved: " + data[id]["badgeDate"];
+          document.getElementById(id).innerHTML =
+            "Achieved: " + data[id]["badgeDate"];
         }
       }
     }
