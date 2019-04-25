@@ -166,7 +166,7 @@
   text-align: center;
 }
 
-#odometerHigh {
+/* #odometerHigh {
   margin: auto;
   margin-left: 1100px;
   display: flex;
@@ -176,13 +176,13 @@
   margin: auto;
   margin-left: 550px;
   display: flex;
-}
+} */
 
 #two {
   margin: auto;
   display: flex;
   height: 100px;
-  width: 250px;
+  width: 300px;
 }
 
 #two>canvas {
