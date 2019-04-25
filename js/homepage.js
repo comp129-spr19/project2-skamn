@@ -192,7 +192,7 @@ function updateProgressBar() {
   }, 100);
 }
 
-function newDay(data) {
+function newDay() {
   const prevDate = getPreviousDate(currentDate);
 
   // Save values
@@ -227,8 +227,7 @@ function resetDataForNewDate(data) {
     let savedDate = new Date(data.lastUpdatedDate);
     if (savedDate.getDate() != currentDate.getDate()) {
       // New Day
-      dailyGoalMet = false;
-      setTotalWaterDrankToday(0);
+      newDay();
     } else {
       dailyGoalMet = data.dailyGoalMet || false;
       setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
