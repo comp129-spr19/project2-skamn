@@ -162,22 +162,6 @@
   flex-grow: 1 1 100%;
 }
 
-#odometerMedium {
-  text-align: center;
-}
-
-/* #odometerHigh {
-  margin: auto;
-  margin-left: 1100px;
-  display: flex;
-}
-
-#odometerLow {
-  margin: auto;
-  margin-left: 550px;
-  display: flex;
-} */
-
 #two {
   margin: auto;
   display: flex;

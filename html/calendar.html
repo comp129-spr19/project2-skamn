@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Hydration Station - Calendar</title>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
-    />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
     <link rel="stylesheet" href="../css/master.css" />
     <link rel="stylesheet" href="../css/calendar.css" />
   </head>
@@ -23,23 +15,14 @@
     <!-- Creating navigation bar below -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="calendar.html">Calendar</a>
@@ -53,19 +36,11 @@
       <!-- Creating drop-down menu below -->
       <div id="unit-select-area">
         <div class="row">
-          <label
-            id="unit-select-label"
-            class="col-auto col-form-label"
-            for="unit-display-select"
-          >
+          <label id="unit-select-label" class="col-auto col-form-label" for="unit-display-select">
             Display Units
           </label>
           <div class="col-auto">
-            <select
-              onchange="unitChange(event)"
-              class="form-control form-control-sm"
-              id="unit-select"
-            >
+            <select onchange="unitChange(event)" class="form-control form-control-sm" id="unit-select">
               <option value="fl-oz">Fluid Ounces (fl-oz)</option>
               <option value="ml">Milliliters (ml)</option>
             </select>
@@ -81,98 +56,47 @@
         <table class="table table-bordered table-responsive-sm" id="calendar">
           <thead>
             <tr>
-              <th>Sun</th>
-              <th>Mon</th>
-              <th>Tue</th>
-              <th>Wed</th>
-              <th>Thu</th>
-              <th>Fri</th>
-              <th>Sat</th>
+              <th>Sunday</th>
+              <th>Monday</th>
+              <th>Tuesday</th>
+              <th>Wednesday</th>
+              <th>Thursday</th>
+              <th>Friday</th>
+              <th>Saturday</th>
             </tr>
           </thead>
-
-          <tbody id="calendar-body"></tbody>
+          <tbody onclick="viewBadgesOnDate()" id="calendar-body"></tbody>
         </table>
 
         <!-- Creating buttons under calendar below -->
         <div class="form-inline">
-          <button
-            class="btn btn-outline-primary col-sm-6"
-            id="previous"
-            onclick="previous()"
-          >
-            Previous
+          <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">
+            Go Back
           </button>
 
-          <button
-            class="btn btn-outline-primary col-sm-6"
-            id="next"
-            onclick="next()"
-          >
+          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">
             Next
           </button>
         </div>
         <br />
         <form class="form-inline">
-          <label class="lead mr-2 ml-2" for="month">Jump To: </label>
-
           <!-- Creating dropdown menu for months and year below -->
-          <select
-            class="form-control col-sm-4"
-            name="month"
-            id="month"
-            onchange="jump()"
-          >
-            <option value="0">Jan</option>
-            <option value="1">Feb</option>
-            <option value="2">Mar</option>
-            <option value="3">Apr</option>
+          <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
             <option value="4">May</option>
-            <option value="5">Jun</option>
-            <option value="6">Jul</option>
-            <option value="7">Aug</option>
-            <option value="8">Sep</option>
-            <option value="9">Oct</option>
-            <option value="10">Nov</option>
-            <option value="11">Dec</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">Decemeber</option>
           </select>
 
-          <label for="year"></label
-          ><select
-            class="form-control col-sm-4"
-            name="year"
-            id="year"
-            onchange="jump()"
-          >
-            <option value="1990">1990</option>
-            <option value="1991">1991</option>
-            <option value="1992">1992</option>
-            <option value="1993">1993</option>
-            <option value="1994">1994</option>
-            <option value="1995">1995</option>
-            <option value="1996">1996</option>
-            <option value="1997">1997</option>
-            <option value="1998">1998</option>
-            <option value="1999">1999</option>
-            <option value="2000">2000</option>
-            <option value="2001">2001</option>
-            <option value="2002">2002</option>
-            <option value="2003">2003</option>
-            <option value="2004">2004</option>
-            <option value="2005">2005</option>
-            <option value="2006">2006</option>
-            <option value="2007">2007</option>
-            <option value="2008">2008</option>
-            <option value="2009">2009</option>
-            <option value="2010">2010</option>
-            <option value="2011">2011</option>
-            <option value="2012">2012</option>
-            <option value="2013">2013</option>
-            <option value="2014">2014</option>
-            <option value="2015">2015</option>
-            <option value="2016">2016</option>
-            <option value="2017">2017</option>
-            <option value="2018">2018</option>
+          <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
             <option value="2019">2019</option>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
@@ -190,9 +114,17 @@
       </div>
     </div>
 
+    <div id="modals" class="modal"></div>
+
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>Some text in the Modal..</p>
+    </div>
+
     <script>
       // You can also require other files to run in this process
       require("../renderer.js");
+
     </script>
     <script src="../js/calendar.js"></script>
     <script src="../js/storage.js"></script>
@@ -202,9 +134,11 @@
       require("bootstrap");
       let currentMonth = today.getMonth();
       let currentYear = today.getFullYear();
-      window.onload = function() {
+      window.onload = function () {
         showCalendar(currentMonth, currentYear);
       };
+
     </script>
   </body>
+
 </html>
