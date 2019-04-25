@@ -18,6 +18,14 @@ function resetData() {
   });
 }
 
+function resetBadgeAchievements() {
+  const badgeData = {
+    badge1: 0,
+    badge2: 0
+  };
+  setDataToFile(badgeData, "badgeachievements");
+}
+
 module.exports = {
   saveData,
   resetData

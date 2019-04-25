@@ -1,7 +1,16 @@
 let dailyGoalMet = false;
-const HYDRATION_TIMER_MAX = 6;
+const HYDRATION_TIMER_MAX = 100;
 let hydrationTimer = HYDRATION_TIMER_MAX;
 let currentDate = new Date();
+let hydratedToday = true;
+
+function incrementCurrentDateTest() {
+  console.log("Before", currentDate);
+  currentDate.setDate(currentDate.getDate() + 1);
+  console.log("After", currentDate);
+  initHomepage();
+  console.log("Date after reset", currentDate);
+}
 
 function getDailyGoal() {
   return parseFloat(document.getElementById("currentDailyGoal").innerHTML);
@@ -94,6 +103,7 @@ function displayGoalNotification() {
 }
 
 function setWaterDrankRecently(e) {
+  location.reload();
   if (e) {
     e.preventDefault();
   }
@@ -132,10 +142,22 @@ function setWaterDrankRecently(e) {
     console.log("here");
     setDailyGoalMet(true);
     displayGoalNotification();
+    meetDailyGoalOnceBadge();
+    meetDailyGoalSevenBadge();
+    meetDailyGoalThirtyBadge();
   }
+
+  // Check if any badges achieved
+  checkBadgesAchieved();
 
   // Save data to storage
   saveData();
+}
+
+function checkBadgesAchieved() {
+  drink64ozBadge();
+  doubleGoalBadge();
+  inputConsumptionThreeinDay();
 }
 
 function updateWaterStillNeeded() {
@@ -150,7 +172,7 @@ function updatePercentageGoal() {
   let totalWaterDrankToday = getTotalWaterDrankToday();
   let dailyGoal = getDailyGoal();
   // divide appropriate values to calculate
-  // percentatge of water consumed
+  // percentage of water consumed
   let percentage = (totalWaterDrankToday / dailyGoal) * 100 || 0;
   // adding percentage sign to the value calculated
   percentage = percentage.toFixed(1) + "%";
@@ -197,44 +219,80 @@ function updateDependentComponents() {
   updatePercentageGoal();
   updateProgressBar();
   createLine();
+  createBackground();
 }
 
-function updateGraphic() {
-  const hydrationGraphic = document.getElementById("hydration-graphic");
+// function updateGraphic() {
+//   const hydrationGraphic = document.getElementById("hydration-graphic");
 
-  if (hydrationTimer === -99) {
-    hydrationGraphic.src = "../images/HydrationDehydrated.png";
-    return;
-  }
+//   if (hydrationTimer === -99) {
+//     hydrationGraphic.src = "../images/HydrationDehydrated.png";
+//     return;
+//   }
 
-  hydrationTimer--;
+//   hydrationTimer--;
 
-  if (hydrationTimer <= 0) {
-    hydrationTimer = -99;
-    alert(
-      "Uh oh, you're getting dehydrated. You should drink some more water!"
-    );
-  } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
-    hydrationGraphic.src = "../images/HydrationLow.png";
-  } else {
-    hydrationGraphic.src = "../images/HydrationFull.png";
-  }
+//   if (hydrationTimer <= 0) {
+//     hydratedToday = false;
+//     hydrationTimer = -99;
+//     alert(
+//       "Uh oh, you're getting dehydrated. You should drink some more water!"
+//     );
+//   } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
+//     hydrationGraphic.src = "../images/HydrationLow.png";
+//   } else {
+//     hydrationGraphic.src = "../images/HydrationFull.png";
+//   }
 
-  saveData();
-  console.log("Hydration Timer: ", hydrationTimer);
-}
+//   saveData();
+//   // console.log("Hydration Timer: ", hydrationTimer);
+// }
 
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
+    try {
+      let savedDate = new Date(data.todayDate);
+      if (savedDate.getDate() != currentDate.getDate()) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+        hydratedOneDay();
+        hydratedSevenDay();
+        hydratedThirtyDay();
+      } else {
+        dailyGoalMet = data.dailyGoalMet || false;
+        setTotalWaterDrankToday(data.totalWaterDrankToday || 0);
+      }
+    } catch (e) {
+      // In situation where date isn't saved in file (e.g. user's first time loading app)
+      if (e instanceof TypeError) {
+        dailyGoalMet = false;
+        setTotalWaterDrankToday(0);
+      }
+    } finally {
+      setDailyGoal(data.dailyGoal || 0);
+      hydrationTimer = data.hydrationTimer || HYDRATION_TIMER_MAX;
+    }
+
     resetDataForNewDate(data);
     updateDependentComponents();
-    updateGraphic();
+    // updateGraphic();
     saveData();
   });
-  setInterval(updateGraphic, 1000);
+  // setInterval(updateGraphic, 1000);
 }
 
+function createBackground() {
+
+  let canvas = document.getElementById("viewport");
+  let base_image = new Image();
+  base_image.src = "../images/odometerBackground.png";
+  let ctx = canvas.getContext("2d");
+  
+  base_image.onload = function() {
+    ctx.drawImage(base_image, 0,0);
+  }
+}
 
 function createLine() {
   let count = 0;
@@ -243,10 +301,10 @@ function createLine() {
     let c = document.getElementById("myCanvas");
     let ctx = c.getContext("2d");
 
-    ctx.clearRect(0, 0, 1000 , 1000);
+    ctx.clearRect(0, 0, 500 , 500);
     ctx.beginPath();
     ctx.moveTo(0 + count, 0);
-    ctx.lineTo(500, 300);
+    ctx.lineTo(147, 100);
     ctx.lineWidth = 6;
     ctx.strokeStyle = "#FF0000";
     ctx.closePath();
@@ -258,7 +316,6 @@ function createLine() {
     }
 
     else if (count == (-(Math.abs(getDailyGoal())) - 2000)/2) {
-      alert("Please update your water consumption!");
       paused = false;
     }
 
@@ -268,17 +325,14 @@ function createLine() {
     }
       // if (count < 500) {
       //   alert("TEST");
-      // }
-      // clearInterval(odometer);
-    
+      // }    
 
     // else if (count == (Math.abs(getDailyGoal())) + 500) {
     //   alert("You're getting dehydrated again...");
     // }
 
-    count = paused ? count + 20 : count - 1;
-    // console.log("TIMER: " + hydrationTimer);
-  }, 3);
+    count = paused ? count + 3 : count - 1;
+  }, 1);
 }
 
 module.exports = {

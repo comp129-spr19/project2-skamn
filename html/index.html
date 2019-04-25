@@ -32,6 +32,9 @@
           <li class="nav-item">
             <a class="nav-link" href="badges.html">Badges</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" onclick="initializeBadgeAchievementsForTesting()">RST</a>
+          </li>
         </ul>
       </div>
 
@@ -50,6 +53,23 @@
       </div>
     </nav>
     <!-- END NAVBAR -->
+
+    <button onclick="printFile('badgeachievements')">
+      Print badge Achievements
+    </button>
+    <button onclick="printFile('badgeDailyGoalStreak')">
+      Print daily goal streak badge logic
+    </button>
+    <button onclick="initializeDailyGoalStreaksForTesting()">
+      Reset Daily Goal Streak
+    </button>
+    <button onclick="initializeHydrationStreaksForTesting()">
+      Reset Hydration Streak
+    </button>
+    <button onclick="initializeConsumptionStreaksForTesting()">
+      Reset Consumption Streak
+    </button>
+    <button onclick="incrementCurrentDateTest()">Increment Date</button>
 
     <div id="app-content">
       <!-- WATER COUNTER -->
@@ -105,13 +125,21 @@
         <div id="progress-bar">
           <div id="my-bar"></div>
         </div>
-        <img id="hydration-graphic" />
+        <!-- <img id="hydration-graphic" /> -->
       </div>
       <!-- END GOAL TRACKER -->
     </div>
 
-    <canvas id="myCanvas" height="1000" width="1000"></canvas>
+    <div id="two">
+      <canvas id="viewport" height="100" width="250"></canvas>
+      <canvas id="myCanvas" height="100" width="250"></canvas>
+    </div>
 
+
+    <!-- <h2 id="odometerMedium">Medium</h2> -->
+
+    <!-- <h2 id="odometerHigh">High</h2>
+    <h2 id="odometerLow">Low</h2> -->
 
     <script>
       // You can also require other files to run in this process
@@ -122,6 +150,10 @@
     <script src="../js/modify_data.js"></script>
     <script src="../js/units.js"></script>
     <script src="../js/homepage.js"></script>
+    <script src="../js/badges.js"></script>
+    <script src="../js/badge_achievements/meet_daily_goal.js"></script>
+    <script src="../js/badge_achievements/misc_badges.js"></script>
+    <script src="../js/badge_achievements/stay_hydrated.js"></script>
     <script>
       window.onload = function () {
         initHomepage();
