@@ -119,7 +119,7 @@ function displayBadgeNotifications(badgeName) {
   }, "badgeachievements");
 }
 
-function returnBadgeDate() {  
+function updateBadgeAchievementLabels() {  
   getDataFromFile(function(data) {
     if (data != null) {
       for (let id in data) {
