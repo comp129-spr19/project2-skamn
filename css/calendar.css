@@ -27,9 +27,9 @@
   margin-right: 2.5rem;
 }
 
-#calendar-body:hover {
+/* #calendar-body:hover {
   cursor: pointer;
-}
+} */
 
 .modal {
   display: none;

@@ -146,6 +146,13 @@
   display: flex;
 }
 
+#dates {
+  text-align: center;
+  color: red;
+  margin: auto;
+  display: flex;
+}
+
 #unit-select-area {}
 
 #unit-select-label {
