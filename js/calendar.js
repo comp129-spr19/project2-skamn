@@ -2,7 +2,20 @@ let today = new Date();
 let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 
-let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+let months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
+];
 
 let monthAndYear = document.getElementById("monthAndYear");
 
@@ -29,7 +42,6 @@ function showCalendar(month, year) {
   let daysInMonth = getDaysInMonth(month, year);
   let tbl = document.getElementById("calendar-body"); // body of the calendar
 
-
   // clearing all previous cells
   tbl.innerHTML = "";
 
@@ -46,7 +58,6 @@ function showCalendar(month, year) {
 
     //creating individual cells, filing them up with data.
     for (let j = 0; j < 7; j++) {
-      
       if (i === 0 && j < firstDay) {
         let cell = document.createElement("td");
         let cellText = document.createTextNode("");
@@ -72,7 +83,30 @@ function showCalendar(month, year) {
     }
     tbl.appendChild(row); // appending each row into calendar body.
   }
+}
 
+function makeModal() {
+  let modal = document.getElementById("myModal");
+  let btn = document.getElementById("calendar-body");
+
+  // Get the <span> element that closes the modal
+  let span = document.getElementsByClassName("close")[0];
+
+  btn.onclick = function() {
+    modal.style.display = "block";
+  };
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  };
 }
 
 function getDaysInMonth(month, year) {
