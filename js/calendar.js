@@ -69,10 +69,11 @@ function showCalendar(month, year) {
         break;
       } else {
         let cell = document.createElement("td");
-        let cellText = document.createTextNode(date);
+        // let cellText = document.createTextNode(date);
         let btn = document.createElement("BUTTON");
-        // btn.innerHTML = date;
+        btn.innerHTML = date;
         btn.value = date;
+        btn.id = "dates";
 
         btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
@@ -83,7 +84,7 @@ function showCalendar(month, year) {
           cell.classList.add("bg-info");
           cell.classList.add("../badge-images/goal-30days.png");
         } // color today's date
-        cell.appendChild(cellText);
+        // cell.appendChild(cellText);
         cell.appendChild(btn);
         row.appendChild(cell);
         date++;
@@ -141,6 +142,7 @@ function makeModal(btn, date, month, year) {
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
+    value.innerHTML = "";
   };
 
   // When the user clicks anywhere outside of the modal, close it
