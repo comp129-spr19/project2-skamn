@@ -79,13 +79,6 @@ function getDaysInMonth(month, year) {
   return 32 - new Date(year, month, 32).getDate();
 }
 
-function viewBadgesOnDate() {
-  let modal = document.getElementById("modals");
-  let span = document.getElementsByClassName("close")[0];
-  modal.style.display = "block";
-  location.reload();
-}
-
 module.exports = {
   getDaysInMonth
 };

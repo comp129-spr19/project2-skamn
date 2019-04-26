@@ -172,3 +172,7 @@
 #two>canvas {
   position: absolute;
 }
+
+#viewport {
+  height: 100px;
+}

@@ -304,7 +304,7 @@ function createLine() {
     ctx.clearRect(0, 0, 500 , 500);
     ctx.beginPath();
     ctx.moveTo(0 + count, 0);
-    ctx.lineTo(147, 100);
+    ctx.lineTo(135, 100);
     ctx.lineWidth = 6;
     ctx.strokeStyle = "#FF0000";
     ctx.closePath();
@@ -323,15 +323,8 @@ function createLine() {
       clearInterval(odometer);
       paused = true;
     }
-      // if (count < 500) {
-      //   alert("TEST");
-      // }    
-
-    // else if (count == (Math.abs(getDailyGoal())) + 500) {
-    //   alert("You're getting dehydrated again...");
-    // }
-
-    count = paused ? count + 3 : count - 1;
+    
+    count = paused ? count + 3 : count - 0.2;
   }, 1);
 }
 
