@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html>
-
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Hydration Station - Calendar</title>
-    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css"
+    />
     <link rel="stylesheet" href="../css/master.css" />
     <link rel="stylesheet" href="../css/calendar.css" />
   </head>
@@ -15,14 +23,23 @@
     <!-- Creating navigation bar below -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
       <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="index.html"
+              >Home <span class="sr-only">(current)</span></a
+            >
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="calendar.html">Calendar</a>
@@ -36,11 +53,19 @@
       <!-- Creating drop-down menu below -->
       <div id="unit-select-area">
         <div class="row">
-          <label id="unit-select-label" class="col-auto col-form-label" for="unit-display-select">
+          <label
+            id="unit-select-label"
+            class="col-auto col-form-label"
+            for="unit-display-select"
+          >
             Display Units
           </label>
           <div class="col-auto">
-            <select onchange="unitChange(event)" class="form-control form-control-sm" id="unit-select">
+            <select
+              onchange="unitChange(event)"
+              class="form-control form-control-sm"
+              id="unit-select"
+            >
               <option value="fl-oz">Fluid Ounces (fl-oz)</option>
               <option value="ml">Milliliters (ml)</option>
             </select>
@@ -70,18 +95,31 @@
 
         <!-- Creating buttons under calendar below -->
         <div class="form-inline">
-          <button class="btn btn-outline-primary col-sm-6" id="previous" onclick="previous()">
+          <button
+            class="btn btn-outline-primary col-sm-6"
+            id="previous"
+            onclick="previous()"
+          >
             Go Back
           </button>
 
-          <button class="btn btn-outline-primary col-sm-6" id="next" onclick="next()">
+          <button
+            class="btn btn-outline-primary col-sm-6"
+            id="next"
+            onclick="next()"
+          >
             Next
           </button>
         </div>
         <br />
         <form class="form-inline">
           <!-- Creating dropdown menu for months and year below -->
-          <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+          <select
+            class="form-control col-sm-4"
+            name="month"
+            id="month"
+            onchange="jump()"
+          >
             <option value="0">January</option>
             <option value="1">February</option>
             <option value="2">March</option>
@@ -96,7 +134,13 @@
             <option value="11">Decemeber</option>
           </select>
 
-          <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+          <label for="year"></label
+          ><select
+            class="form-control col-sm-4"
+            name="year"
+            id="year"
+            onchange="jump()"
+          >
             <option value="2019">2019</option>
             <option value="2020">2020</option>
             <option value="2021">2021</option>
@@ -114,17 +158,9 @@
       </div>
     </div>
 
-    <div id="modals" class="modal"></div>
-
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <p>Some text in the Modal..</p>
-    </div>
-
     <script>
       // You can also require other files to run in this process
       require("../renderer.js");
-
     </script>
     <script src="../js/calendar.js"></script>
     <script src="../js/storage.js"></script>
@@ -134,11 +170,9 @@
       require("bootstrap");
       let currentMonth = today.getMonth();
       let currentYear = today.getFullYear();
-      window.onload = function () {
+      window.onload = function() {
         showCalendar(currentMonth, currentYear);
       };
-
     </script>
   </body>
-
 </html>
