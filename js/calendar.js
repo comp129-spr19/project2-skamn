@@ -126,6 +126,9 @@ function makeModal(btn, date, month, year) {
 
     for (i = 0; i < dateArr.length; i++) {
       result = dateArr[i].split("/");
+      if (result[0] == actualMonth && result[1] == date && result[2] == year) {
+        value.innerHTML = nameArr[i];
+      }
     }
     console.log(result);
   }, "badgeachievements");
