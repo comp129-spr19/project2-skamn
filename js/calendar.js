@@ -42,6 +42,8 @@ function showCalendar(month, year) {
   let daysInMonth = getDaysInMonth(month, year);
   let tbl = document.getElementById("calendar-body"); // body of the calendar
 
+  let t = document.createTextNode("CLICK ME");
+
   // clearing all previous cells
   tbl.innerHTML = "";
 
@@ -68,7 +70,11 @@ function showCalendar(month, year) {
       } else {
         let cell = document.createElement("td");
         let cellText = document.createTextNode(date);
-        makeModal(date);
+        let btn = document.createElement("BUTTON");
+        // btn.innerHTML = date;
+        btn.value = date;
+
+        btn.onclick = () => makeModal(btn, btn.value);
         if (
           date === today.getDate() &&
           year === today.getFullYear() &&
@@ -78,6 +84,7 @@ function showCalendar(month, year) {
           cell.classList.add("../badge-images/goal-30days.png");
         } // color today's date
         cell.appendChild(cellText);
+        cell.appendChild(btn);
         row.appendChild(cell);
         date++;
       }
@@ -86,12 +93,13 @@ function showCalendar(month, year) {
   }
 }
 
-function makeModal(valueText) {
+function makeModal(btn, valueText) {
+  let modalBtn = btn;
   let modal = document.getElementById("myModal");
-  let btn = document.getElementById("calendar-body");
   let value = document.getElementById("modalText");
   let id;
   value.innerHTML = valueText;
+  console.log("VT: " + valueText);
 
   getDataFromFile(function(data) {
     if (data != null) {
