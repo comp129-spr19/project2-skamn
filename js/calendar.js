@@ -68,6 +68,7 @@ function showCalendar(month, year) {
       } else {
         let cell = document.createElement("td");
         let cellText = document.createTextNode(date);
+        makeModal(date);
         if (
           date === today.getDate() &&
           year === today.getFullYear() &&
@@ -85,12 +86,12 @@ function showCalendar(month, year) {
   }
 }
 
-function makeModal() {
+function makeModal(valueText) {
   let modal = document.getElementById("myModal");
   let btn = document.getElementById("calendar-body");
   let value = document.getElementById("modalText");
   let id;
-  value.innerHTML = "APPLE";
+  value.innerHTML = valueText;
 
   getDataFromFile(function(data) {
     if (data != null) {
