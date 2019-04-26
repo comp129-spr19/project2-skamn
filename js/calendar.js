@@ -74,7 +74,7 @@ function showCalendar(month, year) {
         // btn.innerHTML = date;
         btn.value = date;
 
-        btn.onclick = () => makeModal(btn, btn.value);
+        btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
           date === today.getDate() &&
           year === today.getFullYear() &&
@@ -93,34 +93,42 @@ function showCalendar(month, year) {
   }
 }
 
-function makeModal(btn, date) {
+function makeModal(btn, date, month, year) {
   let modalBtn = btn;
   let modal = document.getElementById("myModal");
   let value = document.getElementById("modalText");
   let id;
+  let i = 0;
+  let result = [];
+  const nameArr = [];
+  const dateArr = [];
+
   value.innerHTML = date;
+  let actualMonth = month + 1;
+  console.log("ACTUAL MONTH: " + actualMonth);
   console.log("DATE: " + date);
+  console.log("YEAR: " + year);
 
   getDataFromFile(function(data) {
     if (data != null) {
       for (id in data) {
         if (data[id]["badgeDate"] != 0) {
           console.log(data[id]["badgeName"]);
+          nameArr.push(data[id]["badgeName"]);
           console.log(data[id]["badgeDate"]);
+          dateArr.push(data[id]["badgeDate"]);
         }
       }
     }
+
+    console.log(nameArr);
+    console.log(dateArr);
+
+    for (i = 0; i < dateArr.length; i++) {
+      result = dateArr[i].split("/");
+    }
+    console.log(result);
   }, "badgeachievements");
-
-  //   function toggleModal() {
-  //     modal.toggle("show-modal");
-  //   }
-
-  //   function windowOnClick(event) {
-  //     if (event.target === modal) {
-  //       toggleModal();
-  //     }
-  //   }
 
   // Displays Modal after clicking on box inside Calendar
   modal.style.display = "block";
