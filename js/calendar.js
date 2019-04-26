@@ -88,6 +88,8 @@ function showCalendar(month, year) {
 function makeModal() {
   let modal = document.getElementById("myModal");
   let btn = document.getElementById("calendar-body");
+  let value = document.getElementById("modalText");
+  value.innerHTML = "APPLE";
 
   // Get the <span> element that closes the modal
   let span = document.getElementsByClassName("close")[0];
