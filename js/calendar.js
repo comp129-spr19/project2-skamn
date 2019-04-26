@@ -93,13 +93,13 @@ function showCalendar(month, year) {
   }
 }
 
-function makeModal(btn, valueText) {
+function makeModal(btn, date) {
   let modalBtn = btn;
   let modal = document.getElementById("myModal");
   let value = document.getElementById("modalText");
   let id;
-  value.innerHTML = valueText;
-  console.log("VT: " + valueText);
+  value.innerHTML = date;
+  console.log("DATE: " + date);
 
   getDataFromFile(function(data) {
     if (data != null) {
