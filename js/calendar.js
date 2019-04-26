@@ -103,7 +103,6 @@ function makeModal(btn, date, month, year) {
   const nameArr = [];
   const dateArr = [];
 
-  value.innerHTML = date;
   let actualMonth = month + 1;
   console.log("ACTUAL MONTH: " + actualMonth);
   console.log("DATE: " + date);
@@ -127,7 +126,7 @@ function makeModal(btn, date, month, year) {
     for (i = 0; i < dateArr.length; i++) {
       result = dateArr[i].split("/");
       if (result[0] == actualMonth && result[1] == date && result[2] == year) {
-        value.innerHTML = nameArr[i];
+        value.innerHTML += "<br>" + nameArr[i];
       }
     }
     console.log(result);
@@ -148,6 +147,7 @@ function makeModal(btn, date, month, year) {
   window.onclick = function(event) {
     if (event.target == modal) {
       modal.style.display = "none";
+      value.innerHTML = "";
     }
   };
 }
