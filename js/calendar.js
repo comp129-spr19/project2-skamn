@@ -89,7 +89,19 @@ function makeModal() {
   let modal = document.getElementById("myModal");
   let btn = document.getElementById("calendar-body");
   let value = document.getElementById("modalText");
+  let id;
   value.innerHTML = "APPLE";
+
+  getDataFromFile(function(data) {
+    if (data != null) {
+      for (id in data) {
+        if (data[id]["badgeDate"] != 0) {
+          console.log(data[id]["badgeName"]);
+          console.log(data[id]["badgeDate"]);
+        }
+      }
+    }
+  }, "badgeachievements");
 
   // Get the <span> element that closes the modal
   let span = document.getElementsByClassName("close")[0];
