@@ -3,18 +3,18 @@ let selectYear = document.getElementById("year");
 let selectMonth = document.getElementById("month");
 
 let months = [
-  "Jan",
-  "Feb",
-  "Mar",
-  "Apr",
+  "January",
+  "February",
+  "March",
+  "April",
   "May",
-  "Jun",
-  "Jul",
-  "Aug",
-  "Sep",
-  "Oct",
-  "Nov",
-  "Dec"
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December"
 ];
 
 let monthAndYear = document.getElementById("monthAndYear");
@@ -40,8 +40,9 @@ function jump() {
 function showCalendar(month, year) {
   let firstDay = new Date(year, month).getDay();
   let daysInMonth = getDaysInMonth(month, year);
-
   let tbl = document.getElementById("calendar-body"); // body of the calendar
+
+  let t = document.createTextNode("CLICK ME");
 
   // clearing all previous cells
   tbl.innerHTML = "";
@@ -68,22 +69,89 @@ function showCalendar(month, year) {
         break;
       } else {
         let cell = document.createElement("td");
-        let cellText = document.createTextNode(date);
+        // let cellText = document.createTextNode(date);
+        let btn = document.createElement("BUTTON");
+        btn.innerHTML = date;
+        btn.value = date;
+        btn.id = "dates";
+
+        btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
           date === today.getDate() &&
           year === today.getFullYear() &&
           month === today.getMonth()
         ) {
           cell.classList.add("bg-info");
+          cell.classList.add("../badge-images/goal-30days.png");
         } // color today's date
-        cell.appendChild(cellText);
+        // cell.appendChild(cellText);
+        cell.appendChild(btn);
         row.appendChild(cell);
         date++;
       }
     }
-
     tbl.appendChild(row); // appending each row into calendar body.
   }
+}
+
+function makeModal(btn, date, month, year) {
+  let modalBtn = btn;
+  let modal = document.getElementById("myModal");
+  let value = document.getElementById("modalText");
+  let id;
+  let i = 0;
+  let result = [];
+  const nameArr = [];
+  const dateArr = [];
+
+  let actualMonth = month + 1;
+  console.log("ACTUAL MONTH: " + actualMonth);
+  console.log("DATE: " + date);
+  console.log("YEAR: " + year);
+
+  getDataFromFile(function(data) {
+    if (data != null) {
+      for (id in data) {
+        if (data[id]["badgeDate"] != 0) {
+          console.log(data[id]["badgeName"]);
+          nameArr.push(data[id]["badgeName"]);
+          console.log(data[id]["badgeDate"]);
+          dateArr.push(data[id]["badgeDate"]);
+        }
+      }
+    }
+
+    console.log(nameArr);
+    console.log(dateArr);
+
+    for (i = 0; i < dateArr.length; i++) {
+      result = dateArr[i].split("/");
+      if (result[0] == actualMonth && result[1] == date && result[2] == year) {
+        value.innerHTML += "<br>" + nameArr[i];
+      }
+    }
+    console.log(result);
+  }, "badgeachievements");
+
+  // Displays Modal after clicking on box inside Calendar
+  modal.style.display = "block";
+
+  // Get the <span> element that closes the modal
+  let span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+    value.innerHTML = "";
+  };
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+      value.innerHTML = "";
+    }
+  };
 }
 
 function getDaysInMonth(month, year) {

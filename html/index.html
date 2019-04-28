@@ -1,16 +1,11 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Hydration Station - Home</title>
-    <link
-      rel="stylesheet"
-      href="../node_modules/bootstrap/dist/css/bootstrap.min.css"
-    />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/master.css" />
   </head>
 
@@ -20,15 +15,8 @@
       <a class="navbar-brand" href="#" onclick="resetData()">
         <b>Hydration Station</b>
       </a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
@@ -45,30 +33,18 @@
             <a class="nav-link" href="badges.html">Badges</a>
           </li>
           <li class="nav-item">
-            <a
-              class="nav-link"
-              onclick="initializeBadgeAchievementsForTesting()"
-              >RST</a
-            >
+            <a class="nav-link" onclick="initializeBadgeAchievementsForTesting()">RST</a>
           </li>
         </ul>
       </div>
 
       <div id="unit-select-area">
         <div class="row">
-          <label
-            id="unit-select-label"
-            class="col-auto col-form-label"
-            for="unit-display-select"
-          >
+          <label id="unit-select-label" class="col-auto col-form-label" for="unit-display-select">
             Display Units
           </label>
           <div class="col-auto">
-            <select
-              onchange="unitChange(event)"
-              class="form-control form-control-sm"
-              id="unit-select"
-            >
+            <select onchange="unitChange(event)" class="form-control form-control-sm" id="unit-select">
               <option value="fl-oz">Fluid Ounces (fl-oz)</option>
               <option value="ml">Milliliters (ml)</option>
             </select>
@@ -111,12 +87,7 @@
             <option value="fl-oz">Fluid Ounces (fl-oz)</option>
             <option value="ml">Milliliters (ml)</option>
           </select>
-          <input
-            id="water-drank-submit-btn"
-            onclick="setWaterDrankRecently(event)"
-            type="button"
-            value="Submit"
-          />
+          <input id="water-drank-submit-btn" onclick="setWaterDrankRecently(event)" type="button" value="Submit" />
         </form>
       </div>
       <!-- END WATER COUNTER -->
@@ -132,11 +103,7 @@
         <h5>Set a new daily goal</h5>
         <form onsubmit="setGoal(event)">
           <input type="number" id="dailyGoalUserInput" />
-          <input
-            type="button"
-            onclick="setGoal(event)"
-            value="Set New Daily Goal"
-          />
+          <input type="button" onclick="setGoal(event)" value="Set New Daily Goal" />
         </form>
       </div>
       <!-- END DAILY GOAL CONTROLLER -->
@@ -158,14 +125,19 @@
         <div id="progress-bar">
           <div id="my-bar"></div>
         </div>
-        <img id="hydration-graphic" />
+        <!-- <img id="hydration-graphic" /> -->
       </div>
       <!-- END GOAL TRACKER -->
     </div>
 
+    <div id="two">
+      <canvas id="viewport" height="110" width="250"></canvas>
+      <canvas id="myCanvas" height="100" width="250"></canvas>
+    </div>
     <script>
       // You can also require other files to run in this process
       require("../renderer.js");
+
     </script>
     <script src="../js/storage.js"></script>
     <script src="../js/modify_data.js"></script>
@@ -176,14 +148,17 @@
     <script src="../js/badge_achievements/misc_badges.js"></script>
     <script src="../js/badge_achievements/stay_hydrated.js"></script>
     <script>
-      window.onload = function() {
+      window.onload = function () {
         initHomepage();
         initUnits();
       };
+
     </script>
     <script>
       window.$ = window.jQuery = require("jquery");
       require("bootstrap");
+
     </script>
   </body>
+
 </html>
