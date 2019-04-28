@@ -40,7 +40,9 @@ function jump() {
 function showCalendar(month, year) {
   let firstDay = new Date(year, month).getDay();
   let daysInMonth = getDaysInMonth(month, year);
-  let tbl = document.getElementById("calendar-body"); // body of the calendar
+
+  // body of the calendar
+  let tbl = document.getElementById("calendar-body");
 
   let t = document.createTextNode("CLICK ME");
 
@@ -83,14 +85,14 @@ function showCalendar(month, year) {
         ) {
           cell.classList.add("bg-info");
           cell.classList.add("../badge-images/goal-30days.png");
-        } // color today's date
-        // cell.appendChild(cellText);
+        }
         cell.appendChild(btn);
         row.appendChild(cell);
         date++;
       }
     }
-    tbl.appendChild(row); // appending each row into calendar body.
+    // appending each row into calendar body
+    tbl.appendChild(row);
   }
 }
 
@@ -106,6 +108,8 @@ function makeModal(btn, date, month, year) {
 
   let actualMonth = month + 1;
 
+  // retrieving data from file and pushing it into
+  // local arrays
   getDataFromFile(function(data) {
     if (data != null) {
       for (id in data) {
@@ -116,6 +120,8 @@ function makeModal(btn, date, month, year) {
       }
     }
 
+    // Going through local arrays and parsing dates
+    // to match the correct modal with the correct date
     for (i = 0; i < dateArr.length; i++) {
       result = dateArr[i].split("/");
       if (result[0] == actualMonth && result[1] == date && result[2] == year) {
