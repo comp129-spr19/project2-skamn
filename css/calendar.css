@@ -29,6 +29,12 @@
 
 #calendar-body:hover {
   cursor: pointer;
+  align-content: justify;
+}
+
+#calendar {
+  table-layout: fixed;
+  width: 100%;
 }
 
 .modal {

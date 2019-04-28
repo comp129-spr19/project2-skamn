@@ -74,7 +74,7 @@ function showCalendar(month, year) {
         btn.innerHTML = date;
         btn.value = date;
         btn.id = "dates";
-
+        // displaying modal after date has been clicked on in calendar
         btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
           date === today.getDate() &&
@@ -105,24 +105,16 @@ function makeModal(btn, date, month, year) {
   const dateArr = [];
 
   let actualMonth = month + 1;
-  console.log("ACTUAL MONTH: " + actualMonth);
-  console.log("DATE: " + date);
-  console.log("YEAR: " + year);
 
   getDataFromFile(function(data) {
     if (data != null) {
       for (id in data) {
         if (data[id]["badgeDate"] != 0) {
-          console.log(data[id]["badgeName"]);
           nameArr.push(data[id]["badgeName"]);
-          console.log(data[id]["badgeDate"]);
           dateArr.push(data[id]["badgeDate"]);
         }
       }
     }
-
-    console.log(nameArr);
-    console.log(dateArr);
 
     for (i = 0; i < dateArr.length; i++) {
       result = dateArr[i].split("/");
@@ -130,7 +122,6 @@ function makeModal(btn, date, month, year) {
         value.innerHTML += "<br>" + nameArr[i];
       }
     }
-    console.log(result);
   }, "badgeachievements");
 
   // Displays Modal after clicking on box inside Calendar
