@@ -74,7 +74,7 @@ function showCalendar(month, year) {
         btn.innerHTML = date;
         btn.value = date;
         btn.id = "dates";
-
+        // displaying modal after date has been clicked on in calendar
         btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
           date === today.getDate() &&
