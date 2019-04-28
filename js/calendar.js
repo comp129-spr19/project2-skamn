@@ -60,7 +60,7 @@ function showCalendar(month, year) {
     // creates a table row
     let row = document.createElement("tr");
 
-    //creating individual cells, filing them up with data.
+    //creating individual cells, filling them up with data.
     for (let j = 0; j < 7; j++) {
       if (i === 0 && j < firstDay) {
         let cell = document.createElement("td");
@@ -76,6 +76,10 @@ function showCalendar(month, year) {
         btn.innerHTML = date;
         btn.value = date;
         btn.id = "dates";
+        // changeButtonColor();
+        //changes background color of button
+        btn.style.background = "#84bfff";
+
         // displaying modal after date has been clicked on in calendar
         btn.onclick = () => makeModal(btn, btn.value, month, year);
         if (
@@ -150,6 +154,8 @@ function makeModal(btn, date, month, year) {
     }
   };
 }
+
+function retrieveData() {}
 
 function getDaysInMonth(month, year) {
   return 32 - new Date(year, month, 32).getDate();
