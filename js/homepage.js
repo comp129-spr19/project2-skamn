@@ -282,26 +282,27 @@ function initHomepage() {
   // setInterval(updateGraphic, 1000);
 }
 
+// creating animated odometer
 function createBackground() {
-
   let canvas = document.getElementById("viewport");
   let base_image = new Image();
   base_image.src = "../images/odometerBackground.png";
   let ctx = canvas.getContext("2d");
-  
+
   base_image.onload = function() {
-    ctx.drawImage(base_image, 0,0);
-  }
+    ctx.drawImage(base_image, 0, 0);
+  };
 }
 
+// Creates line used in the odometer
 function createLine() {
   let count = 0;
   let paused = true;
-    const odometer = setInterval(() => {
+  const odometer = setInterval(() => {
     let c = document.getElementById("myCanvas");
     let ctx = c.getContext("2d");
 
-    ctx.clearRect(0, 0, 500 , 500);
+    ctx.clearRect(0, 0, 500, 500);
     ctx.beginPath();
     ctx.moveTo(0 + count, 0);
     ctx.lineTo(135, 100);
@@ -313,17 +314,13 @@ function createLine() {
 
     if (count >= Math.abs(getDailyGoal()) + 2000) {
       paused = false;
-    }
-
-    else if (count == (-(Math.abs(getDailyGoal())) - 2000)/2) {
+    } else if (count == (-Math.abs(getDailyGoal()) - 2000) / 2) {
       paused = false;
-    }
-
-    else if (count <= -(Math.abs(getDailyGoal())) - 2000) {
+    } else if (count <= -Math.abs(getDailyGoal()) - 2000) {
       clearInterval(odometer);
       paused = true;
     }
-    
+
     count = paused ? count + 3 : count - 0.2;
   }, 1);
 }

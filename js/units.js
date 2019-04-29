@@ -10,6 +10,7 @@ function convertHTMLUnits(toUnits) {
     .from(fromUnits)
     .to(toUnits);
 
+  // Calling appropriate functions to change units throughout app
   setDailyGoal(convertedDailyGoalVal.toFixed(1));
   setTotalWaterDrankToday(convertedTotalWaterDrankToday.toFixed(1));
   updateDisplayUnits(toUnits);

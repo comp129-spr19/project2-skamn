@@ -27,11 +27,13 @@
   margin-right: 2.5rem;
 }
 
+/* creates the hover animation on the calendar button */
 #calendar-body:hover {
   cursor: pointer;
   align-content: justify;
 }
 
+/* sets the width of the calendar */
 #calendar {
   table-layout: fixed;
   width: 100%;
