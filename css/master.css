@@ -146,6 +146,7 @@
   display: flex;
 }
 
+<<<<<<< HEAD
 #dates {
   text-align: center;
   color: red;
@@ -154,6 +155,10 @@
 }
 
 #unit-select-area {}
+=======
+#unit-select-area {
+}
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 
 #unit-select-label {
   font-size: 0.75rem;
@@ -176,10 +181,22 @@
   width: 300px;
 }
 
-#two>canvas {
+#two > canvas {
   position: absolute;
 }
 
 #viewport {
   height: 100px;
+}
+
+#dates {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  border-radius: 15px;
+}
+
+#dates:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }
