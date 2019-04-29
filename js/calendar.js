@@ -110,7 +110,6 @@ $("#calendarModal").on("show.bs.modal", function(event) {
     badgesDisplayElem.innerHTML = "";
 
     for (let key in fakeData) {
-      console.log("fake data date: ", fakeData[key]["badgeDate"]);
       if (fakeData[key]["badgeDate"] === dateSelected) {
         const badgeSect = document.createElement("div");
 
@@ -129,7 +128,6 @@ $("#calendarModal").on("show.bs.modal", function(event) {
         badgesDisplayElem.appendChild(badgeSect);
       }
     }
-    console.log(fakeData);
   }, "badgeachievements");
   console.log(dateSelected);
 
