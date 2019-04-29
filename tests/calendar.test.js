@@ -1,4 +1,4 @@
-const { getDaysInMonth } = require("../js/calendar");
+const { badgeImages, getDaysInMonth } = require("../js/calendar");
 
 test("January 2019 should have 31 days", () => {
   expect(getDaysInMonth(0, 2019)).toBe(31);
@@ -14,4 +14,10 @@ test("February 2019 should have 28 days", () => {
 
 test("March 2018 should have 31 days", () => {
   expect(getDaysInMonth(2, 2018)).toBe(31);
+});
+
+test("badgeImages", () => {
+  expect(badgeImages["Meet Daily Goal - 1 Day"]).toBe(
+    "../badge-images/goal-1day.png"
+  );
 });
