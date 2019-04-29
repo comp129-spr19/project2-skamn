@@ -61,6 +61,8 @@ function showCalendar(month, year) {
     for (let j = 0; j < 7; j++) {
       if (i === 0 && j < firstDay) {
         let cell = document.createElement("td");
+        cell.setAttribute("data-toggle", "modal");
+        cell.setAttribute("data-target", "#analyticsModal");
         let cellText = document.createTextNode("");
         cell.appendChild(cellText);
         row.appendChild(cell);
@@ -68,6 +70,8 @@ function showCalendar(month, year) {
         break;
       } else {
         let cell = document.createElement("td");
+        cell.setAttribute("data-toggle", "modal");
+        cell.setAttribute("data-target", "#analyticsModal");
         let cellText = document.createTextNode(date);
         if (
           date === today.getDate() &&
@@ -89,6 +93,11 @@ function showCalendar(month, year) {
 function getDaysInMonth(month, year) {
   return 32 - new Date(year, month, 32).getDate();
 }
+
+/* Modal Open */
+$("#analyticsModal").on("show.bs.modal", function(event) {
+  // const
+});
 
 module.exports = {
   getDaysInMonth
