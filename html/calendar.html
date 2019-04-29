@@ -167,13 +167,13 @@
       id="calendarModal"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="calendarModalCenterTitle"
+      aria-labelledby="calendarModalLabel"
       aria-hidden="true"
     >
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="calendarModalTitle">Modal title</h5>
+            <h5 class="modal-title" id="calendarModalLabel">Modal title</h5>
             <button
               type="button"
               class="close"
@@ -204,13 +204,13 @@
     <script>
       // You can also require other files to run in this process
       require("../renderer.js");
+      window.$ = window.jQuery = require("jquery");
+      require("bootstrap");
     </script>
     <script src="../js/calendar.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/units.js"></script>
     <script>
-      window.$ = window.jQuery = require("jquery");
-      require("bootstrap");
       let currentMonth = today.getMonth();
       let currentYear = today.getFullYear();
       window.onload = function() {

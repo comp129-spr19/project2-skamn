@@ -45,7 +45,7 @@ function showCalendar(month, year) {
   // body of the calendar
   let tbl = document.getElementById("calendar-body");
 
-  let t = document.createTextNode("CLICK ME");
+  // let t = document.createTextNode("CLICK ME");
 
   // clearing all previous cells
   tbl.innerHTML = "";
@@ -65,20 +65,20 @@ function showCalendar(month, year) {
     for (let j = 0; j < 7; j++) {
       if (i === 0 && j < firstDay) {
         let cell = document.createElement("td");
-        let cellText = document.createTextNode("");
         cell.classList.add("calendar-date");
         cell.setAttribute("data-toggle", "modal");
         cell.setAttribute("data-target", "#calendarModal");
+        let cellText = document.createTextNode("");
         cell.appendChild(cellText);
         row.appendChild(cell);
       } else if (date > daysInMonth) {
         break;
       } else {
         let cell = document.createElement("td");
-        let cellText = document.createTextNode(date);
         cell.classList.add("calendar-date");
         cell.setAttribute("data-toggle", "modal");
         cell.setAttribute("data-target", "#calendarModal");
+        let cellText = document.createTextNode(date);
         if (
           date === today.getDate() &&
           year === today.getFullYear() &&
@@ -95,6 +95,11 @@ function showCalendar(month, year) {
     tbl.appendChild(row);
   }
 }
+
+/* MODAL OPEN */
+$("#calendarModal").on("show.bs.modal", function(event) {
+  console.log("open");
+});
 
 // function makeModal(btn, date, month, year) {
 //   let modalBtn = btn;
