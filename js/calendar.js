@@ -56,41 +56,54 @@ function showCalendar(month, year) {
   selectYear.value = year;
   selectMonth.value = month;
 
-  // creating all cells
-  let date = 1;
-  for (let i = 0; i < 6; i++) {
-    // creates a table row
-    let row = document.createElement("tr");
+  getDataFromFile(results => {
+    const data = require("../js/badgeacheivements_fakedata.json");
 
-    //creating individual cells, filling them up with data.
-    for (let j = 0; j < 7; j++) {
-      if (i === 0 && j < firstDay) {
-        let cell = document.createElement("td");
-        formatDateCell(cell, date, month, year);
-        let cellText = document.createTextNode("");
-        cell.appendChild(cellText);
-        row.appendChild(cell);
-      } else if (date > daysInMonth) {
-        break;
-      } else {
-        let cell = document.createElement("td");
-        formatDateCell(cell, date, month, year);
-        let cellText = document.createTextNode(date);
-        if (
-          date === today.getDate() &&
-          year === today.getFullYear() &&
-          month === today.getMonth()
-        ) {
-          cell.classList.add("calendar-current-date");
+    // creating all cells
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+      // creates a table row
+      let row = document.createElement("tr");
+
+      //creating individual cells, filling them up with data.
+      for (let j = 0; j < 7; j++) {
+        if (i === 0 && j < firstDay) {
+          let cell = document.createElement("td");
+          formatDateCell(cell, date, month, year);
+          let cellText = document.createTextNode("");
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+        } else if (date > daysInMonth) {
+          break;
+        } else {
+          let cell = document.createElement("td");
+          formatDateCell(cell, date, month, year);
+          let cellText = document.createTextNode(date);
+          if (
+            date === today.getDate() &&
+            year === today.getFullYear() &&
+            month === today.getMonth()
+          ) {
+            cell.classList.add("calendar-current-date");
+          }
+
+          for (let key in data) {
+            if (data[key]["badgeDate"] === `${month + 1}/${date}/${year}`) {
+              const badgeIndicator = document.createElement("h6");
+              badgeIndicator.innerHTML = "BADGE";
+              cell.appendChild(badgeIndicator);
+            }
+          }
+
+          cell.appendChild(cellText);
+          row.appendChild(cell);
+          date++;
         }
-        cell.appendChild(cellText);
-        row.appendChild(cell);
-        date++;
       }
+      // appending each row into calendar body
+      tbl.appendChild(row);
     }
-    // appending each row into calendar body
-    tbl.appendChild(row);
-  }
+  }, "badgeachievements");
 }
 
 function formatDateCell(cell, date, month, year) {
@@ -102,26 +115,26 @@ function formatDateCell(cell, date, month, year) {
 
 /* MODAL OPEN */
 $("#calendarModal").on("show.bs.modal", function(event) {
-  getDataFromFile(data => {
-    const fakeData = require("../js/badgeacheivements_fakedata.json");
+  getDataFromFile(results => {
+    const data = require("../js/badgeacheivements_fakedata.json");
     const badgesDisplayElem = document.getElementById("badges-display");
 
     // Clear badges display
     badgesDisplayElem.innerHTML = "";
 
-    for (let key in fakeData) {
-      if (fakeData[key]["badgeDate"] === dateSelected) {
+    for (let key in data) {
+      if (data[key]["badgeDate"] === dateSelected) {
         const badgeSect = document.createElement("div");
 
         // DISPLAY BADGE EARNED
         const badgeElem = document.createElement("img");
         badgeElem.style.display = "";
-        badgeElem.src = badgeImages[fakeData[key]["badgeName"]];
+        badgeElem.src = badgeImages[data[key]["badgeName"]];
         badgeElem.classList.add("badge-earned");
 
         // DISPLAY BADGE LABEL
         const badgeLabelElem = document.createElement("label");
-        badgeLabelElem.innerHTML = fakeData[key]["badgeName"];
+        badgeLabelElem.innerHTML = data[key]["badgeName"];
 
         badgeSect.appendChild(badgeElem);
         badgeSect.appendChild(badgeLabelElem);
