@@ -76,7 +76,7 @@ function showCalendar(month, year) {
         btn.innerHTML = date;
         btn.value = date;
         btn.id = "dates";
-        // changeButtonColor();
+        // changeButtonColor(btn.value, month, year);
         //changes background color of button
         btn.style.background = "#84bfff";
 
@@ -154,8 +154,6 @@ function makeModal(btn, date, month, year) {
     }
   };
 }
-
-function retrieveData() {}
 
 function getDaysInMonth(month, year) {
   return 32 - new Date(year, month, 32).getDate();
