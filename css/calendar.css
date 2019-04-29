@@ -62,3 +62,10 @@
   width: 75px;
   height: 85px;
 }
+
+.date-has-badge {
+  background-image: url("../badge-images/hydrate-1day.png");
+  background-size: 15px 20px;
+  background-repeat: no-repeat;
+  background-position: 4% 4%;
+}

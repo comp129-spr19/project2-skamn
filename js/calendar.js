@@ -87,11 +87,11 @@ function showCalendar(month, year) {
             cell.classList.add("calendar-current-date");
           }
 
+          // Check if date has a badge achievement
           for (let key in data) {
             if (data[key]["badgeDate"] === `${month + 1}/${date}/${year}`) {
-              const badgeIndicator = document.createElement("h6");
-              badgeIndicator.innerHTML = "BADGE";
-              cell.appendChild(badgeIndicator);
+              cell.classList.add("date-has-badge");
+              break;
             }
           }
 
