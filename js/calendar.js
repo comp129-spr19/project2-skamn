@@ -102,8 +102,35 @@ function formatDateCell(cell, date, month, year) {
 
 /* MODAL OPEN */
 $("#calendarModal").on("show.bs.modal", function(event) {
-  const badgeEarnedElem = document.getElementById("badge-earned");
-  badgeEarnedElem.src = badgeImages["Meet Daily Goal - 1 Day"];
+  getDataFromFile(data => {
+    const fakeData = require("../js/badgeacheivements_fakedata.json");
+    const badgesDisplayElem = document.getElementById("badges-display");
+
+    // Clear badges display
+    badgesDisplayElem.innerHTML = "";
+
+    for (let key in fakeData) {
+      console.log("fake data date: ", fakeData[key]["badgeDate"]);
+      if (fakeData[key]["badgeDate"] === dateSelected) {
+        const badgeSect = document.createElement("div");
+
+        // DISPLAY BADGE EARNED
+        const badgeElem = document.createElement("img");
+        badgeElem.style.display = "";
+        badgeElem.src = badgeImages[fakeData[key]["badgeName"]];
+        badgeElem.classList.add("badge-earned");
+
+        // DISPLAY BADGE LABEL
+        const badgeLabelElem = document.createElement("label");
+        badgeLabelElem.innerHTML = fakeData[key]["badgeName"];
+
+        badgeSect.appendChild(badgeElem);
+        badgeSect.appendChild(badgeLabelElem);
+        badgesDisplayElem.appendChild(badgeSect);
+      }
+    }
+    console.log(fakeData);
+  }, "badgeachievements");
   console.log(dateSelected);
 
   // CHANGE TITLE
