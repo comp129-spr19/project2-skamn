@@ -77,7 +77,10 @@ function showCalendar(month, year) {
         btn.onclick = () => alert(btn.value);
         let cell = document.createElement("td");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
         // let cellText = document.createTextNode(date);
         let btn = document.createElement("BUTTON");
         btn.innerHTML = date;
@@ -85,6 +88,9 @@ function showCalendar(month, year) {
         btn.id = "dates";
         // displaying modal after date has been clicked on in calendar
         btn.onclick = () => makeModal(btn, btn.value, month, year);
+<<<<<<< HEAD
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
+=======
 >>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
         if (
           date === today.getDate() &&
@@ -95,6 +101,10 @@ function showCalendar(month, year) {
           cell.classList.add("../badge-images/goal-30days.png");
         } // color today's date
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        // cell.appendChild(cellText);
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 =======
         // cell.appendChild(cellText);
 >>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
@@ -106,7 +116,10 @@ function showCalendar(month, year) {
     tbl.appendChild(row); // appending each row into calendar body.
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 }
 
 function makeModal(btn, date, month, year) {
@@ -120,6 +133,7 @@ function makeModal(btn, date, month, year) {
   const dateArr = [];
 
   let actualMonth = month + 1;
+<<<<<<< HEAD
 
   getDataFromFile(function(data) {
     if (data != null) {
@@ -131,6 +145,19 @@ function makeModal(btn, date, month, year) {
       }
     }
 
+=======
+
+  getDataFromFile(function(data) {
+    if (data != null) {
+      for (id in data) {
+        if (data[id]["badgeDate"] != 0) {
+          nameArr.push(data[id]["badgeName"]);
+          dateArr.push(data[id]["badgeDate"]);
+        }
+      }
+    }
+
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
     for (i = 0; i < dateArr.length; i++) {
       result = dateArr[i].split("/");
       if (result[0] == actualMonth && result[1] == date && result[2] == year) {
@@ -158,6 +185,9 @@ function makeModal(btn, date, month, year) {
       value.innerHTML = "";
     }
   };
+<<<<<<< HEAD
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
+=======
 >>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 }
 

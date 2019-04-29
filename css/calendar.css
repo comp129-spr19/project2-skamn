@@ -30,9 +30,18 @@
 /* #calendar-body:hover {
   cursor: pointer;
 <<<<<<< HEAD
+<<<<<<< HEAD
 } */
 =======
   align-content: justify;
+=======
+  align-content: justify;
+}
+
+#calendar {
+  table-layout: fixed;
+  width: 100%;
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 }
 
 #calendar {

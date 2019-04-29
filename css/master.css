@@ -147,6 +147,7 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #dates {
   text-align: center;
   color: red;
@@ -155,6 +156,10 @@
 }
 
 #unit-select-area {}
+=======
+#unit-select-area {
+}
+>>>>>>> 7709fa8d6380904c4e5e4262cf6d05baf1df8de6
 =======
 #unit-select-area {
 }
