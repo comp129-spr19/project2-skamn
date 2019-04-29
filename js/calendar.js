@@ -114,40 +114,44 @@ function formatDateCell(cell, date, month, year) {
 }
 
 /* MODAL OPEN */
-$("#calendarModal").on("show.bs.modal", function(event) {
-  getDataFromFile(results => {
-    const data = require("../js/badgeacheivements_fakedata.json");
-    const badgesDisplayElem = document.getElementById("badges-display");
+try {
+  $("#calendarModal").on("show.bs.modal", function(event) {
+    getDataFromFile(results => {
+      const data = require("../js/badgeacheivements_fakedata.json");
+      const badgesDisplayElem = document.getElementById("badges-display");
 
-    // Clear badges display
-    badgesDisplayElem.innerHTML = "";
+      // Clear badges display
+      badgesDisplayElem.innerHTML = "";
 
-    for (let key in data) {
-      if (data[key]["badgeDate"] === dateSelected) {
-        const badgeSect = document.createElement("div");
+      for (let key in data) {
+        if (data[key]["badgeDate"] === dateSelected) {
+          const badgeSect = document.createElement("div");
 
-        // DISPLAY BADGE EARNED
-        const badgeElem = document.createElement("img");
-        badgeElem.style.display = "";
-        badgeElem.src = badgeImages[data[key]["badgeName"]];
-        badgeElem.classList.add("badge-earned");
+          // DISPLAY BADGE EARNED
+          const badgeElem = document.createElement("img");
+          badgeElem.style.display = "";
+          badgeElem.src = badgeImages[data[key]["badgeName"]];
+          badgeElem.classList.add("badge-earned");
 
-        // DISPLAY BADGE LABEL
-        const badgeLabelElem = document.createElement("label");
-        badgeLabelElem.innerHTML = data[key]["badgeName"];
+          // DISPLAY BADGE LABEL
+          const badgeLabelElem = document.createElement("label");
+          badgeLabelElem.innerHTML = data[key]["badgeName"];
 
-        badgeSect.appendChild(badgeElem);
-        badgeSect.appendChild(badgeLabelElem);
-        badgesDisplayElem.appendChild(badgeSect);
+          badgeSect.appendChild(badgeElem);
+          badgeSect.appendChild(badgeLabelElem);
+          badgesDisplayElem.appendChild(badgeSect);
+        }
       }
-    }
-  }, "badgeachievements");
-  console.log(dateSelected);
+    }, "badgeachievements");
+    console.log(dateSelected);
 
-  // CHANGE TITLE
-  const modalTitle = document.getElementById("calendarModalLabel");
-  modalTitle.innerHTML = dateSelected;
-});
+    // CHANGE TITLE
+    const modalTitle = document.getElementById("calendarModalLabel");
+    modalTitle.innerHTML = dateSelected;
+  });
+} catch (err) {
+  console.log("jQuery not included");
+}
 
 function getDaysInMonth(month, year) {
   return 32 - new Date(year, month, 32).getDate();
