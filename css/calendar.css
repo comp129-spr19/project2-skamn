@@ -57,3 +57,8 @@
     min-width: 850px;
   }
 }
+
+#badge-earned {
+  width: 75px;
+  height: 85px;
+}
