@@ -162,3 +162,30 @@
 .spacer {
   flex-grow: 1 1 100%;
 }
+
+#two {
+  margin: auto;
+  display: flex;
+  height: 100px;
+  width: 300px;
+}
+
+#two > canvas {
+  position: absolute;
+}
+
+#viewport {
+  height: 100px;
+}
+
+#dates {
+  text-align: center;
+  margin: auto;
+  display: flex;
+  border-radius: 15px;
+}
+
+#dates:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}

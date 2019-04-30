@@ -26,7 +26,7 @@ function saveBadgeAchievements(name, date) {
           badgeDate: 0
         },
         inputConsumpThreeXOneDay: {
-          badgeName: "Input Water Consumption into App 3 Times in One Day",
+          badgeName: "Input Consumption 3 Times in One Day",
           badgeDate: 0
         }
       };
@@ -67,14 +67,14 @@ function initializeBadgeAchievementsForTesting() {
       badgeDate: 0
     },
     inputConsumpThreeXOneDay: {
-      badgeName: "Input Water Consumption into App 3 Times in One Day",
+      badgeName: "Input Consumption 3 Times in One Day",
       badgeDate: 0
     }
   };
   setDataToFile(badgeData, "badgeachievements");
 }
 
-// XXX: Testing function. Needs to be deleted
+// Testing function
 function initializeDailyGoalStreaksForTesting() {
   let todayDate = new Date();
   let initialBadgeLogic = {
@@ -115,6 +115,18 @@ function displayBadgeNotifications(badgeName) {
       console.log("Badge '" + displayBadgeName + "' Achieved");
     } catch (err) {
       console.log("Badge achieved but notification not shown");
+    }
+  }, "badgeachievements");
+}
+
+function updateBadgeAchievementLabels() {  
+  getDataFromFile(function(data) {
+    if (data != null) {
+      for (let id in data) {
+        if (data[id]["badgeDate"] != 0) {
+          document.getElementById(id).innerHTML = "Achieved: " + data[id]["badgeDate"];
+        }
+      }
     }
   }, "badgeachievements");
 }

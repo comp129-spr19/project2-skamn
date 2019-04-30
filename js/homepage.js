@@ -39,6 +39,7 @@ function validateUserNumberInput(userInput) {
 }
 
 function setGoal(e) {
+  location.reload();
   if (e) {
     e.preventDefault();
   }
@@ -102,6 +103,7 @@ function displayGoalNotification() {
 }
 
 function setWaterDrankRecently(e) {
+  location.reload();
   if (e) {
     e.preventDefault();
   }
@@ -216,32 +218,8 @@ function updateDependentComponents() {
   updateWaterStillNeeded();
   updatePercentageGoal();
   updateProgressBar();
-}
-
-function updateGraphic() {
-  const hydrationGraphic = document.getElementById("hydration-graphic");
-
-  if (hydrationTimer === -99) {
-    hydrationGraphic.src = "../images/HydrationDehydrated.png";
-    return;
-  }
-
-  hydrationTimer--;
-
-  if (hydrationTimer <= 0) {
-    hydratedToday = false;
-    hydrationTimer = -99;
-    alert(
-      "Uh oh, you're getting dehydrated. You should drink some more water!"
-    );
-  } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
-    hydrationGraphic.src = "../images/HydrationLow.png";
-  } else {
-    hydrationGraphic.src = "../images/HydrationFull.png";
-  }
-
-  saveData();
-  // console.log("Hydration Timer: ", hydrationTimer);
+  createLine();
+  createBackground();
 }
 
 function initHomepage() {
@@ -272,11 +250,50 @@ function initHomepage() {
 
     resetDataForNewDate(data);
     updateDependentComponents();
-    updateGraphic();
     saveData();
   });
+}
 
-  setInterval(updateGraphic, 1000);
+// creating animated odometer
+function createBackground() {
+  let canvas = document.getElementById("viewport");
+  let base_image = new Image();
+  base_image.src = "../images/odometerBackground.png";
+  let ctx = canvas.getContext("2d");
+
+  base_image.onload = function() {
+    ctx.drawImage(base_image, 0, 0);
+  };
+}
+
+// Creates line used in the odometer
+function createLine() {
+  let count = 0;
+  let paused = true;
+  const odometer = setInterval(() => {
+    let c = document.getElementById("myCanvas");
+    let ctx = c.getContext("2d");
+
+    ctx.clearRect(0, 0, 500, 500);
+    ctx.beginPath();
+    ctx.moveTo(0 + count, 0);
+    ctx.lineTo(135, 100);
+    ctx.lineWidth = 6;
+    ctx.strokeStyle = "#FF0000";
+    ctx.closePath();
+    ctx.stroke();
+
+    if (count >= Math.abs(getDailyGoal()) + 2000) {
+      paused = false;
+    } else if (count == (-Math.abs(getDailyGoal()) - 2000) / 2) {
+      paused = false;
+    } else if (count <= -Math.abs(getDailyGoal()) - 2000) {
+      clearInterval(odometer);
+      paused = true;
+    }
+
+    count = paused ? count + 3 : count - 0.2;
+  }, 1);
 }
 
 module.exports = {
