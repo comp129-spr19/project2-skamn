@@ -74,7 +74,7 @@ function initializeBadgeAchievementsForTesting() {
   setDataToFile(badgeData, "badgeachievements");
 }
 
-// XXX: Testing function. Needs to be deleted
+// Testing function
 function initializeDailyGoalStreaksForTesting() {
   let todayDate = new Date();
   let initialBadgeLogic = {

@@ -222,32 +222,6 @@ function updateDependentComponents() {
   createBackground();
 }
 
-// function updateGraphic() {
-//   const hydrationGraphic = document.getElementById("hydration-graphic");
-
-//   if (hydrationTimer === -99) {
-//     hydrationGraphic.src = "../images/HydrationDehydrated.png";
-//     return;
-//   }
-
-//   hydrationTimer--;
-
-//   if (hydrationTimer <= 0) {
-//     hydratedToday = false;
-//     hydrationTimer = -99;
-//     alert(
-//       "Uh oh, you're getting dehydrated. You should drink some more water!"
-//     );
-//   } else if (hydrationTimer <= HYDRATION_TIMER_MAX / 2) {
-//     hydrationGraphic.src = "../images/HydrationLow.png";
-//   } else {
-//     hydrationGraphic.src = "../images/HydrationFull.png";
-//   }
-
-//   saveData();
-//   // console.log("Hydration Timer: ", hydrationTimer);
-// }
-
 function initHomepage() {
   // Load data from storage and initialize app data with the storage data
   getDataFromFile(function(data) {
@@ -276,10 +250,8 @@ function initHomepage() {
 
     resetDataForNewDate(data);
     updateDependentComponents();
-    // updateGraphic();
     saveData();
   });
-  // setInterval(updateGraphic, 1000);
 }
 
 // creating animated odometer
@@ -310,7 +282,6 @@ function createLine() {
     ctx.strokeStyle = "#FF0000";
     ctx.closePath();
     ctx.stroke();
-    // console.log("Count: " + count);
 
     if (count >= Math.abs(getDailyGoal()) + 2000) {
       paused = false;

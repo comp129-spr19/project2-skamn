@@ -57,7 +57,7 @@ function showCalendar(month, year) {
   selectMonth.value = month;
 
   getDataFromFile(results => {
-    const data = require("../js/badgeacheivements_fakedata.json");
+    const data = results;
 
     // creating all cells
     let date = 1;
@@ -117,7 +117,7 @@ function formatDateCell(cell, date, month, year) {
 try {
   $("#calendarModal").on("show.bs.modal", function(event) {
     getDataFromFile(results => {
-      const data = require("../js/badgeacheivements_fakedata.json");
+      const data = results;
       const badgesDisplayElem = document.getElementById("badges-display");
 
       // Clear badges display
