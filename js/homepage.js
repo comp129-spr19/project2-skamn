@@ -310,7 +310,7 @@ function createLine() {
     ctx.strokeStyle = "#FF0000";
     ctx.closePath();
     ctx.stroke();
-    console.log("Count: " + count);
+    // console.log("Count: " + count);
 
     if (count >= Math.abs(getDailyGoal()) + 2000) {
       paused = false;

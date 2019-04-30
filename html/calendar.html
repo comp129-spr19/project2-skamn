@@ -22,7 +22,9 @@
   <body>
     <!-- Creating navigation bar below -->
     <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
-      <a class="navbar-brand" href="#"><b>Hydration Station</b></a>
+      <a class="navbar-brand" href="#">
+        <b>Hydration Station</b>
+      </a>
       <button
         class="navbar-toggler"
         type="button"
@@ -37,9 +39,9 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="index.html"
-              >Home <span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="index.html">
+              Home <span class="sr-only">(current)</span>
+            </a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="calendar.html">Calendar</a>
@@ -74,8 +76,8 @@
       </div>
     </nav>
 
-    <!-- Creating calendar below -->
-    <div class="container">
+    <!-- CALENDAR SECTION -->
+    <div class="container" id="calendar-section">
       <div class="card">
         <h3 class="card-header" id="monthAndYear"></h3>
         <table class="table table-bordered table-responsive-sm" id="calendar">
@@ -93,7 +95,7 @@
           <tbody id="calendar-body"></tbody>
         </table>
 
-        <!-- Creating buttons under calendar below -->
+        <!-- CALENDAR FOOTER BUTTONS -->
         <div class="form-inline">
           <button
             class="btn btn-outline-primary col-sm-6"
@@ -134,8 +136,8 @@
             <option value="11">Decemeber</option>
           </select>
 
-          <label for="year"></label
-          ><select
+          <label for="year"></label>
+          <select
             class="form-control col-sm-4"
             name="year"
             id="year"
@@ -157,26 +159,58 @@
         </form>
       </div>
     </div>
+    <!-- END CALENDAR SECTION -->
 
-    <!-- The Modal -->
-    <div id="myModal" class="modal">
-      <!-- Modal content -->
-      <div class="modal-content">
-        <span class="close">&times;</span>
-        <p id="modalText"></p>
+    <!-- DATE DATA MODAL -->
+    <div
+      class="modal fade"
+      id="calendarModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="calendarModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="calendarModalLabel">Modal title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <h6>Badges Earned:</h6>
+            <div id="badges-display"></div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
     </div>
+    <!-- END DATE DATA MODAL -->
 
     <script>
       // You can also require other files to run in this process
       require("../renderer.js");
+      window.$ = window.jQuery = require("jquery");
+      require("bootstrap");
     </script>
     <script src="../js/calendar.js"></script>
     <script src="../js/storage.js"></script>
     <script src="../js/units.js"></script>
     <script>
-      window.$ = window.jQuery = require("jquery");
-      require("bootstrap");
       let currentMonth = today.getMonth();
       let currentYear = today.getFullYear();
       window.onload = function() {
